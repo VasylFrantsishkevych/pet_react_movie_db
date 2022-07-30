@@ -1,15 +1,8 @@
+import {IMovieCard} from "./movieCard.interface";
 
 export interface IMovieList {
     page: number;
-    results: [
-        {
-            id: number;
-            original_title: string;
-            poster_path: string;
-            release_date: string;
-            vote_average: number;
-        }
-    ];
+    results: IMovieCard[];
     total_pages: number;
     total_results: number;
 }

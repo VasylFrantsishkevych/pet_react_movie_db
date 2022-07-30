@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {IMovieCard, IMovieDetails} from "../../interfaces";
+import {IMovieCard, IMovieDetails, IMovieList} from "../../interfaces";
 import {AxiosError} from "axios";
 import {movieService} from "../../services";
 
@@ -21,7 +21,7 @@ const initialState: IState = {
     totalPages: 0,
 }
 
-const getAllMovies = createAsyncThunk<IMovieCard[], void>(
+const getAllMovies = createAsyncThunk<IMovieList, void>(
     'movieSlice/getAllMovies',
     async (_, {rejectWithValue}) => {
         try {
@@ -38,11 +38,12 @@ const movieSlice = createSlice({
     name: 'movieSlice',
     initialState,
     reducers: {},
-    extraReducers: {
-        [getAllMovies.fulfilled.type]: (state, action) => {
-            state.status = 'fulfilled'
-            state.movies = action.payload.results
-        }
+    extraReducers: builder => {
+        builder
+            .addCase(getAllMovies.fulfilled, (state, {payload}) => {
+                const {page, results, total_pages} = payload;
+                state.movies = results
+            })
     }
 })
 
