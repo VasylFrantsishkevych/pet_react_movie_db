@@ -1,3 +1,5 @@
 export * from './Header/Header';
 export * from './MoviesList/MoviesList';
-export  * from './MoviesListCard/MoviesListCard';
+export * from './MovieListCard/MovieListCard';
+export * from './MoviesDetails/MoviesDetails';
+export * from './MovieDetailsInfo/MovieDetailsInfo';

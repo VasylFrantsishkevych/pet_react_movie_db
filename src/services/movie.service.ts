@@ -4,5 +4,5 @@ import {urls} from "../constants";
 
 export  const movieService = {
     getAll: (): AxiosRes<IMovieList> => axiosService.get(urls.movies),
-    getById: (id: number): AxiosRes<IMovieDetails> => axiosService.get(`${urls.movieId}/${id}`)
+    getById: (id: string | undefined): AxiosRes<IMovieDetails> => axiosService.get(`${urls.movieId}/${id}`)
 }

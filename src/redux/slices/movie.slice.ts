@@ -34,6 +34,19 @@ const getAllMovies = createAsyncThunk<IMovieList, void>(
     }
 )
 
+const getMovieById = createAsyncThunk<IMovieDetails[], string | undefined>(
+    'movieSlice/getMovieBtId',
+    async (id, {rejectWithValue}) => {
+        try {
+            const {data} = await movieService.getById(id);
+            return [data]
+        } catch (e) {
+            const err = e as AxiosError
+            return rejectWithValue(err.response?.data)
+        }
+    }
+)
+
 const movieSlice = createSlice({
     name: 'movieSlice',
     initialState,
@@ -44,13 +57,17 @@ const movieSlice = createSlice({
                 const {page, results, total_pages} = payload;
                 state.movies = results
             })
+            .addCase(getMovieById.fulfilled, (state, action) => {
+                state.movieId = action.payload
+            })
     }
 })
 
 const {reducer: movieReducer} = movieSlice;
 
 const movieAction = {
-    getAllMovies
+    getAllMovies,
+    getMovieById
 }
 
 export {

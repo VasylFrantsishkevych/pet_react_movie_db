@@ -2,7 +2,6 @@ import {IGenres} from "./genres.interface";
 import {IProductionCompanies} from "./productionCompanies.interface";
 
 export interface IMovieDetails {
-    backdrop_path: string,
     budget: number,
     genres: IGenres[],
     homepage: string,
@@ -12,6 +11,11 @@ export interface IMovieDetails {
     popularity: number,
     poster_path: string,
     production_companies: IProductionCompanies[],
+    production_countries: [
+        {
+            iso_3166_1: string
+        }
+    ]
     release_date: string,
     runtime: number,
     vote_average: number,

@@ -1,0 +1,55 @@
+.movie__details {
+    background: #25282d;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 25px;
+}
+.movie__details_title {
+    background: #1e1f23;
+    height: 40px;
+}
+.movie__details_info {
+    width: 100%;
+    background:  #3a3d44;
+    box-sizing: border-box;
+    padding: 15px;
+    border-radius: 20px;
+
+}
+.movie__details_card {
+    display: flex;
+}
+.img {
+    width: 40%;
+}
+.container__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 60%;
+}
+.container__info span {
+    color: #b1c2c9;
+}
+.container__info p {
+    font-weight: bold;
+    font-size: 20px;
+}
+.description {
+    color: #f1f1f1;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: justify;
+    text-indent: 25px;
+}
+.info {
+    color: #f1f1f1;
+}
+.info h2 {
+    text-align: center;
+}
+.votes {
+    color: #f1f1f1;
+    display: flex;
+    column-gap: 10px;
+}
