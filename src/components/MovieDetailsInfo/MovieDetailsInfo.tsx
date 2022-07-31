@@ -18,6 +18,7 @@ const MovieDetailsInfo: FC<IProps> = ({movie}) => {
         poster_path,
         production_companies,
         production_countries,
+        popularity,
         runtime,
         release_date,
         vote_average,
@@ -49,6 +50,7 @@ const MovieDetailsInfo: FC<IProps> = ({movie}) => {
                                 </p>
                                 <p>Time: <span>{runtime}</span></p>
                                 <p>Data: <span>{release_date}</span></p>
+                                <p>Popularity: <span>{popularity}</span></p>
                                 <a href={homepage}></a>
                             </div>
                             <div className={'votes'}>

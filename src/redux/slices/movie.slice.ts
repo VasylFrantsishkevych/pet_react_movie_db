@@ -21,11 +21,11 @@ const initialState: IState = {
     totalPages: 0,
 }
 
-const getAllMovies = createAsyncThunk<IMovieList, void>(
+const getAllMovies = createAsyncThunk<IMovieList, {id: string | undefined, page: string | null}>(
     'movieSlice/getAllMovies',
-    async (_, {rejectWithValue}) => {
+    async ({id, page}, {rejectWithValue}) => {
         try {
-            const {data} = await movieService.getAll();
+            const {data} = await movieService.getAll(id, page);
             return data
         } catch (e) {
             const err = e as AxiosError
@@ -56,9 +56,11 @@ const movieSlice = createSlice({
             .addCase(getAllMovies.fulfilled, (state, {payload}) => {
                 const {page, results, total_pages} = payload;
                 state.movies = results
+                state.currentPage = page
+                state.totalPages = total_pages
             })
-            .addCase(getMovieById.fulfilled, (state, action) => {
-                state.movieId = action.payload
+            .addCase(getMovieById.fulfilled, (state, {payload}) => {
+                state.movieId = payload
             })
     }
 })

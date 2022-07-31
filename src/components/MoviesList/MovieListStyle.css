@@ -3,7 +3,7 @@
     box-sizing: border-box;
 }
 .movies__title {
-    background: #1e1f23;
+    background: #3a3d44;
     height: 40px;
 }
 .movies__list {
@@ -14,4 +14,12 @@
     flex-wrap: wrap;
     justify-content: space-around;
     row-gap: 20px;
+}
+.movies__title {
+    color: #ffffff;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
 }

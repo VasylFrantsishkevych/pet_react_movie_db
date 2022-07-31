@@ -44,3 +44,7 @@
     text-decoration:  underline;
     margin-left: 20px;
 }
+.footer {
+    height: 60px;
+    background: #1e1f23;
+}

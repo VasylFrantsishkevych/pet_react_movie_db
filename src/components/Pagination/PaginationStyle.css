@@ -1,0 +1,35 @@
+.page, .current_page{
+    width: 32px;
+    height: 32px;
+    border: 2px solid grey;
+    border-radius: 50%;
+    color: #f1f1f1;
+    padding: 5px 10px;
+    margin: 0 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #3a3d44;
+}
+.current_page {
+    border: none;
+    box-shadow: 0 0 5px black;
+    font-weight: 500;
+}
+.paginator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #25282d;
+    padding-bottom: 15px;
+}
+.paginator a {
+    text-decoration: none;
+}
+.button {
+    border: 2px solid grey;
+    cursor: pointer;
+    color: #f1f1f1;
+    background: #3a3d44;
+}

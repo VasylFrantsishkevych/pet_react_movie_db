@@ -11,6 +11,7 @@ const App: FC = () => {
                     <Route index element={<MoviePage/>}/>
                     <Route path={'discover/movie'} element={<MoviePage/>}/>
                     <Route path={'movie/:id'} element={<MovieDetailsPage/>}/>
+                    <Route path={'discover/movie&language=en-US&with_genres=:id'} element={<MoviePage/>}/>
                 </Route>
             </Routes>
         </div>
