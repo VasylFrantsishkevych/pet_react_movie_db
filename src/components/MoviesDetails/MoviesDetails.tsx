@@ -7,7 +7,7 @@ import './MoviesDetailsStyle.css';
 import {MovieDetailsInfo} from "../MovieDetailsInfo/MovieDetailsInfo";
 
 const MoviesDetails: FC = () => {
-    const {movieId} = useAppSelector(state => state.movies);
+    const {movieId, status} = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
     const {id} = useParams();
 
@@ -17,6 +17,7 @@ const MoviesDetails: FC = () => {
 
     return (
         <div>
+            {status && <h2>Loading...</h2>}
             {
                 movieId.map(movie => <MovieDetailsInfo key={movie.id} movie={movie}/>)
             }

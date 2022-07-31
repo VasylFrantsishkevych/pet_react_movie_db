@@ -1,4 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+
 import {IMovieCard, IMovieDetails, IMovieList} from "../../interfaces";
 import {AxiosError} from "axios";
 import {movieService} from "../../services";
@@ -6,8 +7,8 @@ import {movieService} from "../../services";
 interface IState {
     movies: IMovieCard[],
     movieId: IMovieDetails[],
-    status: string | null,
-    error: string | null,
+    status: boolean | null,
+    errors: string | null,
     currentPage: number,
     totalPages: number
 }
@@ -16,7 +17,7 @@ const initialState: IState = {
     movies: [],
     movieId: [],
     status: null,
-    error: null,
+    errors: null,
     currentPage: 1,
     totalPages: 0,
 }
@@ -58,9 +59,15 @@ const movieSlice = createSlice({
                 state.movies = results
                 state.currentPage = page
                 state.totalPages = total_pages
+                state.status = false
             })
             .addCase(getMovieById.fulfilled, (state, {payload}) => {
                 state.movieId = payload
+                state.status = false
+            })
+            .addDefaultCase((state, action) => {
+                const [type] = action.type.split('/').splice(-1)
+                state.status = type === 'pending';
             })
     }
 })

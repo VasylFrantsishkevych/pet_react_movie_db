@@ -10,7 +10,7 @@ import {IGenres} from "../../interfaces";
 
 const MoviesList: FC = () => {
 
-    const {movies} = useAppSelector(state => state.movies);
+    const {movies, status} = useAppSelector(state => state.movies);
     const {genre} = useAppSelector(state => state.genres);
     const {state} = useAppLocation<IGenres>();
     const dispatch = useAppDispatch();
@@ -35,6 +35,7 @@ const MoviesList: FC = () => {
                 }
             </div>
             <div className={'movies__list'}>
+                {status && <h2>Loading...</h2>}
                 {
                     movies.map(movie => <MovieListCard key={movie.id} movie={movie}/>)
                 }
