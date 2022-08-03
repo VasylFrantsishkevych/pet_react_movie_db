@@ -1,5 +1,6 @@
 .wrap {
-    background: #34393f;
+    /*background: #34393f;*/
+    background: var(--background);
     box-sizing: border-box;
     min-height: 100vh;
 }

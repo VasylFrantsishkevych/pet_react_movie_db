@@ -1,12 +1,15 @@
 import {Outlet} from "react-router-dom";
-import React, {FC} from "react";
+import React, {CSSProperties, FC} from "react";
 
 import './MainLayoutStyle.css';
 import {Genres, Header} from "../components";
+import {useTheme} from "../contextTheme/theme";
 
 const MainLayout: FC = () => {
+    const {theme} = useTheme();
+    console.log(theme)
     return (
-        <div className={'wrap'}>
+        <div className={'wrap'} style={{...theme} as CSSProperties}>
             <div className={'layout'}>
                 <Header/>
                 <div className={'container'}>

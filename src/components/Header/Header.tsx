@@ -4,13 +4,23 @@ import {Link} from "react-router-dom";
 import './HeaderStyle.css';
 import {useAppDispatch} from "../../hooks";
 import {genreActions} from "../../redux";
+import {useTheme} from "../../contextTheme/theme";
 
 const Header: FC = () => {
 
+    const {themeType, setCurrentTheme} = useTheme();
     const dispatch = useAppDispatch();
 
     const deleteGenre = () => {
         dispatch(genreActions.addGenre(null))
+    }
+
+    const changeTheme = () => {
+        if (themeType === 'dark') {
+            setCurrentTheme('light')
+        }else {
+            setCurrentTheme('dark')
+        }
     }
 
     return (
@@ -21,6 +31,9 @@ const Header: FC = () => {
             <div className={'header__menu'}>
                 <div className={'header__menu_item'}>
                     <Link to={'/discover/movie'} onClick={() => deleteGenre()}>Movies</Link>
+                </div>
+                <div className={'theme__button'}>
+                    <button onClick={() => changeTheme()}>{themeType === 'dark' ? 'Light' : 'Dark'}</button>
                 </div>
             </div>
         </div>
