@@ -19,6 +19,12 @@
 .movie__details_card {
     display: flex;
 }
+.movie__details_card_rating {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+    color: var(--color-text-primary)
+}
 .img {
     width: 40%;
 }

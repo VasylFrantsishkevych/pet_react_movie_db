@@ -2,6 +2,7 @@ import React, {FC, ReactNode} from 'react';
 
 import {IMovieDetails} from "../../interfaces";
 import './MovieDetailsInfoStyle.css';
+import {StarsRating} from "../StarsRating/StarsRating";
 
 interface IProps {
     movie: IMovieDetails
@@ -11,12 +12,10 @@ interface IProps {
 const MovieDetailsInfo: FC<IProps> = ({movie}) => {
 
     const {
-        homepage,
         original_title,
         genres,
         overview,
         poster_path,
-        production_companies,
         production_countries,
         popularity,
         runtime,
@@ -51,11 +50,16 @@ const MovieDetailsInfo: FC<IProps> = ({movie}) => {
                                 <p>Time: <span>{runtime}</span></p>
                                 <p>Data: <span>{release_date}</span></p>
                                 <p>Popularity: <span>{popularity}</span></p>
-                                <a href={homepage}></a>
                             </div>
-                            <div className={'votes'}>
-                                <p>Vote average: <span>{vote_average}</span></p>
-                                <p>Vote count: <span>{vote_count}</span></p>
+                            <div>
+                                <div className={'movie__details_card_rating'}>
+                                    <span>Rate the movie:</span>
+                                    <StarsRating/>
+                                </div>
+                                <div className={'votes'}>
+                                    <p>Vote average: <span>{vote_average}</span></p>
+                                    <p>Vote count: <span>{vote_count}</span></p>
+                                </div>
                             </div>
                         </div>
                     </div>
