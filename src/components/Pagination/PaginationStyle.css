@@ -1,35 +1,35 @@
 .page, .current_page{
     width: 32px;
     height: 32px;
-    border: 2px solid grey;
+    border: 2px solid var(--border-pagination);
     border-radius: 50%;
-    color: #f1f1f1;
+    color: var(--color-text-primary);
     padding: 5px 10px;
     margin: 0 10px;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #3a3d44;
+    background: var(--primary);
 }
 .current_page {
     border: none;
-    box-shadow: 0 0 5px black;
+    box-shadow: 0 0 5px var(--black);
     font-weight: 500;
 }
 .paginator {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #25282d;
+    background: var(--secondary);
     padding-bottom: 15px;
 }
 .paginator a {
     text-decoration: none;
 }
 .button {
-    border: 2px solid grey;
+    border: 2px solid var(--border-pagination);
     cursor: pointer;
-    color: #f1f1f1;
-    background: #3a3d44;
+    color: var(--color-text-primary);
+    background: var(--primary);
 }

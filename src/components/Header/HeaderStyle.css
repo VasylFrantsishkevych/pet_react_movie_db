@@ -1,15 +1,15 @@
 .header {
-    background: #25282d;
+    background: var(--secondary);
 }
 .header__name {
-    background: #3a3d44;
+    background: var(--primary);
     height: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .header__name h1 {
-    color: #ffffff;
+    color: var(--color-text-primary);
 }
 .header__menu {
     height: 50px;
@@ -23,10 +23,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-right: 2px solid black;
+    border-right: 2px solid var(--black);
 }
 .header__menu_item a {
-    color: #ffffff;
+    color: var(--color-text-primary);
     text-decoration: none;
     font-weight: bold;
     font-size: 25px;
@@ -43,10 +43,10 @@
 .theme__button button {
     height: 30px;
     width: 45px;
-    background: #3a3d44;
-    color: #ffffff;
+    background: var(--primary);
+    color: var(--color-text-primary);
     border: none;
     cursor: pointer;
-    box-shadow: 0 0 5px black;
+    box-shadow: 0 0 5px var(--black);
     border-radius: 5px;
 }

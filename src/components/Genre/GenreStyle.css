@@ -1,7 +1,7 @@
 
 .genre a {
     text-decoration: none;
-    color: #b1c2c9;
+    color: var(--color-text-secondary);
     font-size: 20px;
 }
 .genre a:hover {

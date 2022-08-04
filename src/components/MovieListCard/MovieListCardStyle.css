@@ -1,6 +1,6 @@
 .movie__card {
     width: 23%;
-    background: #3a3d44;
+    background: var(--primary);
     padding: 10px;
     border-radius: 10px;
     box-sizing: border-box;
@@ -15,7 +15,7 @@
 }
 .movie__card_title {
     text-align: center;
-    color: #f1f1f1;
+    color: var(--color-text-primary);
     font-weight: bold;
 }
 .rating {

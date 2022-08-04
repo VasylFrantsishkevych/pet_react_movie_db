@@ -3,11 +3,11 @@
     box-sizing: border-box;
 }
 .movies__title {
-    background: #3a3d44;
+    background: var(--primary);
     height: 40px;
 }
 .movies__list {
-    background: #25282d;
+    background: var(--secondary);
     box-sizing: border-box;
     padding: 20px;
     display: flex;
@@ -16,7 +16,7 @@
     row-gap: 20px;
 }
 .movies__title {
-    color: #ffffff;
+    color: var(--color-text-primary);
     text-transform: uppercase;
     display: flex;
     justify-content: center;

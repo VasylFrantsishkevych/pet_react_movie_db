@@ -1,16 +1,16 @@
 .movie__details {
-    background: #25282d;
+    background: var(--secondary);
     min-height: 100vh;
     box-sizing: border-box;
     padding: 25px;
 }
 .movie__details_title {
-    background: #1e1f23;
+    background: var(--auxiliary);
     height: 40px;
 }
 .movie__details_info {
     width: 100%;
-    background:  #3a3d44;
+    background:  var(--primary);
     box-sizing: border-box;
     padding: 15px;
     border-radius: 20px;
@@ -29,27 +29,27 @@
     width: 60%;
 }
 .container__info span {
-    color: #b1c2c9;
+    color: var(----color-text-secondary);
 }
 .container__info p {
     font-weight: bold;
     font-size: 20px;
 }
 .description {
-    color: #f1f1f1;
+    color: var(--color-text-primary);
     font-weight: bold;
     font-size: 20px;
     text-align: justify;
     text-indent: 25px;
 }
 .info {
-    color: #f1f1f1;
+    color: var(--color-text-primary);
 }
 .info h2 {
     text-align: center;
 }
 .votes {
-    color: #f1f1f1;
+    color: var(--color-text-primary);
     display: flex;
     column-gap: 10px;
 }
