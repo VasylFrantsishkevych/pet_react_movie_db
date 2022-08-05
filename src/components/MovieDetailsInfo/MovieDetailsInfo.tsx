@@ -3,6 +3,7 @@ import React, {FC, ReactNode} from 'react';
 import {IMovieDetails} from "../../interfaces";
 import './MovieDetailsInfoStyle.css';
 import {StarsRating} from "../StarsRating/StarsRating";
+import {urlSize} from "../../constants";
 
 interface IProps {
     movie: IMovieDetails
@@ -30,7 +31,7 @@ const MovieDetailsInfo: FC<IProps> = ({movie}) => {
                 <div className={'movie__details_info'}>
                     <div className={'movie__details_card'}>
                         <div className={'img'}>
-                            <img src={`https://image.tmdb.org/t/p/w300${poster_path}`} alt={`${original_title}`}/>
+                            <img src={`${urlSize.w300}${poster_path}`} alt={`${original_title}`}/>
                         </div>
                         <div className={'container__info'}>
                             <div className={'info'}>

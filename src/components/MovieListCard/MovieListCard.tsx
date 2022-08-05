@@ -1,8 +1,9 @@
 import React, {FC, ReactNode} from 'react';
+import {Link} from "react-router-dom";
 
 import './MovieListCardStyle.css';
 import {IMovieCard} from "../../interfaces";
-import {Link} from "react-router-dom";
+import {urlSize} from "../../constants";
 
 interface IProps {
     movie: IMovieCard
@@ -17,7 +18,7 @@ const MovieListCard: FC<IProps> = ({movie}) => {
         <div className={'movie__card'}>
             <Link to={`/movie/${id}`}>
                 <div className={'movie__card_image'}>
-                    <img src={`https://image.tmdb.org/t/p/w200${poster_path}`} alt={`${original_title}`}/>
+                    <img src={`${urlSize.w200}${poster_path}`} alt={`${original_title}`}/>
                 </div>
                 <div className={'movie__card_title'}>
                     <div>{original_title}</div>

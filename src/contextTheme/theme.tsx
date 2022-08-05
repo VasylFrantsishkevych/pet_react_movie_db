@@ -1,4 +1,5 @@
 import {createContext, Dispatch, FC, ReactNode, SetStateAction, useContext, useState} from "react";
+
 import {ITheme, ThemeType} from "./theme.interface";
 import {THEMES} from "./theme.config";
 

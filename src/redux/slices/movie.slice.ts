@@ -8,7 +8,7 @@ interface IState {
     movies: IMovieCard[],
     movieId: IMovieDetails[],
     status: boolean | null,
-    errors: string | null,
+    errors: string | null | unknown,
     currentPage: number,
     totalPages: number
 }
@@ -60,6 +60,9 @@ const movieSlice = createSlice({
                 state.currentPage = page
                 state.totalPages = total_pages
                 state.status = false
+            })
+            .addCase(getAllMovies.rejected, (state, {payload}) => {
+                state.errors = payload
             })
             .addCase(getMovieById.fulfilled, (state, {payload}) => {
                 state.movieId = payload

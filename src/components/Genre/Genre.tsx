@@ -1,8 +1,8 @@
 import React, {FC, ReactNode} from 'react';
+import {Link} from "react-router-dom";
 
 import './GenreStyle.css';
 import {IGenres} from "../../interfaces";
-import {Link} from "react-router-dom";
 
 interface IProps {
     genre: IGenres

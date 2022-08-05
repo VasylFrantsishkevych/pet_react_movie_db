@@ -7,3 +7,4 @@ export * from './Pagination/Pagination';
 export * from './Genres/Genres';
 export * from './Genre/Genre';
 export * from './StarsRating/StarsRating';
+export * from './UserInfo/UserInfo';

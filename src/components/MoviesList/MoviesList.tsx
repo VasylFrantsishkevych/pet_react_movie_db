@@ -1,10 +1,10 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect} from 'react';
+import {useParams, useSearchParams} from "react-router-dom";
 
 import {useAppDispatch, useAppLocation, useAppSelector} from "../../hooks";
 import './MovieListStyle.css';
 import {MovieListCard} from "../MovieListCard/MovieListCard";
 import {genreActions, movieAction} from "../../redux";
-import {useParams, useSearchParams} from "react-router-dom";
 import {Pagination} from "../Pagination/Pagination";
 import {IGenres} from "../../interfaces";
 

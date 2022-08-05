@@ -7,7 +7,7 @@ import {Genre} from "../Genre/Genre";
 
 const Genres: FC = () => {
 
-    const {genres} = useAppSelector(state => state.genres);
+    const {genres, status} = useAppSelector(state => state.genres);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -16,6 +16,7 @@ const Genres: FC = () => {
 
     return (
         <div className={'genres__list'}>
+            {status && <h4>Loading...</h4>}
             {
                 genres.map(genre => <Genre key={genre.id} genre={genre}/>)
             }

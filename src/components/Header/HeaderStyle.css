@@ -1,7 +1,18 @@
 .header {
     background: var(--secondary);
 }
+.header__logo{
+    display: flex;
+    background: var(--primary);
+}
+.user__info {
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .header__name {
+    width: 85%;
     background: var(--primary);
     height: 70px;
     display: flex;

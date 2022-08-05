@@ -42,6 +42,10 @@ const genreSlice = createSlice({
         builder
             .addCase(getAllGenres.fulfilled, (state, {payload: {genres}}) => {
                 state.genres = genres
+                state.status = null
+            })
+            .addCase(getAllGenres.pending, (state) => {
+                state.status = 'pending'
             })
     }
 });
