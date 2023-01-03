@@ -34,7 +34,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-right: 2px solid var(--black);
 }
 .header__menu_item a {
     color: var(--color-text-primary);
