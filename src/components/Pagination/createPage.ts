@@ -3,13 +3,15 @@ export const createPages  = (pages: Array<number>, totalPages: number, currentPa
         if(currentPage > 3) {
             for (let i = currentPage-3; i <= currentPage+3; i++) {
                 pages.push(i)
-                if(i === totalPages) break
+                if(i === totalPages)
+                    break
             }
         }
         else {
             for (let i = 1; i <= 7; i++) {
                 pages.push(i)
-                if(i === totalPages) break
+                if(i === totalPages)
+                    break
             }
         }
     }  else {
