@@ -7,7 +7,7 @@ import {useTheme} from "../contextTheme";
 
 const MainLayout: FC = () => {
     const {theme} = useTheme();
-    console.log(theme)
+
     return (
         <div className={'wrap'} style={{...theme} as CSSProperties}>
             <div className={'layout'}>
