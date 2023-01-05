@@ -18,7 +18,8 @@
     "@reduxjs/toolkit": "^1.8.3",
     "react-redux": "^8.0.2",
     "axios": "^0.27.2",
-    "react-simple-star-rating": "^4.0.5"
+    "react-simple-star-rating": "^4.0.5",
+    "react-hook-form": "^7.41.5"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,7 +1,9 @@
 import React, {FC} from 'react';
-import {MainLayout} from "./layouts";
 import {Route, Routes} from "react-router-dom";
-import {MovieDetailsPage, MoviePage} from "./pages";
+
+import './App.css'
+import {MainLayout} from "./layouts";
+import {MovieDetailsPage, MoviePage, SearchPage} from "./pages";
 
 const App: FC = () => {
     return (
@@ -12,6 +14,7 @@ const App: FC = () => {
                     <Route path={'discover/movie'} element={<MoviePage/>}/>
                     <Route path={'movie/:id'} element={<MovieDetailsPage/>}/>
                     <Route path={'discover/movie&language=en-US&with_genres=:id'} element={<MoviePage/>}/>
+                    <Route path={'search/movie'} element={<SearchPage/>}/>
                 </Route>
             </Routes>
         </div>

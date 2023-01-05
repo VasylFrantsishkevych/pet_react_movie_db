@@ -5,7 +5,7 @@ import {useAppDispatch, useAppLocation, useAppSelector} from "../../hooks";
 import './MoviePageStyle.css';
 import {genreActions, movieAction} from "../../redux";
 import {IGenres} from "../../interfaces";
-import {Movie, Pagination} from "../../components";
+import {Loader, Movie, Pagination} from "../../components";
 
 const MoviePage: FC = () => {
 
@@ -34,7 +34,7 @@ const MoviePage: FC = () => {
                 }
             </div>
             <div className={'movies__list'}>
-                {status && <h2>Loading...</h2>}
+                {status && <div className={'main_loader'}><Loader/></div>}
                 {
                     movies.map(movie => <Movie key={movie.id} movie={movie}/>)
                 }

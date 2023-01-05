@@ -4,6 +4,7 @@ import './GenresStyle.css';
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {genreActions} from "../../redux";
 import {Genre} from "../Genre/Genre";
+import {Loader} from "../UI";
 
 const Genres: FC = () => {
 
@@ -16,7 +17,7 @@ const Genres: FC = () => {
 
     return (
         <div className={'genres__list'}>
-            {status && <h4>Loading...</h4>}
+            {status && <div className={'main_loader'}><Loader/></div>}
             {
                 genres.map(genre => <Genre key={genre.id} genre={genre}/>)
             }

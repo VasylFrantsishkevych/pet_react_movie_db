@@ -12,7 +12,7 @@ interface IProps {
 const Genre: FC<IProps> = ({genre}) => {
 
     const {id, name} = genre;
-    console.log(id);
+
     return (
         <div className={'genre'}>
             <Link to={`/discover/movie&language=en-US&with_genres=${id}`} state={genre}>{name}</Link>

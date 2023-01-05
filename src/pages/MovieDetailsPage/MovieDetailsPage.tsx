@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {movieAction} from "../../redux";
-import {MovieDetails} from "../../components";
+import {Loader, MovieDetails} from "../../components";
 
 const MovieDetailsPage: FC = () => {
     const {movieId, status} = useAppSelector(state => state.movies);
@@ -16,7 +16,7 @@ const MovieDetailsPage: FC = () => {
 
     return (
         <div>
-            {status && <h2>Loading...</h2>}
+            {status && <div className={'main_loader'}><Loader/></div>}
             {
                 movieId.map(movie => <MovieDetails key={movie.id} movie={movie}/>)
             }

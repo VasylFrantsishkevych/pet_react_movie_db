@@ -6,4 +6,5 @@ export * from './Genres/Genres';
 export * from './Genre/Genre';
 export * from './StarsRating/StarsRating';
 export * from './Theme/theme';
+export * from './UI';
 export * from './UserInfo/UserInfo';

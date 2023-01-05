@@ -5,6 +5,7 @@ import './HeaderStyle.css';
 import {useAppDispatch} from "../../hooks";
 import {genreActions} from "../../redux";
 import {useTheme} from "../Theme";
+import {SearchForm} from "../UI";
 
 const Header: FC = () => {
     const {themeType, setCurrentTheme} = useTheme();
@@ -34,6 +35,9 @@ const Header: FC = () => {
             <div className={'header__menu'}>
                 <div className={'header__menu_item'}>
                     <Link to={'/discover/movie'} onClick={() => deleteGenre()}>Movies</Link>
+                </div>
+                <div className={'search__form'}>
+                    <SearchForm/>
                 </div>
             </div>
         </div>
