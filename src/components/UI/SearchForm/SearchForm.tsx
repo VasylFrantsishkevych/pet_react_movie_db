@@ -16,7 +16,7 @@ const SearchForm: FC = () => {
     const dispatch = useAppDispatch();
 
     const submit = (data: FormInputs) => {
-        dispatch(searchAction.addSearchText(data))
+        dispatch(searchAction.addSearchText(data.searchText))
         reset();
     }
 
