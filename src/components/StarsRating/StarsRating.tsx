@@ -11,7 +11,7 @@ const StarsRating:FC = () => {
     }
 
     return (
-        <div className='App'>
+        <div>
             <Rating
                 onClick={handleRating}
                 ratingValue={rating}
