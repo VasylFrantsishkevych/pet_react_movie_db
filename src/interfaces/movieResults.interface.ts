@@ -1,4 +1,4 @@
-export interface IMovieCard {
+export interface IMovieResults {
     id: number;
     original_title: string;
     poster_path: string;

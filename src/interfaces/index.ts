@@ -1,5 +1,4 @@
-export * from './movieCard.interface';
+export * from './movieResults.interface';
 export * from './genres.interface';
-export * from './productionCompanies.interface';
 export * from './movieDetails.interface';
-export * from './movieList.interfafe';
+export * from './movieResponse.interfafe';

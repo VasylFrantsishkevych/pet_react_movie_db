@@ -1,11 +1,11 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
-import {IMovieCard, IMovieDetails, IMovieList} from "../../interfaces";
+import {IMovieDetails, IMovieList, IMovieResults} from "../../interfaces";
 import {AxiosError} from "axios";
 import {movieService} from "../../services";
 
 interface IState {
-    movies: IMovieCard[],
+    movies: IMovieResults[],
     movieId: IMovieDetails[],
     status: boolean | null,
     errors: string | null | unknown,

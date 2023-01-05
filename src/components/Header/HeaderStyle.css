@@ -3,13 +3,8 @@
 }
 .header__logo{
     display: flex;
-    background: var(--primary);
-}
-.user__info {
-    width: 15%;
-    display: flex;
     justify-content: center;
-    align-items: center;
+    background: var(--primary);
 }
 .header__name {
     width: 85%;
@@ -19,30 +14,35 @@
     justify-content: center;
     align-items: center;
 }
-.header__name h1 {
+.header__logo h1 {
     color: var(--color-text-primary);
 }
 .header__menu {
+    margin: auto;
+    width: 85%;
     height: 50px;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
+    background: var(--secondary);
 }
 .header__menu_item {
-    width: 20%;
+    width: 17%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.header__menu_item:hover {
+    background: var(--auxiliary);
+    box-sizing: border-box;
+    border-bottom: 3px solid #31c469;
 }
 .header__menu_item a {
     color: var(--color-text-primary);
     text-decoration: none;
     font-weight: bold;
     font-size: 25px;
-}
-.header__menu_item a:hover {
-    color: burlywood;
 }
 .theme__button {
     display: flex;

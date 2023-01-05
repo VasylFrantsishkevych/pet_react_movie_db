@@ -5,7 +5,7 @@ import {Provider} from "react-redux";
 
 import {App} from './App';
 import {setupStore} from "./redux";
-import {ThemeProvider} from "./contextTheme";
+import {ThemeProvider} from "./components/Theme";
 
 const store = setupStore();
 

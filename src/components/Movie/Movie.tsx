@@ -1,16 +1,16 @@
 import React, {FC, ReactNode} from 'react';
 import {Link} from "react-router-dom";
 
-import './MovieListCardStyle.css';
-import {IMovieCard} from "../../interfaces";
+import './MovieStyle.css';
+import {IMovieResults} from "../../interfaces";
 import {urlSize} from "../../constants";
 
 interface IProps {
-    movie: IMovieCard
+    movie: IMovieResults
     children?: ReactNode
 }
 
-const MovieListCard: FC<IProps> = ({movie}) => {
+const Movie: FC<IProps> = ({movie}) => {
 
     const {id, original_title, poster_path, vote_average} = movie;
 
@@ -32,4 +32,4 @@ const MovieListCard: FC<IProps> = ({movie}) => {
     );
 };
 
-export {MovieListCard}
+export {Movie}
