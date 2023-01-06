@@ -21,9 +21,10 @@ const SearchPage: FC = () => {
             <div className={'movies__list'}>
                 {status && <div className={'main_loader'}><Loader/></div>}
                 {
-                    searchMovie.map(movie => <Movie key={movie.id} movie={movie}/>)
+                    searchMovie.length === 0
+                        ? <h2>Movies not found</h2>
+                        : searchMovie.map(movie => <Movie key={movie.id} movie={movie}/>)
                 }
-                {searchText && !searchMovie ? <h2>No Movies Found</h2> : <h2>No Movies Found</h2>}
             </div>
         </div>
     );
