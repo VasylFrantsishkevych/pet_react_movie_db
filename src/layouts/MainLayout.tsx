@@ -3,7 +3,7 @@ import React, {CSSProperties, FC} from "react";
 
 import './MainLayoutStyle.css';
 import {Genres, Header} from "../components";
-import {useTheme} from "../components/Theme";
+import {useTheme} from "../components";
 
 const MainLayout: FC = () => {
     const {theme} = useTheme();

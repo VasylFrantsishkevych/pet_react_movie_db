@@ -6,6 +6,7 @@ import {movieService} from "../../services";
 
 interface IState {
     movies: IMovieResults[],
+    moviesPopular: IMovieResults[],
     movieId: IMovieDetails[],
     status: boolean | null,
     errors: string | null | unknown,
@@ -15,6 +16,7 @@ interface IState {
 
 const initialState: IState = {
     movies: [],
+    moviesPopular: [],
     movieId: [],
     status: null,
     errors: null,
@@ -27,6 +29,19 @@ const getAllMovies = createAsyncThunk<IMovieResponse, {id: string | undefined, p
     async ({id, page}, {rejectWithValue}) => {
         try {
             const {data} = await movieService.getAll(id, page);
+            return data
+        } catch (e) {
+            const err = e as AxiosError
+            return rejectWithValue(err.response?.data)
+        }
+    }
+)
+
+const getPopularMovies = createAsyncThunk<IMovieResponse, void>(
+    'genreSlice/getPopularMovies',
+    async (_, {rejectWithValue}) => {
+        try {
+            const {data} = await movieService.getPopular();
             return data
         } catch (e) {
             const err = e as AxiosError
@@ -64,6 +79,10 @@ const movieSlice = createSlice({
             .addCase(getAllMovies.rejected, (state, {payload}) => {
                 state.errors = payload
             })
+            .addCase(getPopularMovies.fulfilled, (state, {payload}) => {
+                state.moviesPopular = payload.results
+                state.status = false
+            })
             .addCase(getMovieById.fulfilled, (state, {payload}) => {
                 state.movieId = payload
                 state.status = false
@@ -79,7 +98,8 @@ const {reducer: movieReducer} = movieSlice;
 
 const movieAction = {
     getAllMovies,
-    getMovieById
+    getMovieById,
+    getPopularMovies,
 }
 
 export {

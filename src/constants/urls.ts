@@ -5,6 +5,7 @@ const urls = {
     movieId: '/movie',
     genres: '/genre/movie/list',
     search: '/search/movie',
+    moviesPopular: '/movie/popular',
 }
 
 export {
