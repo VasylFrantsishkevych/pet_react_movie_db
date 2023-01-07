@@ -22,7 +22,6 @@
     width: 20%;
     background:  var(--primary);
     min-height: 100vh;
-    margin-top: 500px;
 }
 .categories__title {
     background: var(--auxiliary);
