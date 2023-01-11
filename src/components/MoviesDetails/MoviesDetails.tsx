@@ -3,6 +3,7 @@ import './MovieDetailsStyle.css';
 import {IMovieDetails} from "../../interfaces";
 import {urlSize} from "../../constants";
 import {StarsRating} from "../StarsRating/StarsRating";
+import {MovieVideo} from "../MovieVideo/MovieVideo";
 
 interface IProps {
     movie: IMovieDetails
@@ -20,7 +21,8 @@ const MovieDetails: FC<IProps> = ({movie}) => {
         runtime,
         release_date,
         vote_average,
-        vote_count
+        vote_count,
+        id,
     } = movie;
     return (
         <>
@@ -86,6 +88,9 @@ const MovieDetails: FC<IProps> = ({movie}) => {
                     <div className={'description'}>
                         <h3>Description {original_title}</h3>
                         <p>{overview}</p>
+                    </div>
+                    <div>
+                        <MovieVideo id={id}/>
                     </div>
                 </div>
             </div>

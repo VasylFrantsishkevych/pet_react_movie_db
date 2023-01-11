@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
-import {IMovieDetails, IMovieResponse, IMovieResults} from "../../interfaces";
+import {IMovieDetails, IMovieResponse, IMovieResults, IMovieVideoResponse, IMovieVideoResults} from "../../interfaces";
 import {AxiosError} from "axios";
 import {movieService} from "../../services";
 
@@ -8,6 +8,7 @@ interface IState {
     movies: IMovieResults[],
     moviesPopular: IMovieResults[],
     movieId: IMovieDetails[],
+    movieVideo: IMovieVideoResults | null,
     status: boolean | null,
     errors: string | null | unknown,
     currentPage: number,
@@ -18,6 +19,7 @@ const initialState: IState = {
     movies: [],
     moviesPopular: [],
     movieId: [],
+    movieVideo: null,
     status: null,
     errors: null,
     currentPage: 1,
@@ -63,6 +65,19 @@ const getMovieById = createAsyncThunk<IMovieDetails[], string | undefined>(
     }
 )
 
+const getMovieVideoById = createAsyncThunk<IMovieVideoResponse,  number | undefined >(
+    'movieSlice/getMovieVideoById',
+    async (id, {rejectWithValue}) => {
+        try {
+            const {data} = await movieService.getVideoById(id);
+            return data
+        } catch (e) {
+            const err = e as AxiosError
+            return rejectWithValue(err.response?.data)
+        }
+    }
+)
+
 const movieSlice = createSlice({
     name: 'movieSlice',
     initialState,
@@ -87,6 +102,10 @@ const movieSlice = createSlice({
                 state.movieId = payload
                 state.status = false
             })
+            .addCase(getMovieVideoById.fulfilled, (state, {payload}) => {
+                state.movieVideo = payload.results[0]
+                state.status = false
+            })
             .addDefaultCase((state, action) => {
                 const [type] = action.type.split('/').splice(-1)
                 state.status = type === 'pending';
@@ -100,6 +119,7 @@ const movieAction = {
     getAllMovies,
     getMovieById,
     getPopularMovies,
+    getMovieVideoById,
 }
 
 export {

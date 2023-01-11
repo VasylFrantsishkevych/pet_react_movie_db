@@ -14,6 +14,16 @@ const Movie: FC<IProps> = ({movie}) => {
 
     const {id, original_title, poster_path, vote_average} = movie;
 
+    const changeColorText = (vote: number) => {
+        if (vote >= 8) {
+            return 'rating__color_green'
+        }else if (vote >= 6) {
+            return 'rating__color_yellow'
+        }else {
+            return 'rating__color_red'
+        }
+    }
+
     return (
         <div className={'movie__card'}>
             <Link to={`/movie/${id}`}>
@@ -23,7 +33,7 @@ const Movie: FC<IProps> = ({movie}) => {
                 <div className={'movie__card_title'}>
                     <div>{original_title}</div>
                 </div>
-                <div className={'rating'}>
+                <div className={`rating ${changeColorText(vote_average)}`}>
                     {vote_average}
                 </div>
             </Link>

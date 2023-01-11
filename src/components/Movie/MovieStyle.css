@@ -30,5 +30,13 @@
     left: 20px;
     background-color: rgba(58, 61, 68, 0.71);
     font-weight: 600;
-    color: #f1f1f1;
+}
+.rating__color_green {
+    color: green;
+}
+.rating__color_yellow {
+    color: yellow;
+}
+.rating__color_red {
+    color: red;
 }

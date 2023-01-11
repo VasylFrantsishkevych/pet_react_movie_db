@@ -1,5 +1,5 @@
 import {AxiosRes, axiosService} from "./axios.service";
-import {IMovieDetails, IMovieResponse} from "../interfaces";
+import {IMovieDetails, IMovieResponse, IMovieVideoResponse} from "../interfaces";
 import {urls} from "../constants";
 
 export  const movieService = {
@@ -7,4 +7,6 @@ export  const movieService = {
         .get(`${urls.movies}?&language=en-US&with_genres=${id}`, {params: {page}}),
     getPopular: (): AxiosRes<IMovieResponse> => axiosService.get(`${urls.moviesPopular}`),
     getById: (id: string | undefined): AxiosRes<IMovieDetails> => axiosService.get(`${urls.movieId}/${id}`),
+    getVideoById: (id: number | undefined): AxiosRes<IMovieVideoResponse> => axiosService
+        .get(`${urls.movieId}/${id}/videos?&language=en-US`),
 }

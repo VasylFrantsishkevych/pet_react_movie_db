@@ -4,6 +4,7 @@ export * from './Genres/Genres';
 export * from './Header/Header';
 export * from './Movie/Movie';
 export * from './MoviesDetails/MoviesDetails';
+export * from './MovieVideo/MovieVideo';
 export * from './Pagination/Pagination';
 export * from './StarsRating/StarsRating';
 export * from './Theme/theme';
