@@ -2,7 +2,7 @@ import {Outlet} from "react-router-dom";
 import React, {CSSProperties, FC} from "react";
 
 import './MainLayoutStyle.css';
-import {Genres, Header} from "../components";
+import {Header} from "../components";
 import {useTheme} from "../components";
 
 const MainLayout: FC = () => {
@@ -13,15 +13,15 @@ const MainLayout: FC = () => {
             <div className={'layout'}>
                 <Header/>
                 <div className={'container'}>
-                    <div className={'categories'}>
-                        <div className={'categories__title'}>
-                            <h4>categories</h4>
-                        </div>
-                        <div className={'categories__genre'}>
-                            <h5>genres</h5>
-                            <Genres/>
-                        </div>
-                    </div>
+                    {/*<div className={'categories'}>*/}
+                    {/*    <div className={'categories__title'}>*/}
+                    {/*        <h4>categories</h4>*/}
+                    {/*    </div>*/}
+                    {/*    <div className={'categories__genre'}>*/}
+                    {/*        <h5>genres</h5>*/}
+                    {/*        <Genres/>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                     <div className={'layout__outlet'}>
                         <Outlet/>
                     </div>

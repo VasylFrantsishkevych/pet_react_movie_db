@@ -1,11 +1,12 @@
 import React, {FC} from 'react';
-import {Link} from "react-router-dom";
 
 import './HeaderStyle.css';
 import {useAppDispatch} from "../../hooks";
 import {genreActions} from "../../redux";
 import {useTheme} from "../Theme";
 import {SearchForm} from "../UI";
+import {Link} from "react-router-dom";
+import {Genres} from "../Genres/Genres";
 
 const Header: FC = () => {
     const {themeType, setCurrentTheme} = useTheme();
@@ -18,7 +19,7 @@ const Header: FC = () => {
     const changeTheme = () => {
         if (themeType === 'dark') {
             setCurrentTheme('light')
-        }else {
+        } else {
             setCurrentTheme('dark')
         }
     }
@@ -32,9 +33,24 @@ const Header: FC = () => {
                     <button onClick={() => changeTheme()}>{themeType === 'dark' ? 'Light' : 'Dark'}</button>
                 </div>
             </div>
-            <div className={'header__menu'}>
-                <div className={'header__menu_item'}>
-                    <Link to={'/discover/movie'} onClick={() => deleteGenre()}>Movies</Link>
+            <div className={'main__menu'}>
+                <div className={'menu'}>
+                    <ul className={'menu__list'}>
+                        <li>
+                            <Link to={'/discover/movie'} onClick={() => deleteGenre()}>Movies</Link>
+                            <div className={'sub__menu'}>
+                                <div className={'sub__menu_container'}>
+                                    <div className={'sum__menu_genre'}>
+                                        <Genres/>
+                                    </div>
+                                    <div className={'sub_menu_rating'}></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <Link to={'/discover/movie'} onClick={() => deleteGenre()}>Show TV</Link>
+                        </li>
+                    </ul>
                 </div>
                 <div className={'search__form'}>
                     <SearchForm/>

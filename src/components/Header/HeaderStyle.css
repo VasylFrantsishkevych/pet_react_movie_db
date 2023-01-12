@@ -17,7 +17,7 @@
 .header__logo h1 {
     color: var(--color-text-primary);
 }
-.header__menu {
+.main__menu {
     margin: auto;
     width: 85%;
     height: 50px;
@@ -26,23 +26,55 @@
     justify-content: space-between;
     background: var(--secondary);
 }
-.header__menu_item {
-    width: 17%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.menu {
+    width: 60%;
 }
-.header__menu_item:hover {
+.menu a {
+    text-decoration: none;
+}
+.menu__list {
+    margin: 0;
+    display: flex;
+    height: 100%;
+}
+.menu__list>li:hover .sub__menu {
+    display: block;
+}
+.menu__list li>a {
+    color: var(--color-text-primary);
+    font-weight: bold;
+    font-size: 25px;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 10px;
+    cursor: pointer;
+}
+.menu__list li>a:hover {
     background: var(--auxiliary);
     box-sizing: border-box;
     border-bottom: 3px solid #31c469;
+    position: relative;
 }
-.header__menu_item a {
-    color: var(--color-text-primary);
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 25px;
+.sub__menu {
+    width: 90%;
+    position: absolute;
+    padding: 15px;
+    box-sizing: border-box;
+    left: 60px;
+    top: 120px;
+    background: black;
+    z-index: 9999;
+    /*display: none;*/
+}
+.sub__menu_container {
+    display: flex;
+}
+.sum__menu_genre {
+    width: 70%;
+}
+.sub_menu_rating {
+    width: 30%;
 }
 .theme__button {
     display: flex;

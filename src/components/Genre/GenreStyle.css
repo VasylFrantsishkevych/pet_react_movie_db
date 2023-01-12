@@ -1,4 +1,6 @@
-
+.genre {
+    width: 15%;
+}
 .genre a {
     text-decoration: none;
     color: var(--color-text-secondary);
