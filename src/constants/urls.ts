@@ -6,6 +6,7 @@ const urls = {
     genres: '/genre/movie/list',
     search: '/search/movie',
     moviesPopular: '/movie/popular',
+    moviesTopRated: '/movie/top_rated',
 }
 
 export {

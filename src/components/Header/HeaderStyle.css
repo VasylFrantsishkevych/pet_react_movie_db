@@ -40,7 +40,7 @@
 .menu__list>li:hover .sub__menu {
     display: block;
 }
-.menu__list li>a {
+.menu__list>li>a {
     color: var(--color-text-primary);
     font-weight: bold;
     font-size: 25px;
@@ -50,7 +50,7 @@
     padding: 0 10px;
     cursor: pointer;
 }
-.menu__list li>a:hover {
+.menu__list>li>a:hover {
     background: var(--auxiliary);
     box-sizing: border-box;
     border-bottom: 3px solid #31c469;
@@ -59,7 +59,7 @@
 .sub__menu {
     width: 90%;
     position: absolute;
-    padding: 15px;
+    padding: 15px 0 15px 15px;
     box-sizing: border-box;
     left: 60px;
     top: 120px;
@@ -70,11 +70,23 @@
 .sub__menu_container {
     display: flex;
 }
-.sum__menu_genre {
-    width: 80%;
+.sub__menu_genre {
+    width: 70%;
 }
-.sub_menu_rating {
-    width: 20%;
+.sub__menu_movies {
+    width: 30%;
+    background: var(--primary);
+    box-sizing: border-box;
+    padding: 10px;
+}
+.sub__menu_movies a {
+    color: var(--color-text-primary);
+    font-weight: 500;
+    font-size: 18px;
+    height: 100%;
+}
+.sub__menu_movies a:hover {
+    color: #31c469;
 }
 .theme__button {
     display: flex;

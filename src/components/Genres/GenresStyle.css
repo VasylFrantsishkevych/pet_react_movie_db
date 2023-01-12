@@ -2,4 +2,5 @@
     padding-left: 15px;
     display: flex;
     flex-wrap: wrap;
+    box-sizing: border-box;
 }

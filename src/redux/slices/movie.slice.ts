@@ -7,6 +7,7 @@ import {movieService} from "../../services";
 interface IState {
     movies: IMovieResults[],
     moviesPopular: IMovieResults[],
+    moviesTopRated: IMovieResults[],
     movieId: IMovieDetails[],
     movieVideo: IMovieVideoResults | null,
     status: boolean | null,
@@ -18,6 +19,7 @@ interface IState {
 const initialState: IState = {
     movies: [],
     moviesPopular: [],
+    moviesTopRated: [],
     movieId: [],
     movieVideo: null,
     status: null,
@@ -44,6 +46,19 @@ const getPopularMovies = createAsyncThunk<IMovieResponse, void>(
     async (_, {rejectWithValue}) => {
         try {
             const {data} = await movieService.getPopular();
+            return data
+        } catch (e) {
+            const err = e as AxiosError
+            return rejectWithValue(err.response?.data)
+        }
+    }
+)
+
+const getTopRatedMovies = createAsyncThunk<IMovieResponse, string | null>(
+    'genreSlice/getTopRatedMovies',
+    async (page, {rejectWithValue}) => {
+        try {
+            const {data} = await movieService.getTopRated(page);
             return data
         } catch (e) {
             const err = e as AxiosError
@@ -98,6 +113,13 @@ const movieSlice = createSlice({
                 state.moviesPopular = payload.results
                 state.status = false
             })
+            .addCase(getTopRatedMovies.fulfilled, (state, {payload}) => {
+                const {page, results, total_pages} = payload;
+                state.moviesTopRated = results
+                state.currentPage = page
+                state.totalPages = total_pages
+                state.status = false
+            })
             .addCase(getMovieById.fulfilled, (state, {payload}) => {
                 state.movieId = payload
                 state.status = false
@@ -120,6 +142,7 @@ const movieAction = {
     getMovieById,
     getPopularMovies,
     getMovieVideoById,
+    getTopRatedMovies,
 }
 
 export {

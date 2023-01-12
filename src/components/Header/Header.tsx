@@ -40,23 +40,31 @@ const Header: FC = () => {
                             <Link to={'/discover/movie'} onClick={() => deleteGenre()}>Movies</Link>
                             <div className={'sub__menu'}>
                                 <div className={'sub__menu_container'}>
-                                    <div className={'sum__menu_genre'}>
+                                    <div className={'sub__menu_movies'}>
+                                        <ul>
+                                            <li>
+                                                <Link to={'/movie/top_rated'}>Top Rated</Link>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div className={'sub__menu_genre'}>
                                         <Genres/>
                                     </div>
-                                    <div className={'sub_menu_rating'}></div>
                                 </div>
                             </div>
                         </li>
                         <li>
                             <Link to={'/discover/movie'} onClick={() => deleteGenre()}>Show TV</Link>
-                            <div className={'sub__menu'}>
-                                <div className={'sub__menu_container'}>
-                                    <div className={'sum__menu_genre'}>
+                            {/*<div className={'sub__menu'}>*/}
+                            {/*    <div className={'sub__menu_container'}>*/}
+                            {/*        <div className={'sum__menu_genre'}>*/}
 
-                                    </div>
-                                    <div className={'sub_menu_rating'}></div>
-                                </div>
-                            </div>
+                            {/*        </div>*/}
+                            {/*        <div className={'sub_menu_rating'}>*/}
+
+                            {/*        </div>*/}
+                            {/*    </div>*/}
+                            {/*</div>*/}
                         </li>
                     </ul>
                 </div>

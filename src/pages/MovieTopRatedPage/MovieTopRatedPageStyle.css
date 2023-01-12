@@ -1,0 +1,12 @@
+.movies__rated {
+    min-height: 100vh;
+}
+.movies__rated_list {
+    background: var(--secondary);
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    row-gap: 20px;
+}

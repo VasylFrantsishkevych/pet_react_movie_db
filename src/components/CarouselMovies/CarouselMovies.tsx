@@ -26,7 +26,7 @@ const CarouselMovies: FC = () => {
             >
                 {
                     moviesPopular.map(movie =>
-                        <Link  to={`/movie/${movie.id}`}>
+                        <Link  to={`/movie/${movie.id}`} key={movie.id}>
                             <div className={'carousel'}>
                                 <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt={movie.original_title}/>
                             </div>
