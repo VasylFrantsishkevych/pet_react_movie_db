@@ -7,6 +7,7 @@ const urls = {
     search: '/search/movie',
     moviesPopular: '/movie/popular',
     moviesTopRated: '/movie/top_rated',
+    moviesDynamically: '/movie',
 }
 
 export {

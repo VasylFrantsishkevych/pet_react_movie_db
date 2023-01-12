@@ -8,8 +8,8 @@ export  const movieService = {
 
     getPopular: (): AxiosRes<IMovieResponse> => axiosService.get(`${urls.moviesPopular}`),
 
-    getTopRated: (page: string | null): AxiosRes<IMovieResponse> => axiosService
-        .get(`${urls.moviesTopRated}?&language=en-US`, {params: {page}}),
+    getMoviesDynamically: (page: string | null, pathname: string): AxiosRes<IMovieResponse> => axiosService
+        .get(`${pathname}?&language=en-US`, {params: {page}}),
 
     getById: (id: string | undefined): AxiosRes<IMovieDetails> => axiosService.get(`${urls.movieId}/${id}`),
 

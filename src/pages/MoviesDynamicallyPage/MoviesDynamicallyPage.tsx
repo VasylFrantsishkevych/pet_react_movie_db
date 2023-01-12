@@ -1,30 +1,31 @@
 import React, {FC, useEffect} from 'react';
 import {useSearchParams} from "react-router-dom";
 
-import './MovieTopRatedPageStyle.css';
-import {useAppDispatch, useAppSelector} from "../../hooks";
+import {useAppDispatch, useAppLocation, useAppSelector} from "../../hooks";
 import {movieAction} from "../../redux";
 import {Movie, Pagination} from "../../components";
+import './MovieDynamicallyPage.css';
 
-const MovieTopRatedPage: FC = () => {
+const MoviesDynamicallyPage: FC = () => {
 
-    const {moviesTopRated} = useAppSelector(state => state.movies);
+    const {moviesDynamically} = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
     const [query, setQuery] = useSearchParams();
+    const {pathname} = useAppLocation();
 
     useEffect(() => {
         if (!query.get('page')) {
             setQuery({page: '1'})
         }
         const page = query.get('page');
-        dispatch(movieAction.getTopRatedMovies(page))
-    }, [dispatch, query, setQuery])
+        dispatch(movieAction.getMoviesDynamically({page, pathname}))
+    }, [dispatch, query, setQuery, pathname])
 
     return (
         <div className={'movies__rated'}>
             <div className={'movies__rated_list'}>
                 {
-                    moviesTopRated.map(movie => <Movie key={movie.id} movie={movie}/>)
+                    moviesDynamically.map(movie => <Movie key={movie.id} movie={movie}/>)
                 }
             </div>
             <div>
@@ -34,4 +35,4 @@ const MovieTopRatedPage: FC = () => {
     );
 };
 
-export {MovieTopRatedPage};
+export {MoviesDynamicallyPage};

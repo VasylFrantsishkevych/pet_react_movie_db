@@ -45,6 +45,12 @@ const Header: FC = () => {
                                             <li>
                                                 <Link to={'/movie/top_rated'}>Top Rated</Link>
                                             </li>
+                                            <li>
+                                                <Link to={'/movie/upcoming'}>Upcoming</Link>
+                                            </li>
+                                            <li>
+                                                <Link to={'/movie/now_playing'}>Now Playing</Link>
+                                            </li>
                                         </ul>
                                     </div>
                                     <div className={'sub__menu_genre'}>

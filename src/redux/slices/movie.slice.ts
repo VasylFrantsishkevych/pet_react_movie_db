@@ -1,13 +1,13 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {AxiosError} from "axios";
 
 import {IMovieDetails, IMovieResponse, IMovieResults, IMovieVideoResponse, IMovieVideoResults} from "../../interfaces";
-import {AxiosError} from "axios";
 import {movieService} from "../../services";
 
 interface IState {
     movies: IMovieResults[],
     moviesPopular: IMovieResults[],
-    moviesTopRated: IMovieResults[],
+    moviesDynamically: IMovieResults[],
     movieId: IMovieDetails[],
     movieVideo: IMovieVideoResults | null,
     status: boolean | null,
@@ -19,7 +19,7 @@ interface IState {
 const initialState: IState = {
     movies: [],
     moviesPopular: [],
-    moviesTopRated: [],
+    moviesDynamically: [],
     movieId: [],
     movieVideo: null,
     status: null,
@@ -41,11 +41,11 @@ const getAllMovies = createAsyncThunk<IMovieResponse, {id: string | undefined, p
     }
 )
 
-const getPopularMovies = createAsyncThunk<IMovieResponse, void>(
-    'genreSlice/getPopularMovies',
-    async (_, {rejectWithValue}) => {
+const getMoviesDynamically = createAsyncThunk<IMovieResponse, {page: string | null, pathname: string}>(
+    'movieSlice/getMoviesDynamically',
+    async ({page,pathname}, {rejectWithValue}) => {
         try {
-            const {data} = await movieService.getPopular();
+            const {data} = await movieService.getMoviesDynamically(page, pathname);
             return data
         } catch (e) {
             const err = e as AxiosError
@@ -54,11 +54,11 @@ const getPopularMovies = createAsyncThunk<IMovieResponse, void>(
     }
 )
 
-const getTopRatedMovies = createAsyncThunk<IMovieResponse, string | null>(
-    'genreSlice/getTopRatedMovies',
-    async (page, {rejectWithValue}) => {
+const getPopularMovies = createAsyncThunk<IMovieResponse, void>(
+    'genreSlice/getPopularMovies',
+    async (_, {rejectWithValue}) => {
         try {
-            const {data} = await movieService.getTopRated(page);
+            const {data} = await movieService.getPopular();
             return data
         } catch (e) {
             const err = e as AxiosError
@@ -109,15 +109,15 @@ const movieSlice = createSlice({
             .addCase(getAllMovies.rejected, (state, {payload}) => {
                 state.errors = payload
             })
-            .addCase(getPopularMovies.fulfilled, (state, {payload}) => {
-                state.moviesPopular = payload.results
-                state.status = false
-            })
-            .addCase(getTopRatedMovies.fulfilled, (state, {payload}) => {
+            .addCase(getMoviesDynamically.fulfilled, (state, {payload}) =>{
                 const {page, results, total_pages} = payload;
-                state.moviesTopRated = results
+                state.moviesDynamically = results;
                 state.currentPage = page
                 state.totalPages = total_pages
+                state.status = false
+            })
+            .addCase(getPopularMovies.fulfilled, (state, {payload}) => {
+                state.moviesPopular = payload.results
                 state.status = false
             })
             .addCase(getMovieById.fulfilled, (state, {payload}) => {
@@ -142,7 +142,7 @@ const movieAction = {
     getMovieById,
     getPopularMovies,
     getMovieVideoById,
-    getTopRatedMovies,
+    getMoviesDynamically,
 }
 
 export {

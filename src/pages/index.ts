@@ -1,4 +1,4 @@
 export * from './MoviePage/MoviePage';
 export * from './MovieDetailsPage/MovieDetailsPage';
-export * from './MovieTopRatedPage/MovieTopRatedPage';
+export * from './MoviesDynamicallyPage/MoviesDynamicallyPage';
 export * from './SearchPage/SearchPage';
