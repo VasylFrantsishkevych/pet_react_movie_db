@@ -1,4 +1,5 @@
 import React, {FC, ReactNode} from 'react';
+
 import './MovieDetailsStyle.css';
 import {IMovieDetails} from "../../interfaces";
 import {urlSize} from "../../constants";
@@ -24,9 +25,9 @@ const MovieDetails: FC<IProps> = ({movie}) => {
         vote_count,
         id,
     } = movie;
+
     return (
         <>
-            <div className={'movie__details_title'}></div>
             <div className={'movie__details'}>
                 <div className={'movie__details_info'}>
                     <div className={'movie__details_card'}>

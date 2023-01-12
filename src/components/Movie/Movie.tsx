@@ -12,9 +12,9 @@ interface IProps {
 
 const Movie: FC<IProps> = ({movie}) => {
 
-    const {id, original_title, poster_path, vote_average} = movie;
+    const {id, original_title, poster_path, vote_average, release_date} = movie;
 
-    const changeColorText = (vote: number) => {
+     const changeColorText = (vote: number) => {
         if (vote >= 8) {
             return 'rating__color_green'
         }else if (vote >= 6) {
@@ -32,6 +32,7 @@ const Movie: FC<IProps> = ({movie}) => {
                 </div>
                 <div className={'movie__card_title'}>
                     <div>{original_title}</div>
+                    <div>{release_date}</div>
                 </div>
                 <div className={`rating ${changeColorText(vote_average)}`}>
                     {vote_average}

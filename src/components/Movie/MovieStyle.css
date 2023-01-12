@@ -1,10 +1,13 @@
 .movie__card {
-    width: 23%;
+    width: 19%;
     background: var(--primary);
     padding: 10px;
     border-radius: 10px;
     box-sizing: border-box;
     position: relative;
+}
+.movie__card:hover {
+    box-shadow: 0 0 10px 0 var(--black);
 }
 .movie__card a {
     text-decoration: none;
@@ -14,9 +17,13 @@
     border-radius: 10px;
 }
 .movie__card_title {
-    text-align: center;
     color: var(--color-text-primary);
-    font-weight: bold;
+    font-weight: 500;
+}
+.movie__card_title div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .rating {
     width: 30px;

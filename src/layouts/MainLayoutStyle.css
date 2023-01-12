@@ -12,35 +12,10 @@
     box-shadow: 0 0 10px 0 var(--black);
 }
 .layout__outlet {
-    width: 80%;
+    width: 100%;
 }
 .container {
-    width: 100%;
     display: flex;
-}
-.categories {
-    width: 20%;
-    background:  var(--primary);
-    min-height: 100vh;
-}
-.categories__title {
-    background: var(--auxiliary);
-    height: 40px;
-    display: flex;
-    box-sizing: border-box;
-    padding-left: 15px;
-    align-items: center;
-}
-.categories__title h4 {
-    margin: 0;
-    color: #ffffff;
-    text-transform: uppercase;
-}
-.categories__genre h5 {
-    color: var(--color-text-primary);
-    text-transform: uppercase;
-    text-decoration:  underline;
-    margin-left: 20px;
 }
 .footer {
     height: 60px;

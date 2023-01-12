@@ -10,6 +10,6 @@ export enum ThemeColors {
     LIGHT = '#f1f1f1',
     COLOR_TEXT_LIGHT = '#535865',
     COLOR_TEXT_DARK = '#ffffff',
-    COLOR_TEXT_LIGHT_SECONDARY = '#8f95a3',
+    COLOR_TEXT_LIGHT_SECONDARY = '#a8abb8',
     COLOR_TEXT_DARK_SECONDARY = '#b1c2c9'
 }

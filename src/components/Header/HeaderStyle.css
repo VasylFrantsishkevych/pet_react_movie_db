@@ -63,18 +63,18 @@
     box-sizing: border-box;
     left: 60px;
     top: 120px;
-    background: black;
+    background: var(--auxiliary);
     z-index: 9999;
-    /*display: none;*/
+    display: none;
 }
 .sub__menu_container {
     display: flex;
 }
 .sum__menu_genre {
-    width: 70%;
+    width: 80%;
 }
 .sub_menu_rating {
-    width: 30%;
+    width: 20%;
 }
 .theme__button {
     display: flex;

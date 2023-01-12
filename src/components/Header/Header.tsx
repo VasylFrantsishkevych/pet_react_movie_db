@@ -49,6 +49,14 @@ const Header: FC = () => {
                         </li>
                         <li>
                             <Link to={'/discover/movie'} onClick={() => deleteGenre()}>Show TV</Link>
+                            <div className={'sub__menu'}>
+                                <div className={'sub__menu_container'}>
+                                    <div className={'sum__menu_genre'}>
+
+                                    </div>
+                                    <div className={'sub_menu_rating'}></div>
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div>

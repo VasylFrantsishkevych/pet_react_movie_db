@@ -4,10 +4,6 @@
     box-sizing: border-box;
     padding: 25px;
 }
-.movie__details_title {
-    background: var(--auxiliary);
-    height: 40px;
-}
 .movie__details_info {
     width: 100%;
     background:  var(--primary);
