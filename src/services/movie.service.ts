@@ -6,7 +6,7 @@ export  const movieService = {
     getAll: (id: string | undefined, page: string | null): AxiosRes<IMovieResponse> => axiosService
         .get(`${urls.movies}?&language=en-US&with_genres=${id}`, {params: {page}}),
 
-    getPopular: (): AxiosRes<IMovieResponse> => axiosService.get(`${urls.moviesPopular}`),
+    getTrending: (): AxiosRes<IMovieResponse> => axiosService.get(`${urls.moviesTrending}`),
 
     getMoviesDynamically: (page: string | null, pathname: string): AxiosRes<IMovieResponse> => axiosService
         .get(`${pathname}?&language=en-US`, {params: {page}}),

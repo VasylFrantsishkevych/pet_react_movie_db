@@ -8,11 +8,11 @@ import './CarouselMoviesStyle.css';
 
 const CarouselMovies: FC = () => {
 
-    const {moviesPopular} = useAppSelector(state => state.movies);
+    const {moviesTrending} = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(movieAction.getPopularMovies())
+        dispatch(movieAction.getTrendingMovies())
     }, [dispatch])
 
     return (
@@ -25,7 +25,7 @@ const CarouselMovies: FC = () => {
                 showStatus={false}
             >
                 {
-                    moviesPopular.map(movie =>
+                    moviesTrending.map(movie =>
                         <Link  to={`/movie/${movie.id}`} key={movie.id}>
                             <div className={'carousel'}>
                                 <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt={movie.original_title}/>

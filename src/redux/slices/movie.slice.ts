@@ -6,7 +6,7 @@ import {movieService} from "../../services";
 
 interface IState {
     movies: IMovieResults[],
-    moviesPopular: IMovieResults[],
+    moviesTrending: IMovieResults[],
     moviesDynamically: IMovieResults[],
     movieId: IMovieDetails[],
     movieVideo: IMovieVideoResults | null,
@@ -18,7 +18,7 @@ interface IState {
 
 const initialState: IState = {
     movies: [],
-    moviesPopular: [],
+    moviesTrending: [],
     moviesDynamically: [],
     movieId: [],
     movieVideo: null,
@@ -54,11 +54,11 @@ const getMoviesDynamically = createAsyncThunk<IMovieResponse, {page: string | nu
     }
 )
 
-const getPopularMovies = createAsyncThunk<IMovieResponse, void>(
-    'genreSlice/getPopularMovies',
+const getTrendingMovies = createAsyncThunk<IMovieResponse, void>(
+    'genreSlice/getTrendingMovies',
     async (_, {rejectWithValue}) => {
         try {
-            const {data} = await movieService.getPopular();
+            const {data} = await movieService.getTrending();
             return data
         } catch (e) {
             const err = e as AxiosError
@@ -116,8 +116,8 @@ const movieSlice = createSlice({
                 state.totalPages = total_pages
                 state.status = false
             })
-            .addCase(getPopularMovies.fulfilled, (state, {payload}) => {
-                state.moviesPopular = payload.results
+            .addCase(getTrendingMovies.fulfilled, (state, {payload}) => {
+                state.moviesTrending = payload.results
                 state.status = false
             })
             .addCase(getMovieById.fulfilled, (state, {payload}) => {
@@ -140,7 +140,7 @@ const {reducer: movieReducer} = movieSlice;
 const movieAction = {
     getAllMovies,
     getMovieById,
-    getPopularMovies,
+    getTrendingMovies,
     getMovieVideoById,
     getMoviesDynamically,
 }
