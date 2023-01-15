@@ -1,86 +1,23 @@
 .movie__details {
-    background: var(--secondary);
+    background: var(--background-main);
     min-height: 100vh;
     box-sizing: border-box;
-    padding: 25px;
+    padding: 0 25px 25px;
 }
-.movie__details_info {
+.movie__details_banner {
+    height: 50vh;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0 -25px;
+}
+.movie__details_banner::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    background:  var(--primary);
-    box-sizing: border-box;
-    padding: 15px;
-    border-radius: 20px;
-
-}
-.movie__details_card {
-    display: flex;
-}
-.container__rating {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-.container__rating_stars {
-    display: flex;
-    align-items: center;
-    column-gap: 15px;
-    color: var(--color-text-primary)
-}
-.img {
-    width: 40%;
-}
-.container__info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 60%;
-}
-.container__info span {
-    color: var(----color-text-secondary);
-}
-.container__info p {
-    font-weight: bold;
-    font-size: 20px;
-}
-.info {
-    color: var(--color-text-primary);
-}
-.info h2 {
-    text-align: center;
-}
-ul {
-    list-style: none;
-    padding: 0;
-}
-.info__full li {
-    padding: 5px;
-}
-.info__full li:nth-child(2n+1) {
-    background: var(--secondary);
-}
-.info__full li > span:first-child {
-    display: inline-block;
-    width: 100px;
-    float: left;
-}
-.votes {
-    color: var(--color-text-primary);
-    display: flex;
-    column-gap: 10px;
-}
-.votes p {
-    font-size: 14px;
-}
-.votes span {
-    color: #31c469;
-    font-size: 20px;
-}
-.description h3 {
-    color: #31c469;
-}
-.description p {
-    color: var(--color-text-primary);
-    font-size: 18px;
-    text-align: justify;
-    text-indent: 25px;
+    height: 100%;
+    background-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.9) 100%);
 }

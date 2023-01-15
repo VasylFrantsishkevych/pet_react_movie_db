@@ -1,5 +1,6 @@
 import {IGenres} from "./genres.interface";
 export interface IMovieDetails {
+    backdrop_path: string,
     budget: number,
     genres: IGenres[],
     homepage: string,

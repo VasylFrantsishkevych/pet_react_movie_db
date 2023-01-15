@@ -4,7 +4,7 @@ import {ThemeColors} from "./theme.colors";
 export const THEMES: Record<ThemeType, ITheme> = {
     dark: {
         '--background-wrap': ThemeColors.DARK,
-        '--background-header': ThemeColors.BLACK,
+        '--background-main': ThemeColors.BLACK,
         '--primary': ThemeColors.DARK_GREY,
         '--secondary': ThemeColors.DARK_GREY_SECONDARY,
         '--auxiliary': ThemeColors.ALMOST_BLACK,
@@ -14,7 +14,7 @@ export const THEMES: Record<ThemeType, ITheme> = {
     },
     light: {
         '--background-wrap': ThemeColors.LIGHT,
-        '--background-header': ThemeColors.GREY,
+        '--background-main': ThemeColors.GREY,
         '--primary': ThemeColors.LIGHT_GREY,
         '--secondary': ThemeColors.LIGHT_GREY_SECONDARY,
         '--auxiliary': ThemeColors.GREY,
