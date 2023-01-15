@@ -7,7 +7,7 @@ export interface ITheme {
     '--border-pagination': ThemeColors;
     '--secondary': ThemeColors;
     '--auxiliary': ThemeColors;
-    '--black': ThemeColors;
+    '--background-header': ThemeColors;
     '--background-wrap': ThemeColors;
     '--color-text-primary': ThemeColors;
     '--color-text-secondary': ThemeColors;

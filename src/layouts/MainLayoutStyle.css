@@ -2,6 +2,7 @@
     background: var(--background-wrap);
     box-sizing: border-box;
     min-height: 100vh;
+     margin-top: 70px;
 
 }
 .layout {

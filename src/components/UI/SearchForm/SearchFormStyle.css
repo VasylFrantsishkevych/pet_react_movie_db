@@ -1,0 +1,25 @@
+.search  {
+    width: 95%;
+    height: 25px;
+    position: relative;
+}
+.search input {
+    width: 70%;
+    height: 30px;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+    box-sizing: border-box;
+    border: 2px solid #00d575;
+    letter-spacing: 1px;
+    outline: none;
+    padding-left: 10px;
+}
+.search button {
+    height: 30px;
+    width: 20%;
+    border-radius: 15px;
+    position: absolute;
+    left: 250px;
+    border: none;
+    background: #00d575;
+}
