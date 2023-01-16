@@ -1,7 +1,7 @@
 import {AxiosRes, axiosService} from "./axios.service";
-import {IMovieDetails, IMovieResponse, IMovieVideoResponse} from "../interfaces";
-import {urls} from "../constants";
-
+import {ICastResponse, IIndex, IMovieDetails, IMovieResponse, IMovieVideoResponse} from "../interfaces";
+import {category, urls} from "../constants";
+// @ts-ignore
 export  const movieService = {
     getAll: (id: string | undefined, page: string | null): AxiosRes<IMovieResponse> => axiosService
         .get(`${urls.movies}?&language=en-US&with_genres=${id}`, {params: {page}}),
@@ -12,6 +12,9 @@ export  const movieService = {
         .get(`${pathname}?&language=en-US`, {params: {page}}),
 
     getById: (id: string | undefined): AxiosRes<IMovieDetails> => axiosService.get(`${urls.movieId}/${id}`),
+    
+    getCasts: (id: string | undefined, type: keyof IIndex): AxiosRes<ICastResponse> => axiosService
+        .get(`${category[type]}/${id}/credits`),
 
     getVideoById: (id: number | undefined): AxiosRes<IMovieVideoResponse> => axiosService
         .get(`${urls.movieId}/${id}/videos?&language=en-US`),

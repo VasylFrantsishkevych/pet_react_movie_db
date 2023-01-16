@@ -1,4 +1,5 @@
 export * from './CarouselMovies/CarouselMovies';
+export * from './Casts/Casts';
 export * from './Genre/Genre';
 export * from './Genres/Genres';
 export * from './Header/Header';

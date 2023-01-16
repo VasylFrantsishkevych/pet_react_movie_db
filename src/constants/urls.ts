@@ -1,5 +1,9 @@
 const baseURL = 'https://api.themoviedb.org/3'
 
+const category = {
+    movie: 'movie',
+    tv: 'tv',
+}
 const urls = {
     movies: '/discover/movie',
     movieId: '/movie',
@@ -11,5 +15,6 @@ const urls = {
 
 export {
     baseURL,
-    urls
+    urls,
+    category,
 }

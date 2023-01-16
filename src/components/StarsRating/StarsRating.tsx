@@ -18,7 +18,7 @@ const StarsRating:FC = () => {
                 size={20}
                 iconsCount={10}
                 transition
-                fillColor='orange'
+                fillColor='#00d575'
                 emptyColor='gray'
                 className='foo'
             />

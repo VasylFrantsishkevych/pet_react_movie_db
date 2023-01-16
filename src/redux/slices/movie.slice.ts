@@ -1,13 +1,21 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
 
-import {IMovieDetails, IMovieResponse, IMovieResults, IMovieVideoResponse, IMovieVideoResults} from "../../interfaces";
+import {
+    ICast, ICastResponse, IIndex,
+    IMovieDetails,
+    IMovieResponse,
+    IMovieResults,
+    IMovieVideoResponse,
+    IMovieVideoResults
+} from "../../interfaces";
 import {movieService} from "../../services";
 
 interface IState {
     movies: IMovieResults[],
     moviesTrending: IMovieResults[],
     moviesDynamically: IMovieResults[],
+    movieCasts: ICast[];
     movieId: IMovieDetails[],
     movieVideo: IMovieVideoResults | null,
     status: boolean | null,
@@ -20,6 +28,7 @@ const initialState: IState = {
     movies: [],
     moviesTrending: [],
     moviesDynamically: [],
+    movieCasts: [],
     movieId: [],
     movieVideo: null,
     status: null,
@@ -80,6 +89,18 @@ const getMovieById = createAsyncThunk<IMovieDetails[], string | undefined>(
     }
 )
 
+const getCastsMovie = createAsyncThunk<ICastResponse, {id: string | undefined, type: keyof IIndex}>(
+    'movieSlice/getCastsMovie',
+    async ({id, type}, {rejectWithValue}) => {
+        try {
+            const {data} = await movieService.getCasts(id, type)
+            return data;
+        }catch (e) {
+            const err = e as AxiosError
+            return rejectWithValue(err.response?.data)
+        }
+    }
+)
 const getMovieVideoById = createAsyncThunk<IMovieVideoResponse,  number | undefined >(
     'movieSlice/getMovieVideoById',
     async (id, {rejectWithValue}) => {
@@ -124,6 +145,10 @@ const movieSlice = createSlice({
                 state.movieId = payload
                 state.status = false
             })
+            .addCase(getCastsMovie.fulfilled, (state, {payload}) => {
+                state.movieCasts = payload.cast
+                state.status = false
+            })
             .addCase(getMovieVideoById.fulfilled, (state, {payload}) => {
                 state.movieVideo = payload.results[0]
                 state.status = false
@@ -143,6 +168,7 @@ const movieAction = {
     getTrendingMovies,
     getMovieVideoById,
     getMoviesDynamically,
+    getCastsMovie,
 }
 
 export {
