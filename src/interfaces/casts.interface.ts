@@ -3,6 +3,7 @@ export interface ICast {
     known_for_department: string,
     original_name: string,
     profile_path: string,
+    popularity: number,
 }
 
 export interface ICastResponse {
