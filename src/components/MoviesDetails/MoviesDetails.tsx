@@ -6,6 +6,7 @@ import {urlOriginalImage, urlSize} from "../../constants";
 import {StarsRating} from "../StarsRating/StarsRating";
 import {MovieVideo} from "../MovieVideo/MovieVideo";
 import {Casts} from "../Casts";
+import {Similars} from "../Similars";
 
 interface IProps {
     movie: IMovieDetails
@@ -69,10 +70,13 @@ const MovieDetails: FC<IProps> = ({movie}) => {
                 </div>
             </div>
             <div className={'movie__details_casts'}>
-                <Casts/>
+                <Casts id={id}/>
             </div>
             <div className={'movie__details_video'}>
                 <MovieVideo id={id}/>
+            </div>
+            <div className={'movie__details_similar'}>
+                <Similars id={id}/>
             </div>
         </div>
     )

@@ -10,11 +10,13 @@ import {IIndex} from "../../../interfaces";
 import './CastsStyle.css';
 import {Cast} from "../Cast/Cast";
 
-const Casts:FC = () => {
+interface IProps {
+    id: number
+}
+const Casts:FC<IProps> = ({id}) => {
 
     const {movieCasts} = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
-    const {id} = useParams();
     const {pathname} = useAppLocation();
 
     const type = pathname.split('/').splice(1)[0] as keyof IIndex;

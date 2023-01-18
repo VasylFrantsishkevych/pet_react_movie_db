@@ -13,8 +13,11 @@ export  const movieService = {
 
     getById: (id: string | undefined): AxiosRes<IMovieDetails> => axiosService.get(`${urls.movieId}/${id}`),
     
-    getCasts: (id: string | undefined, type: keyof IIndex): AxiosRes<ICastResponse> => axiosService
+    getCasts: (id: number | undefined, type: keyof IIndex): AxiosRes<ICastResponse> => axiosService
         .get(`${category[type]}/${id}/credits`),
+
+    getSimilar: (id: number | undefined, type: keyof IIndex): AxiosRes<IMovieResponse> => axiosService
+        .get(`${category[type]}/${id}/similar`),
 
     getVideoById: (id: number | undefined): AxiosRes<IMovieVideoResponse> => axiosService
         .get(`${urls.movieId}/${id}/videos?&language=en-US`),

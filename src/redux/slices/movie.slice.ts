@@ -15,6 +15,7 @@ interface IState {
     movies: IMovieResults[],
     moviesTrending: IMovieResults[],
     moviesDynamically: IMovieResults[],
+    movieSimilar: IMovieResults[],
     movieCasts: ICast[];
     movieId: IMovieDetails[],
     movieVideo: IMovieVideoResults | null,
@@ -28,6 +29,7 @@ const initialState: IState = {
     movies: [],
     moviesTrending: [],
     moviesDynamically: [],
+    movieSimilar: [],
     movieCasts: [],
     movieId: [],
     movieVideo: null,
@@ -76,6 +78,19 @@ const getTrendingMovies = createAsyncThunk<IMovieResponse, void>(
     }
 )
 
+const getSimilar = createAsyncThunk<IMovieResponse, {id: number | undefined, type: keyof IIndex}>(
+    'movieSlice/getSimilar',
+    async ({id, type}, {rejectWithValue}) => {
+        try {
+            const {data} = await movieService.getSimilar(id, type)
+            return data;
+        } catch (e) {
+            const err = e as AxiosError
+            return rejectWithValue(err.response?.data)
+        }
+    }
+)
+
 const getMovieById = createAsyncThunk<IMovieDetails[], string | undefined>(
     'movieSlice/getMovieBtId',
     async (id, {rejectWithValue}) => {
@@ -89,7 +104,7 @@ const getMovieById = createAsyncThunk<IMovieDetails[], string | undefined>(
     }
 )
 
-const getCastsMovie = createAsyncThunk<ICastResponse, {id: string | undefined, type: keyof IIndex}>(
+const getCastsMovie = createAsyncThunk<ICastResponse, {id: number | undefined, type: keyof IIndex}>(
     'movieSlice/getCastsMovie',
     async ({id, type}, {rejectWithValue}) => {
         try {
@@ -145,6 +160,10 @@ const movieSlice = createSlice({
                 state.movieId = payload
                 state.status = false
             })
+            .addCase(getSimilar.fulfilled, (state, {payload}) => {
+                state.movieSimilar = payload.results
+                state.status = false
+            })
             .addCase(getCastsMovie.fulfilled, (state, {payload}) => {
                 state.movieCasts = payload.cast
                 state.status = false
@@ -169,6 +188,7 @@ const movieAction = {
     getMovieVideoById,
     getMoviesDynamically,
     getCastsMovie,
+    getSimilar,
 }
 
 export {
