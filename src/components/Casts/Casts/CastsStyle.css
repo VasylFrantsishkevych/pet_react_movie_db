@@ -1,3 +1,17 @@
-.casts {
+.casts h2{
+    margin-left: 50px;
+}
+.cast {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cast img{
+    height: 250px;
+    border-radius: 10px;
+}
+.swiper-button-next, .swiper-button-prev {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px 5px;
+    border-radius: 5px;
 }

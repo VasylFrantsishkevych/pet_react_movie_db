@@ -2,6 +2,7 @@ import React, {FC, useEffect} from 'react';
 import {useParams} from "react-router-dom";
 import {Swiper, SwiperSlide} from "swiper/react";
 import 'swiper/css/bundle'
+import {Navigation} from "swiper";
 
 import {useAppDispatch, useAppLocation, useAppSelector} from "../../../hooks";
 import {movieAction} from "../../../redux";
@@ -29,10 +30,13 @@ const Casts:FC = () => {
 
     return (
         <div className={'casts'}>
+            <h2>Casts</h2>
             <Swiper
-                slidesPerView={5}
+                modules={[Navigation]}
+                navigation
+                slidesPerView={5.5}
                 spaceBetween={20}
-                grabCursor={true}
+                simulateTouch={false}
             >
                 {
                     castsTop.map(cast =>

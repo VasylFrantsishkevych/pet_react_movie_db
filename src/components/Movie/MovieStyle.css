@@ -7,7 +7,7 @@
     position: relative;
 }
 .movie__card:hover {
-    box-shadow: 0 0 10px 0 var(--black);
+    box-shadow: 0 0 10px 0 var(--background-main);
 }
 .movie__card a {
     text-decoration: none;
