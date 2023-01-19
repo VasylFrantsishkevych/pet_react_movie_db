@@ -2,7 +2,7 @@ import React, {FC, useEffect} from 'react';
 import {useParams} from "react-router-dom";
 
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {movieAction} from "../../redux";
+import {mediaAction} from "../../redux";
 import {Loader, MovieDetails} from "../../components";
 
 const MovieDetailsPage: FC = () => {
@@ -11,7 +11,7 @@ const MovieDetailsPage: FC = () => {
     const {id} = useParams();
 
     useEffect(() => {
-        dispatch(movieAction.getMovieById(id))
+        dispatch(mediaAction.getMovieById(id))
     },[dispatch, id])
 
     return (

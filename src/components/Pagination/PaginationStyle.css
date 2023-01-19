@@ -1,34 +1,38 @@
 .page, .current_page{
-    width: 32px;
-    height: 32px;
-    border: 2px solid var(--border-pagination);
+    border: none;
+    width: 30px;
+    height: 30px;
+    box-shadow: 0 0 3px var(--border-pagination);
     border-radius: 50%;
     color: var(--color-text-primary);
-    padding: 5px 10px;
     margin: 0 10px;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--primary);
+    background: var(--border-pagination);
+}
+.page:hover {
+    background: #00d575;
 }
 .current_page {
-    border: none;
-    box-shadow: 0 0 5px var(--black);
+    box-shadow: 0 0 3px #00d575;
+    background: #00d575;
     font-weight: 500;
 }
 .paginator {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--secondary);
+    background: var(--background-main);
     padding-bottom: 15px;
 }
 .paginator a {
     text-decoration: none;
 }
 .button {
-    border: 2px solid var(--border-pagination);
+    border: none;
+    box-shadow: 0 0 3px var(--border-pagination);
     cursor: pointer;
     color: var(--color-text-primary);
     background: var(--primary);

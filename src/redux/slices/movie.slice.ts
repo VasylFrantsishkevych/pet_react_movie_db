@@ -4,21 +4,21 @@ import {AxiosError} from "axios";
 import {
     ICast, ICastResponse, IIndex,
     IMovieDetails,
-    IMovieResponse,
-    IMovieResults,
+    IMediaResponse,
+    IMediaResults,
     IMovieVideoResponse,
     IMovieVideoResults
 } from "../../interfaces";
-import {movieService} from "../../services";
+import {mediaService} from "../../services";
 
 interface IState {
-    movies: IMovieResults[],
-    moviesTrending: IMovieResults[],
-    moviesDynamically: IMovieResults[],
-    movieSimilar: IMovieResults[],
+    medias: IMediaResults[],
+    moviesTrending: IMediaResults[],
+    moviesDynamically: IMediaResults[],
+    movieRecommendations: IMediaResults[],
     movieCasts: ICast[];
     movieId: IMovieDetails[],
-    movieVideo: IMovieVideoResults | null,
+    movieVideo: IMovieVideoResults[],
     status: boolean | null,
     errors: string | null | unknown,
     currentPage: number,
@@ -26,24 +26,24 @@ interface IState {
 }
 
 const initialState: IState = {
-    movies: [],
+    medias: [],
     moviesTrending: [],
     moviesDynamically: [],
-    movieSimilar: [],
+    movieRecommendations: [],
     movieCasts: [],
     movieId: [],
-    movieVideo: null,
+    movieVideo: [],
     status: null,
     errors: null,
     currentPage: 1,
     totalPages: 0,
 }
 
-const getAllMovies = createAsyncThunk<IMovieResponse, {id: string | undefined, page: string | null}>(
-    'movieSlice/getAllMovies',
-    async ({id, page}, {rejectWithValue}) => {
+const getAll = createAsyncThunk<IMediaResponse, {id: string | undefined, page: string | null, type: keyof IIndex}>(
+    'mediaSlice/getAll',
+    async ({id, page,type}, {rejectWithValue}) => {
         try {
-            const {data} = await movieService.getAll(id, page);
+            const {data} = await mediaService.getAll(id, page, type);
             return data
         } catch (e) {
             const err = e as AxiosError
@@ -52,11 +52,11 @@ const getAllMovies = createAsyncThunk<IMovieResponse, {id: string | undefined, p
     }
 )
 
-const getMoviesDynamically = createAsyncThunk<IMovieResponse, {page: string | null, pathname: string}>(
-    'movieSlice/getMoviesDynamically',
+const getMoviesDynamically = createAsyncThunk<IMediaResponse, {page: string | null, pathname: string}>(
+    'mediaSlice/getMoviesDynamically',
     async ({page,pathname}, {rejectWithValue}) => {
         try {
-            const {data} = await movieService.getMoviesDynamically(page, pathname);
+            const {data} = await mediaService.getMoviesDynamically(page, pathname);
             return data
         } catch (e) {
             const err = e as AxiosError
@@ -65,11 +65,11 @@ const getMoviesDynamically = createAsyncThunk<IMovieResponse, {page: string | nu
     }
 )
 
-const getTrendingMovies = createAsyncThunk<IMovieResponse, void>(
+const getTrendingMovies = createAsyncThunk<IMediaResponse, void>(
     'genreSlice/getTrendingMovies',
     async (_, {rejectWithValue}) => {
         try {
-            const {data} = await movieService.getTrending();
+            const {data} = await mediaService.getTrending();
             return data
         } catch (e) {
             const err = e as AxiosError
@@ -78,11 +78,11 @@ const getTrendingMovies = createAsyncThunk<IMovieResponse, void>(
     }
 )
 
-const getSimilar = createAsyncThunk<IMovieResponse, {id: number | undefined, type: keyof IIndex}>(
-    'movieSlice/getSimilar',
+const getRecommendations = createAsyncThunk<IMediaResponse, {id: number | undefined, type: keyof IIndex}>(
+    'mediaSlice/getSimilar',
     async ({id, type}, {rejectWithValue}) => {
         try {
-            const {data} = await movieService.getSimilar(id, type)
+            const {data} = await mediaService.getSimilar(id, type)
             return data;
         } catch (e) {
             const err = e as AxiosError
@@ -92,10 +92,10 @@ const getSimilar = createAsyncThunk<IMovieResponse, {id: number | undefined, typ
 )
 
 const getMovieById = createAsyncThunk<IMovieDetails[], string | undefined>(
-    'movieSlice/getMovieBtId',
+    'mediaSlice/getMovieBtId',
     async (id, {rejectWithValue}) => {
         try {
-            const {data} = await movieService.getById(id);
+            const {data} = await mediaService.getById(id);
             return [data]
         } catch (e) {
             const err = e as AxiosError
@@ -105,10 +105,10 @@ const getMovieById = createAsyncThunk<IMovieDetails[], string | undefined>(
 )
 
 const getCastsMovie = createAsyncThunk<ICastResponse, {id: number | undefined, type: keyof IIndex}>(
-    'movieSlice/getCastsMovie',
+    'mediaSlice/getCastsMovie',
     async ({id, type}, {rejectWithValue}) => {
         try {
-            const {data} = await movieService.getCasts(id, type)
+            const {data} = await mediaService.getCasts(id, type)
             return data;
         }catch (e) {
             const err = e as AxiosError
@@ -116,11 +116,11 @@ const getCastsMovie = createAsyncThunk<ICastResponse, {id: number | undefined, t
         }
     }
 )
-const getMovieVideoById = createAsyncThunk<IMovieVideoResponse,  number | undefined >(
-    'movieSlice/getMovieVideoById',
-    async (id, {rejectWithValue}) => {
+const getMovieVideoById = createAsyncThunk<IMovieVideoResponse, {id: number | undefined, type: keyof IIndex}>(
+    'mediaSlice/getMovieVideoById',
+    async ({id, type}, {rejectWithValue}) => {
         try {
-            const {data} = await movieService.getVideoById(id);
+            const {data} = await mediaService.getVideoById(id, type);
             return data
         } catch (e) {
             const err = e as AxiosError
@@ -129,20 +129,20 @@ const getMovieVideoById = createAsyncThunk<IMovieVideoResponse,  number | undefi
     }
 )
 
-const movieSlice = createSlice({
-    name: 'movieSlice',
+const mediaSlice = createSlice({
+    name: 'mediaSlice',
     initialState,
     reducers: {},
     extraReducers: builder => {
         builder
-            .addCase(getAllMovies.fulfilled, (state, {payload}) => {
+            .addCase(getAll.fulfilled, (state, {payload}) => {
                 const {page, results, total_pages} = payload;
-                state.movies = results
+                state.medias = results
                 state.currentPage = page
                 state.totalPages = total_pages
                 state.status = false
             })
-            .addCase(getAllMovies.rejected, (state, {payload}) => {
+            .addCase(getAll.rejected, (state, {payload}) => {
                 state.errors = payload
             })
             .addCase(getMoviesDynamically.fulfilled, (state, {payload}) =>{
@@ -160,8 +160,8 @@ const movieSlice = createSlice({
                 state.movieId = payload
                 state.status = false
             })
-            .addCase(getSimilar.fulfilled, (state, {payload}) => {
-                state.movieSimilar = payload.results
+            .addCase(getRecommendations.fulfilled, (state, {payload}) => {
+                state.movieRecommendations = payload.results
                 state.status = false
             })
             .addCase(getCastsMovie.fulfilled, (state, {payload}) => {
@@ -169,7 +169,7 @@ const movieSlice = createSlice({
                 state.status = false
             })
             .addCase(getMovieVideoById.fulfilled, (state, {payload}) => {
-                state.movieVideo = payload.results[0]
+                state.movieVideo = payload.results
                 state.status = false
             })
             .addDefaultCase((state, action) => {
@@ -179,21 +179,21 @@ const movieSlice = createSlice({
     }
 })
 
-const {reducer: movieReducer} = movieSlice;
+const {reducer: mediaReducer} = mediaSlice;
 
-const movieAction = {
-    getAllMovies,
+const mediaAction = {
+    getAll,
     getMovieById,
     getTrendingMovies,
     getMovieVideoById,
     getMoviesDynamically,
     getCastsMovie,
-    getSimilar,
+    getRecommendations,
 }
 
 export {
-    movieReducer,
-    movieAction
+    mediaReducer,
+    mediaAction,
 }
 
 

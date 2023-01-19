@@ -55,7 +55,7 @@ const Header: FC = () => {
                         </div>
                     </li>
                     <li>
-                        <Link to={'/discover/movie'} onClick={() => deleteGenre()}>Show TV</Link>
+                        <Link to={'/discover/tv'} onClick={() => deleteGenre()}>Show TV</Link>
                         {/*<div className={'sub__menu'}>*/}
                         {/*    <div className={'sub__menu_container'}>*/}
                         {/*        <div className={'sum__menu_genre'}>*/}

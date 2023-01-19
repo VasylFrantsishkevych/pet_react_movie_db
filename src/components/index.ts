@@ -3,7 +3,7 @@ export * from './Casts';
 export * from './Genre/Genre';
 export * from './Genres/Genres';
 export * from './Header/Header';
-export * from './Movie/Movie';
+export * from './Media/Media';
 export * from './MoviesDetails/MoviesDetails';
 export * from './MovieVideo/MovieVideo';
 export * from './Pagination/Pagination';

@@ -2,19 +2,23 @@ import React, {FC, useEffect} from 'react';
 import {useParams, useSearchParams} from "react-router-dom";
 
 import {useAppDispatch, useAppLocation, useAppSelector} from "../../hooks";
-import './MoviePageStyle.css';
-import {genreActions, movieAction} from "../../redux";
-import {IGenres} from "../../interfaces";
-import {CarouselMovies, Loader, Movie, Pagination} from "../../components";
+import {genreActions, mediaAction} from "../../redux";
+import {IGenres, IIndex} from "../../interfaces";
+import {CarouselMovies, Loader, Media, Pagination} from "../../components";
 
-const MoviePage: FC = () => {
+import './Media.page.style.css';
 
-    const {movies, status} = useAppSelector(state => state.movies);
+const MediaPage: FC = () => {
+
+    const {medias, status} = useAppSelector(state => state.movies);
     const {genre} = useAppSelector(state => state.genres);
     const {state} = useAppLocation<IGenres>();
     const dispatch = useAppDispatch();
     const [query, setQuery] = useSearchParams();
     const {id} = useParams();
+    const {pathname} = useAppLocation();
+
+    const type = pathname.split('/').slice(2).join() as keyof IIndex;
 
     useEffect(() => {
         if (state) {
@@ -23,8 +27,8 @@ const MoviePage: FC = () => {
             setQuery({page: '1'})
         }
         const page = query.get('page');
-        dispatch(movieAction.getAllMovies({id, page}))
-    }, [dispatch, setQuery, query, id, state])
+        dispatch(mediaAction.getAll({id, page, type}))
+    }, [dispatch, setQuery, query, id, state, type])
 
     return (
         <div className={'movies'}>
@@ -38,7 +42,7 @@ const MoviePage: FC = () => {
                 <div className={'movies__list'}>
                     {status && <div className={'main_loader'}><Loader/></div>}
                     {
-                        movies.map(movie => <Movie key={movie.id} movie={movie}/>)
+                        medias.map(media => <Media key={media.id} media={media}/>)
                     }
                 </div>
                 <Pagination/>
@@ -48,5 +52,5 @@ const MoviePage: FC = () => {
     );
 };
 
-export {MoviePage}
+export {MediaPage}
 

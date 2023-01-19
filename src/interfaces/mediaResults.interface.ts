@@ -1,4 +1,4 @@
-export interface IMovieResults {
+export interface IMediaResults {
     id: number;
     backdrop_path: string;
     original_title: string;

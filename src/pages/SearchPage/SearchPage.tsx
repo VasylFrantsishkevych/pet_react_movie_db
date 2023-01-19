@@ -1,8 +1,8 @@
 import React, {FC, useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {searchAction} from "../../redux";
-import {Loader, Movie, Pagination} from "../../components";
-import '../MoviePage/MoviePageStyle.css';
+import {Loader, Media, Pagination} from "../../components";
+import '../Media.page/Media.page.style.css';
 import {useSearchParams} from "react-router-dom";
 
 const SearchPage: FC = () => {
@@ -26,7 +26,7 @@ const SearchPage: FC = () => {
                 {
                     searchMovie.length === 0
                         ? <h2>Movies not found</h2>
-                        : searchMovie.map(movie => <Movie key={movie.id} movie={movie}/>)
+                        : searchMovie.map(movie => <Media key={movie.id} media={movie}/>)
                 }
             </div>
             <div>

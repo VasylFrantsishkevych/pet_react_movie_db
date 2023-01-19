@@ -1,24 +1,24 @@
 .movie__card {
     width: 19%;
-    background: var(--primary);
-    padding: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
     box-sizing: border-box;
     position: relative;
 }
 .movie__card:hover {
-    box-shadow: 0 0 10px 0 var(--background-main);
+    box-shadow: 0 0 10px 0 #00d575;
 }
 .movie__card a {
     text-decoration: none;
 }
 .movie__card img {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 .movie__card_title {
-    color: var(--color-text-primary);
+    color: #00d575;
     font-weight: 500;
+    box-sizing: border-box;
+    padding: 0 5px 5px;
 }
 .movie__card_title div {
     white-space: nowrap;
@@ -33,10 +33,11 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 20px;
-    left: 20px;
-    background-color: rgba(58, 61, 68, 0.71);
+    top: -5px;
+    right: -5px;
+    background-color: rgba(58, 61, 68, 0.8);
     font-weight: 600;
+    border: 2px solid #00d575;
 }
 .rating__color_green {
     color: green;

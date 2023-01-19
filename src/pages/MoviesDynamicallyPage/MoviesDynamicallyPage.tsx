@@ -2,8 +2,8 @@ import React, {FC, useEffect} from 'react';
 import {useSearchParams} from "react-router-dom";
 
 import {useAppDispatch, useAppLocation, useAppSelector} from "../../hooks";
-import {movieAction} from "../../redux";
-import {Movie, Pagination} from "../../components";
+import {mediaAction} from "../../redux";
+import {Media, Pagination} from "../../components";
 import './MovieDynamicallyPage.css';
 
 const MoviesDynamicallyPage: FC = () => {
@@ -18,14 +18,14 @@ const MoviesDynamicallyPage: FC = () => {
             setQuery({page: '1'})
         }
         const page = query.get('page');
-        dispatch(movieAction.getMoviesDynamically({page, pathname}))
+        dispatch(mediaAction.getMoviesDynamically({page, pathname}))
     }, [dispatch, query, setQuery, pathname])
 
     return (
         <div className={'movies__rated'}>
             <div className={'movies__rated_list'}>
                 {
-                    moviesDynamically.map(movie => <Movie key={movie.id} movie={movie}/>)
+                    moviesDynamically.map(movie => <Media key={movie.id} media={movie}/>)
                 }
             </div>
             <div>

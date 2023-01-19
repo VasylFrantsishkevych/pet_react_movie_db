@@ -1,11 +1,11 @@
 import {AxiosError} from "axios";
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
-import {IMovieResponse, IMovieResults} from "../../interfaces";
+import {IMediaResponse, IMediaResults} from "../../interfaces";
 import {searchService} from "../../services";
 
 interface IState {
-    searchMovie: IMovieResults[],
+    searchMovie: IMediaResults[],
     searchText: string,
     status: boolean | null,
 }
@@ -16,7 +16,7 @@ const initialState: IState ={
     status: null,
 }
 
-const getSearchMovie = createAsyncThunk<IMovieResponse, {page: string | null, searchText: string}>(
+const getSearchMovie = createAsyncThunk<IMediaResponse, {page: string | null, searchText: string}>(
     'searchSlice/getSearchMovie',
     async ({page, searchText}, {rejectWithValue}) => {
         try {

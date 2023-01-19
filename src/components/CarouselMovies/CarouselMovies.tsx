@@ -1,6 +1,6 @@
 import React, {FC, useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {movieAction} from "../../redux";
+import {mediaAction} from "../../redux";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {Carousel} from 'react-responsive-carousel';
 import {Link} from "react-router-dom";
@@ -12,7 +12,7 @@ const CarouselMovies: FC = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(movieAction.getTrendingMovies())
+        dispatch(mediaAction.getTrendingMovies())
     }, [dispatch])
 
     return (

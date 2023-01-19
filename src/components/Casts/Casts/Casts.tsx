@@ -1,11 +1,10 @@
 import React, {FC, useEffect} from 'react';
-import {useParams} from "react-router-dom";
 import {Swiper, SwiperSlide} from "swiper/react";
 import 'swiper/css/bundle'
 import {Navigation} from "swiper";
 
 import {useAppDispatch, useAppLocation, useAppSelector} from "../../../hooks";
-import {movieAction} from "../../../redux";
+import {mediaAction} from "../../../redux";
 import {IIndex} from "../../../interfaces";
 import './CastsStyle.css';
 import {Cast} from "../Cast/Cast";
@@ -22,13 +21,14 @@ const Casts:FC<IProps> = ({id}) => {
     const type = pathname.split('/').splice(1)[0] as keyof IIndex;
 
     useEffect(() => {
-        dispatch(movieAction.getCastsMovie({id, type}))
+        dispatch(mediaAction.getCastsMovie({id, type}))
     },[dispatch, id, type]);
 
     const castsTop = movieCasts
-        .filter((cast) => cast.known_for_department === 'Acting')
+        .filter((cast) => cast.known_for_department === 'Acting' && cast.profile_path)
         .sort((a, b) => b.popularity - a.popularity)
         .slice(0,10);
+
 
     return (
         <div className={'casts'}>

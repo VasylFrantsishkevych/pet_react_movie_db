@@ -1,2 +1,2 @@
-export * from './Similars/Similars';
-export * from './Similar/Similar';
+export * from './Recommendations/Recommendations';
+export * from './Recommendation/Recommendation';

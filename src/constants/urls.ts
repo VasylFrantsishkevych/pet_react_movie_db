@@ -5,7 +5,6 @@ const category = {
     tv: 'tv',
 }
 const urls = {
-    movies: '/discover/movie',
     movieId: '/movie',
     genres: '/genre/movie/list',
     search: '/search/movie',

@@ -1,18 +1,18 @@
 import React, {FC, ReactNode} from 'react';
 import {Link} from "react-router-dom";
 
-import './MovieStyle.css';
-import {IMovieResults} from "../../interfaces";
+import './Media.style.css';
+import {IMediaResults} from "../../interfaces";
 import {urlSize} from "../../constants";
 
 interface IProps {
-    movie: IMovieResults
+    media: IMediaResults
     children?: ReactNode
 }
 
-const Movie: FC<IProps> = ({movie}) => {
+const Media: FC<IProps> = ({media}) => {
 
-    const {id, original_title, poster_path, vote_average, release_date} = movie;
+    const {id, original_title, poster_path, vote_average, release_date} = media;
 
      const changeColorText = (vote: number) => {
         if (vote >= 8) {
@@ -43,4 +43,4 @@ const Movie: FC<IProps> = ({movie}) => {
     );
 };
 
-export {Movie}
+export {Media}
