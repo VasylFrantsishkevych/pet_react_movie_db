@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {IGenres, IGenresList} from "../../interfaces";
+import {IGenres, IGenresList, IIndex} from "../../interfaces";
 import {AxiosError} from "axios";
 import {genreService} from "../../services";
 
@@ -17,11 +17,11 @@ const initialState: IState = {
     error: null
 }
 
-const getAllGenres = createAsyncThunk<IGenresList, void>(
-    'genreSlice/getAllGenres',
-    async (_, {rejectWithValue}) => {
+const getAll = createAsyncThunk<IGenresList, {type: keyof IIndex}>(
+    'genreSlice/getAll',
+    async ({type}, {rejectWithValue}) => {
         try {
-            const {data} = await genreService.getAll();
+            const {data} = await genreService.getAll(type);
             return data
         } catch (e) {
             const err = e as AxiosError
@@ -40,11 +40,11 @@ const genreSlice = createSlice({
     },
     extraReducers: builder => {
         builder
-            .addCase(getAllGenres.fulfilled, (state, {payload: {genres}}) => {
+            .addCase(getAll.fulfilled, (state, {payload: {genres}}) => {
                 state.genres = genres
                 state.status = null
             })
-            .addCase(getAllGenres.pending, (state) => {
+            .addCase(getAll.pending, (state) => {
                 state.status = 'pending'
             })
     }
@@ -53,7 +53,7 @@ const genreSlice = createSlice({
 const {reducer: genreReducer, actions: {addGenre}} = genreSlice;
 
 const genreActions = {
-    getAllGenres,
+    getAll,
     addGenre
 }
 

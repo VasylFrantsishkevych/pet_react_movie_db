@@ -1,7 +1,7 @@
 import React, {FC, ReactNode} from 'react';
 
 import './MovieDetailsStyle.css';
-import {IMovieDetails} from "../../interfaces";
+import {IMediaDetails} from "../../interfaces";
 import {urlOriginalImage, urlSize} from "../../constants";
 import {StarsRating} from "../StarsRating/StarsRating";
 import {MovieVideo} from "../MovieVideo/MovieVideo";
@@ -9,7 +9,7 @@ import {Casts} from "../Casts";
 import {Recommendations} from "../Similars";
 
 interface IProps {
-    movie: IMovieDetails
+    movie: IMediaDetails
     children?: ReactNode
 }
 

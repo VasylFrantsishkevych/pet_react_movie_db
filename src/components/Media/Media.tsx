@@ -1,9 +1,10 @@
 import React, {FC, ReactNode} from 'react';
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
+
+import {IIndex, IMediaResults} from "../../interfaces";
+import {urlSize} from "../../constants";
 
 import './Media.style.css';
-import {IMediaResults} from "../../interfaces";
-import {urlSize} from "../../constants";
 
 interface IProps {
     media: IMediaResults
@@ -14,7 +15,9 @@ const Media: FC<IProps> = ({media}) => {
 
     const {id, original_title, poster_path, vote_average, release_date} = media;
 
-     const changeColorText = (vote: number) => {
+    const {type} = useParams() as {type: keyof IIndex};
+
+    const changeColorText = (vote: number) => {
         if (vote >= 8) {
             return 'rating__color_green'
         }else if (vote >= 6) {
@@ -26,7 +29,7 @@ const Media: FC<IProps> = ({media}) => {
 
     return (
         <div className={'movie__card'}>
-            <Link to={`/movie/${id}`}>
+            <Link to={`/${type}/${id}`}>
                 <div className={'movie__card_image'}>
                     <img src={`${urlSize.w200}${poster_path}`} alt={`${original_title}`}/>
                 </div>

@@ -1,7 +1,7 @@
 import {AxiosRes, axiosService} from "./axios.service";
-import {ICastResponse, IIndex, IMovieDetails, IMediaResponse, IMovieVideoResponse} from "../interfaces";
+import {ICastResponse, IIndex, IMediaDetails, IMediaResponse, IMovieVideoResponse} from "../interfaces";
 import {category, urls} from "../constants";
-// @ts-ignore
+
 export const mediaService = {
     getAll: (id: string | undefined, page: string | null, type: keyof IIndex): AxiosRes<IMediaResponse> =>
         axiosService
@@ -12,7 +12,8 @@ export const mediaService = {
     getMoviesDynamically: (page: string | null, pathname: string): AxiosRes<IMediaResponse> => axiosService
         .get(`${pathname}?&language=en-US`, {params: {page}}),
 
-    getById: (id: string | undefined): AxiosRes<IMovieDetails> => axiosService.get(`${urls.movieId}/${id}`),
+    getById: (id: string | undefined, type: keyof IIndex): AxiosRes<IMediaDetails> =>
+        axiosService.get(`${category[type]}/${id}`),
 
     getCasts: (id: number | undefined, type: keyof IIndex): AxiosRes<ICastResponse> => axiosService
         .get(`${category[type]}/${id}/credits`),

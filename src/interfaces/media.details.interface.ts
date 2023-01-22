@@ -1,5 +1,5 @@
 import {IGenres} from "./genres.interface";
-export interface IMovieDetails {
+export interface IMediaDetails {
     backdrop_path: string,
     budget: number,
     genres: IGenres[],

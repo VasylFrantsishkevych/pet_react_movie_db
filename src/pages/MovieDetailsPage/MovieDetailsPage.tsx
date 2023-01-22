@@ -4,21 +4,22 @@ import {useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {mediaAction} from "../../redux";
 import {Loader, MovieDetails} from "../../components";
+import {IIndex} from "../../interfaces";
 
 const MovieDetailsPage: FC = () => {
-    const {movieId, status} = useAppSelector(state => state.movies);
+    const {mediaById, status} = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
-    const {id} = useParams();
+    const {id ,type} = useParams() as {id: string | undefined, type: keyof IIndex};
 
     useEffect(() => {
-        dispatch(mediaAction.getMovieById(id))
-    },[dispatch, id])
+        dispatch(mediaAction.getById({id, type}))
+    },[dispatch, id, type])
 
     return (
         <div>
             {status && <div className={'main_loader'}><Loader/></div>}
             {
-                movieId.map(movie => <MovieDetails key={movie.id} movie={movie}/>)
+                mediaById.map(movie => <MovieDetails key={movie.id} movie={movie}/>)
             }
         </div>
     );

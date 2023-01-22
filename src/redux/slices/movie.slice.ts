@@ -3,7 +3,7 @@ import {AxiosError} from "axios";
 
 import {
     ICast, ICastResponse, IIndex,
-    IMovieDetails,
+    IMediaDetails,
     IMediaResponse,
     IMediaResults,
     IMovieVideoResponse,
@@ -17,7 +17,7 @@ interface IState {
     moviesDynamically: IMediaResults[],
     movieRecommendations: IMediaResults[],
     movieCasts: ICast[];
-    movieId: IMovieDetails[],
+    mediaById: IMediaDetails[],
     movieVideo: IMovieVideoResults[],
     status: boolean | null,
     errors: string | null | unknown,
@@ -31,7 +31,7 @@ const initialState: IState = {
     moviesDynamically: [],
     movieRecommendations: [],
     movieCasts: [],
-    movieId: [],
+    mediaById: [],
     movieVideo: [],
     status: null,
     errors: null,
@@ -91,11 +91,11 @@ const getRecommendations = createAsyncThunk<IMediaResponse, {id: number | undefi
     }
 )
 
-const getMovieById = createAsyncThunk<IMovieDetails[], string | undefined>(
-    'mediaSlice/getMovieBtId',
-    async (id, {rejectWithValue}) => {
+const getById = createAsyncThunk<IMediaDetails[], {id: string | undefined, type: keyof IIndex}>(
+    'mediaSlice/getById',
+    async ({id, type}, {rejectWithValue}) => {
         try {
-            const {data} = await mediaService.getById(id);
+            const {data} = await mediaService.getById(id, type);
             return [data]
         } catch (e) {
             const err = e as AxiosError
@@ -156,8 +156,8 @@ const mediaSlice = createSlice({
                 state.moviesTrending = payload.results
                 state.status = false
             })
-            .addCase(getMovieById.fulfilled, (state, {payload}) => {
-                state.movieId = payload
+            .addCase(getById.fulfilled, (state, {payload}) => {
+                state.mediaById = payload
                 state.status = false
             })
             .addCase(getRecommendations.fulfilled, (state, {payload}) => {
@@ -183,7 +183,7 @@ const {reducer: mediaReducer} = mediaSlice;
 
 const mediaAction = {
     getAll,
-    getMovieById,
+    getById,
     getTrendingMovies,
     getMovieVideoById,
     getMoviesDynamically,

@@ -9,7 +9,7 @@ const urls = {
     genres: '/genre/movie/list',
     search: '/search/movie',
     moviesPopular: '/movie/popular',
-    moviesTrending: '/trending/all/day',
+    moviesTrending: '/trending/movie/day',
 }
 
 export {

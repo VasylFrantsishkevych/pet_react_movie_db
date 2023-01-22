@@ -1,7 +1,7 @@
 import {AxiosRes, axiosService} from "./axios.service";
-import {IGenresList} from "../interfaces";
-import {urls} from "../constants";
+import {IGenresList, IIndex} from "../interfaces";
+import {category} from "../constants";
 
 export const genreService = {
-    getAll: (): AxiosRes<IGenresList> => axiosService.get(urls.genres)
+    getAll: (type: keyof IIndex): AxiosRes<IGenresList> => axiosService.get(`/genre/${category[type]}/list`)
 }

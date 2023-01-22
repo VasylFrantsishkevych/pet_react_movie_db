@@ -7,7 +7,6 @@ import {IGenres, IIndex} from "../../interfaces";
 import {CarouselMovies, Loader, Media, Pagination} from "../../components";
 
 import './Media.page.style.css';
-
 const MediaPage: FC = () => {
 
     const {medias, status} = useAppSelector(state => state.movies);
@@ -15,11 +14,9 @@ const MediaPage: FC = () => {
     const {state} = useAppLocation<IGenres>();
     const dispatch = useAppDispatch();
     const [query, setQuery] = useSearchParams();
-    const {id} = useParams();
-    const {pathname} = useAppLocation();
+    const {id, type} = useParams() as {id: string | undefined, type: keyof IIndex};
 
-    const type = pathname.split('/').slice(2).join() as keyof IIndex;
-
+    console.log(id, type)
     useEffect(() => {
         if (state) {
             dispatch(genreActions.addGenre(state));
