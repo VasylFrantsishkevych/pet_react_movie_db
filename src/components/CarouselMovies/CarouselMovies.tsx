@@ -5,15 +5,20 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {Carousel} from 'react-responsive-carousel';
 import {Link} from "react-router-dom";
 import './CarouselMoviesStyle.css';
+import {IIndex} from "../../interfaces";
 
-const CarouselMovies: FC = () => {
+interface IProps {
+    typeMedia: keyof IIndex;
+    timeWindow: string;
+}
+const CarouselMovies: FC<IProps> = ({typeMedia, timeWindow}) => {
 
-    const {moviesTrending} = useAppSelector(state => state.movies);
+    const {mediaTrending} = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(mediaAction.getTrendingMovies())
-    }, [dispatch])
+        dispatch(mediaAction.getTrending({typeMedia, timeWindow}))
+    }, [dispatch, typeMedia, timeWindow])
 
     return (
         <div>
@@ -25,7 +30,7 @@ const CarouselMovies: FC = () => {
                 showStatus={false}
             >
                 {
-                    moviesTrending.map(movie =>
+                    mediaTrending.map(movie =>
                         <Link  to={`/movie/${movie.id}`} key={movie.id}>
                             <div className={'carousel'}>
                                 <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt={movie.original_title}/>

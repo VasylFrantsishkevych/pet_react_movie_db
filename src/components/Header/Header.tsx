@@ -12,7 +12,6 @@ import {Genres} from "../Genres/Genres";
 const Header: FC = () => {
     const {themeType, setCurrentTheme} = useTheme();
     const dispatch = useAppDispatch();
-
     const deleteGenre = () => {
         dispatch(genreActions.addGenre(null))
     }
@@ -26,16 +25,13 @@ const Header: FC = () => {
     }
     return (
         <div className={'header'}>
-            <div className={'header__logo'}>
+            <Link to={'/home'} className={'header__logo'}>
                 <img src={logo} alt="movieDB"/>
-            </div>
+            </Link>
             <div className={'menu'}>
                 <ul className={'menu__list'}>
                     <li>
-                        <Link to={'/discover/movie'}
-                              onClick={() => deleteGenre()}
-                         >Movies
-                        </Link>
+                        <Link to={'/discover/movie'} onClick={() => deleteGenre()}>Movies</Link>
                         <div className={'sub__menu'}>
                             <div className={'sub__menu_container'}>
                                 <div className={'sub__menu_movies'}>

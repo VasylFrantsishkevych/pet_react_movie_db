@@ -4,16 +4,28 @@ const category = {
     movie: 'movie',
     tv: 'tv',
 }
+const movieType = {
+    popular: '/popular',
+    topRated: '/top_rated',
+}
+
+const tvType = {
+    popular: '/popular',
+    topRated: '/top_rated',
+}
+const trendingTimeWindow = {
+    day: '/day',
+    week: '/week'
+}
 const urls = {
-    movieId: '/movie',
-    genres: '/genre/movie/list',
     search: '/search/movie',
-    moviesPopular: '/movie/popular',
-    moviesTrending: '/trending/movie/day',
 }
 
 export {
     baseURL,
     urls,
     category,
+    trendingTimeWindow,
+    movieType,
+    tvType,
 }

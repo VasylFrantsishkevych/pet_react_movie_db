@@ -4,6 +4,8 @@ export * from './Genre/Genre';
 export * from './Genres/Genres';
 export * from './Header/Header';
 export * from './Media/Media';
+export * from './MediaItemSlide/MediaItemSlide';
+export * from './MediaSlide/MediaSlide';
 export * from './MoviesDetails/MoviesDetails';
 export * from './MovieVideo/MovieVideo';
 export * from './Pagination/Pagination';

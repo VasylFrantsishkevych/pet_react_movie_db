@@ -1,0 +1,15 @@
+.home {
+    background: var(--background-main);
+    color: var(--color-text-primary);
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+.media__slider {
+    box-sizing: border-box;
+}
+.media__slider>h2 {
+    margin-left: 20px;
+}
+.swiper {
+    padding: 0 8px;
+}

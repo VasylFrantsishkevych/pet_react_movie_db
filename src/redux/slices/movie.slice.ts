@@ -13,7 +13,8 @@ import {mediaService} from "../../services";
 
 interface IState {
     medias: IMediaResults[],
-    moviesTrending: IMediaResults[],
+    mediaTrending: IMediaResults[],
+    mediaByType: IMediaResults[],
     moviesDynamically: IMediaResults[],
     movieRecommendations: IMediaResults[],
     movieCasts: ICast[];
@@ -27,7 +28,8 @@ interface IState {
 
 const initialState: IState = {
     medias: [],
-    moviesTrending: [],
+    mediaTrending: [],
+    mediaByType: [],
     moviesDynamically: [],
     movieRecommendations: [],
     movieCasts: [],
@@ -52,6 +54,19 @@ const getAll = createAsyncThunk<IMediaResponse, {id: string | undefined, page: s
     }
 )
 
+const getMediaByType = createAsyncThunk<IMediaResponse, {categoryType: string, mediaType: string, page: string | null}>(
+    'mediaSlice/getMediaByType',
+    async ({categoryType,mediaType, page}, {rejectWithValue}) => {
+        try {
+            const {data} = await mediaService.getMediaByType(categoryType, mediaType, page)
+            return data;
+        } catch (e) {
+            const err = e as AxiosError
+            return rejectWithValue(err.response?.data)
+        }
+    }
+)
+
 const getMoviesDynamically = createAsyncThunk<IMediaResponse, {page: string | null, pathname: string}>(
     'mediaSlice/getMoviesDynamically',
     async ({page,pathname}, {rejectWithValue}) => {
@@ -65,11 +80,11 @@ const getMoviesDynamically = createAsyncThunk<IMediaResponse, {page: string | nu
     }
 )
 
-const getTrendingMovies = createAsyncThunk<IMediaResponse, void>(
+const getTrending = createAsyncThunk<IMediaResponse, {typeMedia: keyof IIndex, timeWindow: string}>(
     'genreSlice/getTrendingMovies',
-    async (_, {rejectWithValue}) => {
+    async ({typeMedia, timeWindow}, {rejectWithValue}) => {
         try {
-            const {data} = await mediaService.getTrending();
+            const {data} = await mediaService.getTrending(typeMedia, timeWindow);
             return data
         } catch (e) {
             const err = e as AxiosError
@@ -142,6 +157,10 @@ const mediaSlice = createSlice({
                 state.totalPages = total_pages
                 state.status = false
             })
+            .addCase(getMediaByType.fulfilled, (state, {payload}) => {
+                state.mediaByType = payload.results
+                state.status = false
+            })
             .addCase(getAll.rejected, (state, {payload}) => {
                 state.errors = payload
             })
@@ -152,8 +171,8 @@ const mediaSlice = createSlice({
                 state.totalPages = total_pages
                 state.status = false
             })
-            .addCase(getTrendingMovies.fulfilled, (state, {payload}) => {
-                state.moviesTrending = payload.results
+            .addCase(getTrending.fulfilled, (state, {payload}) => {
+                state.mediaTrending = payload.results
                 state.status = false
             })
             .addCase(getById.fulfilled, (state, {payload}) => {
@@ -184,11 +203,12 @@ const {reducer: mediaReducer} = mediaSlice;
 const mediaAction = {
     getAll,
     getById,
-    getTrendingMovies,
+    getTrending,
     getMovieVideoById,
     getMoviesDynamically,
     getCastsMovie,
     getRecommendations,
+    getMediaByType,
 }
 
 export {
