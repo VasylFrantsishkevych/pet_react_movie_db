@@ -10,11 +10,16 @@ import {
     IMovieVideoResults
 } from "../../interfaces";
 import {mediaService} from "../../services";
+import {category} from "../../constants";
 
 interface IState {
     medias: IMediaResults[],
     mediaTrending: IMediaResults[],
-    mediaByType: IMediaResults[],
+    // mediaByType: IMediaResults[],
+    mediaDataByType: {
+        moviePopular: IMediaResults[],
+        tvPopular: IMediaResults[],
+    },
     moviesDynamically: IMediaResults[],
     movieRecommendations: IMediaResults[],
     movieCasts: ICast[];
@@ -29,7 +34,11 @@ interface IState {
 const initialState: IState = {
     medias: [],
     mediaTrending: [],
-    mediaByType: [],
+    // mediaByType: [],
+    mediaDataByType: {
+        moviePopular: [],
+        tvPopular: [],
+    },
     moviesDynamically: [],
     movieRecommendations: [],
     movieCasts: [],
@@ -41,9 +50,9 @@ const initialState: IState = {
     totalPages: 0,
 }
 
-const getAll = createAsyncThunk<IMediaResponse, {id: string | undefined, page: string | null, type: keyof IIndex}>(
+const getAll = createAsyncThunk<IMediaResponse, { id: string | undefined, page: string | null, type: keyof IIndex }>(
     'mediaSlice/getAll',
-    async ({id, page,type}, {rejectWithValue}) => {
+    async ({id, page, type}, {rejectWithValue}) => {
         try {
             const {data} = await mediaService.getAll(id, page, type);
             return data
@@ -54,12 +63,12 @@ const getAll = createAsyncThunk<IMediaResponse, {id: string | undefined, page: s
     }
 )
 
-const getMediaByType = createAsyncThunk<IMediaResponse, {categoryType: string, mediaType: string, page: string | null}>(
+const getMediaByType = createAsyncThunk<IMediaResponse, { categoryType: string, mediaType: string, page: string | null }>(
     'mediaSlice/getMediaByType',
-    async ({categoryType,mediaType, page}, {rejectWithValue}) => {
+    async ({categoryType, mediaType, page}, {rejectWithValue}) => {
         try {
             const {data} = await mediaService.getMediaByType(categoryType, mediaType, page)
-            return data;
+            return data
         } catch (e) {
             const err = e as AxiosError
             return rejectWithValue(err.response?.data)
@@ -67,9 +76,9 @@ const getMediaByType = createAsyncThunk<IMediaResponse, {categoryType: string, m
     }
 )
 
-const getMoviesDynamically = createAsyncThunk<IMediaResponse, {page: string | null, pathname: string}>(
+const getMoviesDynamically = createAsyncThunk<IMediaResponse, { page: string | null, pathname: string }>(
     'mediaSlice/getMoviesDynamically',
-    async ({page,pathname}, {rejectWithValue}) => {
+    async ({page, pathname}, {rejectWithValue}) => {
         try {
             const {data} = await mediaService.getMoviesDynamically(page, pathname);
             return data
@@ -80,7 +89,7 @@ const getMoviesDynamically = createAsyncThunk<IMediaResponse, {page: string | nu
     }
 )
 
-const getTrending = createAsyncThunk<IMediaResponse, {typeMedia: keyof IIndex, timeWindow: string}>(
+const getTrending = createAsyncThunk<IMediaResponse, { typeMedia: keyof IIndex, timeWindow: string }>(
     'genreSlice/getTrendingMovies',
     async ({typeMedia, timeWindow}, {rejectWithValue}) => {
         try {
@@ -93,7 +102,7 @@ const getTrending = createAsyncThunk<IMediaResponse, {typeMedia: keyof IIndex, t
     }
 )
 
-const getRecommendations = createAsyncThunk<IMediaResponse, {id: number | undefined, type: keyof IIndex}>(
+const getRecommendations = createAsyncThunk<IMediaResponse, { id: number | undefined, type: keyof IIndex }>(
     'mediaSlice/getSimilar',
     async ({id, type}, {rejectWithValue}) => {
         try {
@@ -106,7 +115,7 @@ const getRecommendations = createAsyncThunk<IMediaResponse, {id: number | undefi
     }
 )
 
-const getById = createAsyncThunk<IMediaDetails[], {id: string | undefined, type: keyof IIndex}>(
+const getById = createAsyncThunk<IMediaDetails[], { id: string | undefined, type: keyof IIndex }>(
     'mediaSlice/getById',
     async ({id, type}, {rejectWithValue}) => {
         try {
@@ -119,19 +128,19 @@ const getById = createAsyncThunk<IMediaDetails[], {id: string | undefined, type:
     }
 )
 
-const getCastsMovie = createAsyncThunk<ICastResponse, {id: number | undefined, type: keyof IIndex}>(
+const getCastsMovie = createAsyncThunk<ICastResponse, { id: number | undefined, type: keyof IIndex }>(
     'mediaSlice/getCastsMovie',
     async ({id, type}, {rejectWithValue}) => {
         try {
             const {data} = await mediaService.getCasts(id, type)
             return data;
-        }catch (e) {
+        } catch (e) {
             const err = e as AxiosError
             return rejectWithValue(err.response?.data)
         }
     }
 )
-const getMovieVideoById = createAsyncThunk<IMovieVideoResponse, {id: number | undefined, type: keyof IIndex}>(
+const getMovieVideoById = createAsyncThunk<IMovieVideoResponse, { id: number | undefined, type: keyof IIndex }>(
     'mediaSlice/getMovieVideoById',
     async ({id, type}, {rejectWithValue}) => {
         try {
@@ -157,14 +166,21 @@ const mediaSlice = createSlice({
                 state.totalPages = total_pages
                 state.status = false
             })
-            .addCase(getMediaByType.fulfilled, (state, {payload}) => {
-                state.mediaByType = payload.results
-                state.status = false
+            .addCase(getMediaByType.fulfilled, (state, action) => {
+                console.log(action);
+                if (action.meta.arg.categoryType === category.movie) {
+                    state.mediaDataByType.moviePopular = action.payload.results
+                    state.status = false
+                } else {
+                    state.mediaDataByType.tvPopular = action.payload.results
+                    state.status = false
+                }
+
             })
             .addCase(getAll.rejected, (state, {payload}) => {
                 state.errors = payload
             })
-            .addCase(getMoviesDynamically.fulfilled, (state, {payload}) =>{
+            .addCase(getMoviesDynamically.fulfilled, (state, {payload}) => {
                 const {page, results, total_pages} = payload;
                 state.moviesDynamically = results;
                 state.currentPage = page
