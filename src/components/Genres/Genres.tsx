@@ -1,29 +1,32 @@
 import React, {FC, useEffect} from 'react';
-import {useParams} from "react-router-dom";
 
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {genreActions} from "../../redux";
 import {Genre} from "../Genre/Genre";
 import {Loader} from "../UI";
-import {IIndex} from "../../interfaces";
+import {IGenres, IIndex} from "../../interfaces";
 
 import './GenresStyle.css';
 
-const Genres: FC = () => {
+interface IProps {
+    genres: IGenres[],
+    mediaCategory: keyof IIndex,
+}
 
-    const {genres, status} = useAppSelector(state => state.genres);
+const Genres: FC<IProps> = ({mediaCategory, genres}) => {
+
+    const {status} = useAppSelector(state => state.genres);
     const dispatch = useAppDispatch();
-    const {type} = useParams() as {type: keyof IIndex};
 
     useEffect(() => {
-        dispatch(genreActions.getAll({type}))
-    },[dispatch, type])
+        dispatch(genreActions.getAll({mediaCategory}))
+    },[dispatch, mediaCategory])
 
     return (
         <div className={'genres__list'}>
             {status && <div className={'main_loader'}><Loader/></div>}
             {
-                genres.map(genre => <Genre key={genre.id} genre={genre}/>)
+                genres.map(genre => <Genre key={genre.id} genre={genre} mediaCategory={mediaCategory}/>)
             }
         </div>
     );

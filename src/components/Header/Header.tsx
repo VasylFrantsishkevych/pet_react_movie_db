@@ -3,15 +3,21 @@ import {Link} from "react-router-dom";
 
 import logo from "../../assets/thumb76_76.png";
 import './HeaderStyle.css';
-import {useAppDispatch} from "../../hooks";
+import {useAppDispatch, useAppSelector} from "../../hooks";
 import {genreActions} from "../../redux";
 import {useTheme} from "../Theme";
 import {SearchForm} from "../UI";
 import {Genres} from "../Genres/Genres";
+import {category} from "../../constants";
+import {IIndex} from "../../interfaces";
 
 const Header: FC = () => {
     const {themeType, setCurrentTheme} = useTheme();
     const dispatch = useAppDispatch();
+    const {genres: {genresMovie, genresTv}} = useAppSelector(state => state.genres);
+
+    const movieCategory = category.movie as keyof IIndex;
+    const tvCategory = category.tv as keyof IIndex;
     const deleteGenre = () => {
         dispatch(genreActions.addGenre(null))
     }
@@ -48,7 +54,7 @@ const Header: FC = () => {
                                     </ul>
                                 </div>
                                 <div className={'sub__menu_genre'}>
-                                    <Genres/>
+                                    <Genres mediaCategory={movieCategory} genres={genresMovie}/>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +66,7 @@ const Header: FC = () => {
                                 <div className={'sub__menu_movies'}>
                                 </div>
                                 <div className={'sub__menu_genre'}>
-                                    <Genres/>
+                                    <Genres mediaCategory={tvCategory} genres={genresTv}/>
                                 </div>
                             </div>
                         </div>

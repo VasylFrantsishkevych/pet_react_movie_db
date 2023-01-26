@@ -2,26 +2,33 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {IGenres, IGenresList, IIndex} from "../../interfaces";
 import {AxiosError} from "axios";
 import {genreService} from "../../services";
+import {category} from "../../constants";
 
 interface IState {
-    genres: IGenres[],
+    genres: {
+        genresMovie: IGenres[],
+        genresTv: IGenres[],
+    },
     genre: IGenres | null,
     status: string | null,
     error: string | null
 }
 
 const initialState: IState = {
-    genres: [],
+    genres: {
+        genresMovie: [],
+        genresTv: [],
+    },
     genre: null,
     status: null,
     error: null
 }
 
-const getAll = createAsyncThunk<IGenresList, {type: keyof IIndex}>(
+const getAll = createAsyncThunk<IGenresList, {mediaCategory: keyof IIndex}>(
     'genreSlice/getAll',
-    async ({type}, {rejectWithValue}) => {
+    async ({mediaCategory}, {rejectWithValue}) => {
         try {
-            const {data} = await genreService.getAll(type);
+            const {data} = await genreService.getAll(mediaCategory);
             return data
         } catch (e) {
             const err = e as AxiosError
@@ -40,9 +47,15 @@ const genreSlice = createSlice({
     },
     extraReducers: builder => {
         builder
-            .addCase(getAll.fulfilled, (state, {payload: {genres}}) => {
-                state.genres = genres
-                state.status = null
+            .addCase(getAll.fulfilled, (state, {payload: {genres}, meta: {arg}}) => {
+                if (arg.mediaCategory === category.movie) {
+                    state.genres.genresMovie = genres
+                    state.status = null
+                } else {
+                    state.genres.genresTv = genres
+                    state.status = null
+                }
+
             })
             .addCase(getAll.pending, (state) => {
                 state.status = 'pending'

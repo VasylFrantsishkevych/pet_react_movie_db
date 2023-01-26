@@ -17,7 +17,10 @@ const HomePage: FC = () => {
         <div className={'home'}>
             <CarouselMovies typeMedia={typeMedia} timeWindow={trendingTimeWindow.week}/>
             <div className={'media__slider'}>
-                <h2>Movie Popular</h2>
+                <div>
+                    <h2>Movie Popular</h2>
+                    <button>More</button>
+                </div>
                 <MediaSlide
                     categoryType={category.movie}
                     mediaType={movieType.popular}
