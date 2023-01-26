@@ -5,10 +5,14 @@
     min-height: 100vh;
 }
 .media__slider {
-    box-sizing: border-box;
+    margin-top: 20px;    
 }
 .media__slider>h2 {
     margin-left: 20px;
+    border: 2px solid #00d575;
+    display: inline-block;
+    border-radius: 15px;
+    padding: 5px;
 }
 .swiper {
     padding: 0 8px;

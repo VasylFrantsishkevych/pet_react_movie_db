@@ -10,15 +10,16 @@ import {
     IMovieVideoResults
 } from "../../interfaces";
 import {mediaService} from "../../services";
-import {category} from "../../constants";
+import {category, movieType, tvType} from "../../constants";
 
 interface IState {
     medias: IMediaResults[],
     mediaTrending: IMediaResults[],
-    // mediaByType: IMediaResults[],
     mediaDataByType: {
         moviePopular: IMediaResults[],
+        movieTopRated: IMediaResults[],
         tvPopular: IMediaResults[],
+        tvTopRated: IMediaResults[],
     },
     moviesDynamically: IMediaResults[],
     movieRecommendations: IMediaResults[],
@@ -34,10 +35,11 @@ interface IState {
 const initialState: IState = {
     medias: [],
     mediaTrending: [],
-    // mediaByType: [],
     mediaDataByType: {
         moviePopular: [],
+        movieTopRated: [],
         tvPopular: [],
+        tvTopRated: [],
     },
     moviesDynamically: [],
     movieRecommendations: [],
@@ -166,13 +168,18 @@ const mediaSlice = createSlice({
                 state.totalPages = total_pages
                 state.status = false
             })
-            .addCase(getMediaByType.fulfilled, (state, action) => {
-                console.log(action);
-                if (action.meta.arg.categoryType === category.movie) {
-                    state.mediaDataByType.moviePopular = action.payload.results
+            .addCase(getMediaByType.fulfilled, (state, {payload, meta: {arg}}) => {
+                if (arg.categoryType === category.movie && arg.mediaType === movieType.popular) {
+                    state.mediaDataByType.moviePopular = payload.results
+                    state.status = false
+                } else if (arg.categoryType === category.movie && arg.mediaType === movieType.topRated) {
+                    state.mediaDataByType.movieTopRated = payload.results
+                    state.status = false
+                } else if (arg.categoryType === category.tv && arg.mediaType === tvType.popular) {
+                    state.mediaDataByType.tvPopular = payload.results
                     state.status = false
                 } else {
-                    state.mediaDataByType.tvPopular = action.payload.results
+                    state.mediaDataByType.tvTopRated = payload.results
                     state.status = false
                 }
 

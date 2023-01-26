@@ -3,14 +3,14 @@ import React, {FC} from 'react';
 import {CarouselMovies, MediaSlide} from "../../components";
 import {category, movieType, trendingTimeWindow, tvType} from "../../constants";
 import {IIndex} from "../../interfaces";
+import {useAppSelector} from "../../hooks";
 
 import './Home.style.css';
-import {useAppSelector} from "../../hooks";
 
 
 const HomePage: FC = () => {
 
-    const {mediaDataByType: {tvPopular, moviePopular}} = useAppSelector(state => state.movies);
+    const {mediaDataByType: {tvPopular, tvTopRated, moviePopular, movieTopRated}} = useAppSelector(state => state.movies);
 
     const typeMedia = category.movie as keyof IIndex;
     return (
@@ -32,6 +32,24 @@ const HomePage: FC = () => {
                     mediaType={tvType.popular}
                     slidesPerView={5}
                     mediaDataByType={tvPopular}
+                />
+            </div>
+            <div className={'media__slider'}>
+                <h2>Movie Top Rated</h2>
+                <MediaSlide
+                    categoryType={category.movie}
+                    mediaType={movieType.topRated}
+                    slidesPerView={5}
+                    mediaDataByType={movieTopRated}
+                />
+            </div>
+            <div className={'media__slider'}>
+                <h2>TV Top Rated</h2>
+                <MediaSlide
+                    categoryType={category.tv}
+                    mediaType={tvType.topRated}
+                    slidesPerView={5}
+                    mediaDataByType={tvTopRated}
                 />
             </div>
         </div>
