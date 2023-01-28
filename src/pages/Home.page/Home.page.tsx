@@ -15,7 +15,7 @@ const HomePage: FC = () => {
     const typeMedia = category.movie as keyof IIndex;
     return (
         <div className={'home'}>
-            <CarouselMovies typeMedia={typeMedia} timeWindow={trendingTimeWindow.week}/>
+            <CarouselMovies categoryType={typeMedia} timeWindow={trendingTimeWindow.week}/>
             <div className={'media__slider'}>
                 <div>
                     <h2>Movie Popular</h2>

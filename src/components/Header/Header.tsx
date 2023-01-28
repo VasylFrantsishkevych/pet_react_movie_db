@@ -54,7 +54,7 @@ const Header: FC = () => {
                                     </ul>
                                 </div>
                                 <div className={'sub__menu_genre'}>
-                                    <Genres mediaCategory={movieCategory} genres={genresMovie}/>
+                                    <Genres categoryType={movieCategory} genres={genresMovie}/>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +66,7 @@ const Header: FC = () => {
                                 <div className={'sub__menu_movies'}>
                                 </div>
                                 <div className={'sub__menu_genre'}>
-                                    <Genres mediaCategory={tvCategory} genres={genresTv}/>
+                                    <Genres categoryType={tvCategory} genres={genresTv}/>
                                 </div>
                             </div>
                         </div>

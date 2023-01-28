@@ -7,7 +7,7 @@ import {Loader} from "../UI";
 import {IIndex} from "../../interfaces";
 
 interface IProps {
-    id: number;
+    id: string;
 }
 
 const MovieVideo: FC<IProps> = ({id}) => {

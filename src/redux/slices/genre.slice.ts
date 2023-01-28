@@ -24,11 +24,11 @@ const initialState: IState = {
     error: null
 }
 
-const getAll = createAsyncThunk<IGenresList, {mediaCategory: keyof IIndex}>(
+const getAll = createAsyncThunk<IGenresList, {categoryType: keyof IIndex}>(
     'genreSlice/getAll',
-    async ({mediaCategory}, {rejectWithValue}) => {
+    async ({categoryType}, {rejectWithValue}) => {
         try {
-            const {data} = await genreService.getAll(mediaCategory);
+            const {data} = await genreService.getAll(categoryType);
             return data
         } catch (e) {
             const err = e as AxiosError
@@ -48,7 +48,7 @@ const genreSlice = createSlice({
     extraReducers: builder => {
         builder
             .addCase(getAll.fulfilled, (state, {payload: {genres}, meta: {arg}}) => {
-                if (arg.mediaCategory === category.movie) {
+                if (arg.categoryType === category.movie) {
                     state.genres.genresMovie = genres
                     state.status = null
                 } else {

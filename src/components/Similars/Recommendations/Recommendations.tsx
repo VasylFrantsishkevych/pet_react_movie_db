@@ -10,7 +10,7 @@ import {Recommendation} from "../Recommendation/Recommendation";
 import 'swiper/css/bundle';
 import './Recommendations.style.css';
 interface IProps {
-    id: number
+    id: string,
 }
 const Recommendations: FC<IProps> = ({id}) => {
 

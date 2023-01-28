@@ -8,9 +8,10 @@ import {mediaAction} from "../../../redux";
 import {IIndex} from "../../../interfaces";
 import './CastsStyle.css';
 import {Cast} from "../Cast/Cast";
+import {SwiperGeneral} from "../../UI";
 
 interface IProps {
-    id: number
+    id: string
 }
 const Casts:FC<IProps> = ({id}) => {
 
@@ -18,11 +19,11 @@ const Casts:FC<IProps> = ({id}) => {
     const dispatch = useAppDispatch();
     const {pathname} = useAppLocation();
 
-    const type = pathname.split('/').splice(1)[0] as keyof IIndex;
+    const categoryType = pathname.split('/').splice(1)[0] as keyof IIndex;
 
     useEffect(() => {
-        dispatch(mediaAction.getCastsMovie({id, type}))
-    },[dispatch, id, type]);
+        dispatch(mediaAction.getCastsById({id, categoryType}))
+    },[dispatch, id, categoryType]);
 
     const castsTop = movieCasts
         .filter((cast) => cast.known_for_department === 'Acting' && cast.profile_path)
@@ -33,20 +34,14 @@ const Casts:FC<IProps> = ({id}) => {
     return (
         <div className={'casts'}>
             <h2>Casts</h2>
-            <Swiper
-                modules={[Navigation]}
-                navigation
-                slidesPerView={5.5}
-                spaceBetween={20}
-                simulateTouch={false}
-            >
+            <SwiperGeneral slidesPerView={6}>
                 {
                     castsTop.map(cast =>
                         <SwiperSlide key={cast.id}>
                             <Cast cast={cast}/>
                         </SwiperSlide>)
                 }
-            </Swiper>
+            </SwiperGeneral>
         </div>
     );
 };

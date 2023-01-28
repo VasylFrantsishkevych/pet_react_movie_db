@@ -8,17 +8,17 @@ import './CarouselMoviesStyle.css';
 import {IIndex} from "../../interfaces";
 
 interface IProps {
-    typeMedia: keyof IIndex;
+    categoryType: keyof IIndex;
     timeWindow: string;
 }
-const CarouselMovies: FC<IProps> = ({typeMedia, timeWindow}) => {
+const CarouselMovies: FC<IProps> = ({categoryType, timeWindow}) => {
 
     const {mediaTrending} = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(mediaAction.getTrending({typeMedia, timeWindow}))
-    }, [dispatch, typeMedia, timeWindow])
+        dispatch(mediaAction.getTrending({categoryType, timeWindow}))
+    }, [dispatch, categoryType, timeWindow])
 
     return (
         <div>

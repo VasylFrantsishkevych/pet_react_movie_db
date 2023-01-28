@@ -8,17 +8,17 @@ import './GenreStyle.css';
 
 interface IProps {
     genre: IGenres,
-    mediaCategory: keyof IIndex,
+    categoryType: keyof IIndex,
     children?: ReactNode,
 }
 
-const Genre: FC<IProps> = ({genre, mediaCategory}) => {
+const Genre: FC<IProps> = ({genre, categoryType}) => {
 
     const {id, name} = genre;
 
     return (
         <div className={'genre'}>
-            <Link to={`/discover/${mediaCategory}&language=en-US&with_genres=${id}`} state={genre}>{name}</Link>
+            <Link to={`/discover/${categoryType}&language=en-US&with_genres=${id}`} state={genre}>{name}</Link>
         </div>
     );
 };

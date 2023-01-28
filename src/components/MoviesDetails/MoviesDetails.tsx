@@ -69,15 +69,6 @@ const MovieDetails: FC<IProps> = ({movie}) => {
                     </div>
                 </div>
             </div>
-            <div className={'movie__details_casts'}>
-                <Casts id={id}/>
-            </div>
-            <div className={'movie__details_video'}>
-                <MovieVideo id={id}/>
-            </div>
-            <div className={'movie__details_similar'}>
-                <Recommendations id={id}/>
-            </div>
         </div>
     )
         ;

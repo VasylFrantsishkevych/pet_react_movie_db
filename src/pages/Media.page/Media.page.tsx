@@ -15,7 +15,7 @@ const MediaPage: FC = () => {
     const {state} = useAppLocation<IGenres>();
     const dispatch = useAppDispatch();
     const [query, setQuery] = useSearchParams();
-    const {id, type} = useParams() as {id: string | undefined, type: keyof IIndex};
+    const {id, categoryType} = useParams() as {id: string | undefined, categoryType: keyof IIndex};
 
     const timeWindow = trendingTimeWindow.day;
 
@@ -26,12 +26,12 @@ const MediaPage: FC = () => {
             setQuery({page: '1'})
         }
         const page = query.get('page');
-        dispatch(mediaAction.getAll({id, page, type}))
-    }, [dispatch, setQuery, query, id, state, type])
+        dispatch(mediaAction.getAll({id, page, categoryType}))
+    }, [dispatch, setQuery, query, id, state, categoryType])
 
     return (
         <div className={'movies'}>
-            <CarouselMovies timeWindow={timeWindow} typeMedia={type}/>
+            <CarouselMovies timeWindow={timeWindow} categoryType={categoryType}/>
             <div className={'movies__card'}>
                 <div className={'movies__title'}>
                     {
@@ -41,7 +41,7 @@ const MediaPage: FC = () => {
                 <div className={'movies__list'}>
                     {status && <div className={'main_loader'}><Loader/></div>}
                     {
-                        medias.map(media => <Media key={media.id} media={media} categoryType={type}/>)
+                        medias.map(media => <Media key={media.id} media={media} categoryType={categoryType}/>)
                     }
                 </div>
                 <Pagination/>

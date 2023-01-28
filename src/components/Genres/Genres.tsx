@@ -10,23 +10,23 @@ import './GenresStyle.css';
 
 interface IProps {
     genres: IGenres[],
-    mediaCategory: keyof IIndex,
+    categoryType: keyof IIndex,
 }
 
-const Genres: FC<IProps> = ({mediaCategory, genres}) => {
+const Genres: FC<IProps> = ({categoryType, genres}) => {
 
     const {status} = useAppSelector(state => state.genres);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(genreActions.getAll({mediaCategory}))
-    },[dispatch, mediaCategory])
+        dispatch(genreActions.getAll({categoryType}))
+    },[dispatch, categoryType])
 
     return (
         <div className={'genres__list'}>
             {status && <div className={'main_loader'}><Loader/></div>}
             {
-                genres.map(genre => <Genre key={genre.id} genre={genre} mediaCategory={mediaCategory}/>)
+                genres.map(genre => <Genre key={genre.id} genre={genre} categoryType={categoryType}/>)
             }
         </div>
     );
