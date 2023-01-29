@@ -23,7 +23,7 @@ interface IState {
     },
     moviesDynamically: IMediaResults[],
     mediaRecommendations: IMediaResults[],
-    movieCasts: ICast[];
+    mediaCasts: ICast[];
     mediaById: IMediaDetails[],
     mediaVideo: IMovieVideoResults[],
     status: boolean | null,
@@ -43,7 +43,7 @@ const initialState: IState = {
     },
     moviesDynamically: [],
     mediaRecommendations: [],
-    movieCasts: [],
+    mediaCasts: [],
     mediaById: [],
     mediaVideo: [],
     status: null,
@@ -207,7 +207,7 @@ const mediaSlice = createSlice({
                 state.status = false
             })
             .addCase(getCastsById.fulfilled, (state, {payload}) => {
-                state.movieCasts = payload.cast
+                state.mediaCasts = payload.cast
                 state.status = false
             })
             .addCase(getVideoById.fulfilled, (state, {payload}) => {

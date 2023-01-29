@@ -24,13 +24,13 @@ const MediaDetailsPage: FC = () => {
                 mediaById.map(media => <MovieDetails key={media.id} media={media}/>)
             }
             <div className={'media__details_casts'}>
-                <Casts id={id}/>
+                <Casts id={id} categoryType={categoryType}/>
             </div>
             <div className={'media__details_video'}>
-                <MovieVideo id={id}/>
+                <MovieVideo id={id} categoryType={categoryType}/>
             </div>
             <div className={'media__details_similar'}>
-                <Recommendations id={id}/>
+                <Recommendations id={id} categoryType={categoryType}/>
             </div>
         </div>
     );

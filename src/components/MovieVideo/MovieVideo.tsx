@@ -1,22 +1,20 @@
 import React, {FC, useEffect} from 'react';
 
 import './MovieVideoStyle.css';
-import {useAppDispatch, useAppLocation, useAppSelector} from "../../hooks";
+import {useAppDispatch, useAppSelector} from "../../hooks";
 import {mediaAction} from "../../redux";
 import {Loader} from "../UI";
 import {IIndex} from "../../interfaces";
 
 interface IProps {
-    id: string;
+    categoryType: keyof IIndex,
+    id: string,
 }
 
-const MovieVideo: FC<IProps> = ({id}) => {
+const MovieVideo: FC<IProps> = ({id,categoryType}) => {
 
     const {mediaVideo, status} = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
-    const {pathname} = useAppLocation();
-
-    const categoryType = pathname.split('/').splice(1)[0] as keyof IIndex;
 
     useEffect(() => {
         dispatch(mediaAction.getVideoById({id, categoryType}))

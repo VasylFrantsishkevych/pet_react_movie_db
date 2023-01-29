@@ -1,9 +1,8 @@
 import React, {FC, useEffect} from 'react';
-import {Swiper, SwiperSlide} from "swiper/react";
+import {SwiperSlide} from "swiper/react";
 import 'swiper/css/bundle'
-import {Navigation} from "swiper";
 
-import {useAppDispatch, useAppLocation, useAppSelector} from "../../../hooks";
+import {useAppDispatch, useAppSelector} from "../../../hooks";
 import {mediaAction} from "../../../redux";
 import {IIndex} from "../../../interfaces";
 import './CastsStyle.css';
@@ -11,21 +10,19 @@ import {Cast} from "../Cast/Cast";
 import {SwiperGeneral} from "../../UI";
 
 interface IProps {
+    categoryType: keyof IIndex;
     id: string
 }
-const Casts:FC<IProps> = ({id}) => {
+const Casts:FC<IProps> = ({id, categoryType}) => {
 
-    const {movieCasts} = useAppSelector(state => state.movies);
+    const {mediaCasts} = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
-    const {pathname} = useAppLocation();
-
-    const categoryType = pathname.split('/').splice(1)[0] as keyof IIndex;
 
     useEffect(() => {
         dispatch(mediaAction.getCastsById({id, categoryType}))
     },[dispatch, id, categoryType]);
 
-    const castsTop = movieCasts
+    const castsSort = mediaCasts
         .filter((cast) => cast.known_for_department === 'Acting' && cast.profile_path)
         .sort((a, b) => b.popularity - a.popularity)
         .slice(0,10);
@@ -36,7 +33,7 @@ const Casts:FC<IProps> = ({id}) => {
             <h2>Casts</h2>
             <SwiperGeneral slidesPerView={6}>
                 {
-                    castsTop.map(cast =>
+                    castsSort.map(cast =>
                         <SwiperSlide key={cast.id}>
                             <Cast cast={cast}/>
                         </SwiperSlide>)

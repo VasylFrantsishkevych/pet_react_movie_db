@@ -1,7 +1,7 @@
 import React, {FC, useEffect} from 'react';
 import {SwiperSlide} from "swiper/react";
 
-import {useAppDispatch, useAppLocation, useAppSelector} from "../../hooks";
+import {useAppDispatch, useAppSelector} from "../../hooks";
 import {IIndex} from "../../interfaces";
 import {mediaAction} from "../../redux";
 
@@ -10,15 +10,13 @@ import './Recommendations.style.css';
 import {SwiperGeneral} from "../UI";
 import {MediaItemSlide} from "../MediaItemSlide/MediaItemSlide";
 interface IProps {
+    categoryType: keyof IIndex,
     id: string,
 }
-const Recommendations: FC<IProps> = ({id}) => {
+const Recommendations: FC<IProps> = ({id, categoryType}) => {
 
     const {mediaRecommendations} = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
-    const {pathname} = useAppLocation();
-
-    const categoryType = pathname.split('/').splice(1)[0] as keyof IIndex;
 
     useEffect(() => {
         dispatch(mediaAction.getRecommendations({id, categoryType}))
@@ -33,7 +31,7 @@ const Recommendations: FC<IProps> = ({id}) => {
                 {
                     mediaRecommendationsFilter.map(media =>
                         <SwiperSlide key={media.id}>
-                            <MediaItemSlide media={media}/>
+                            <MediaItemSlide media={media} categoryType={categoryType}/>
                         </SwiperSlide>)
                 }
             </SwiperGeneral>
