@@ -4,9 +4,6 @@ import './MovieDetailsStyle.css';
 import {IMediaDetails} from "../../interfaces";
 import {urlOriginalImage, urlSize} from "../../constants";
 import {StarsRating} from "../StarsRating/StarsRating";
-import {MovieVideo} from "../MovieVideo/MovieVideo";
-import {Casts} from "../Casts";
-import {Recommendations} from "../Similars";
 
 interface IProps {
     movie: IMediaDetails
@@ -25,7 +22,6 @@ const MovieDetails: FC<IProps> = ({movie}) => {
         release_date,
         vote_average,
         vote_count,
-        id,
     } = movie;
 
     return (

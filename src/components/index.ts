@@ -9,7 +9,7 @@ export * from './MediaSlide/MediaSlide';
 export * from './MoviesDetails/MoviesDetails';
 export * from './MovieVideo/MovieVideo';
 export * from './Pagination/Pagination';
-export * from './Similars';
+export * from './Recommendations/Recommendations';
 export * from './StarsRating/StarsRating';
 export * from './Theme/theme';
 export * from './UI';

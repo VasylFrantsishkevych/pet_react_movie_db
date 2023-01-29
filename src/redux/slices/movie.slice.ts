@@ -22,7 +22,7 @@ interface IState {
         tvTopRated: IMediaResults[],
     },
     moviesDynamically: IMediaResults[],
-    movieRecommendations: IMediaResults[],
+    mediaRecommendations: IMediaResults[],
     movieCasts: ICast[];
     mediaById: IMediaDetails[],
     movieVideo: IMovieVideoResults[],
@@ -42,7 +42,7 @@ const initialState: IState = {
         tvTopRated: [],
     },
     moviesDynamically: [],
-    movieRecommendations: [],
+    mediaRecommendations: [],
     movieCasts: [],
     mediaById: [],
     movieVideo: [],
@@ -104,11 +104,11 @@ const getTrending = createAsyncThunk<IMediaResponse, { categoryType: keyof IInde
     }
 )
 
-const getRecommendations = createAsyncThunk<IMediaResponse, { id: string, type: keyof IIndex }>(
+const getRecommendations = createAsyncThunk<IMediaResponse, { id: string, categoryType: keyof IIndex }>(
     'mediaSlice/getRecommendations',
-    async ({id, type}, {rejectWithValue}) => {
+    async ({id, categoryType}, {rejectWithValue}) => {
         try {
-            const {data} = await mediaService.getSimilar(id, type)
+            const {data} = await mediaService.getRecommendation(id, categoryType)
             return data;
         } catch (e) {
             const err = e as AxiosError
@@ -203,7 +203,7 @@ const mediaSlice = createSlice({
                 state.status = false
             })
             .addCase(getRecommendations.fulfilled, (state, {payload}) => {
-                state.movieRecommendations = payload.results
+                state.mediaRecommendations = payload.results
                 state.status = false
             })
             .addCase(getCastsById.fulfilled, (state, {payload}) => {

@@ -33,7 +33,7 @@ const MediaItemSlide: FC<IProps> = ({media, categoryType}) => {
                          alt={`${categoryType === category.movie ? original_title : original_name}`}/>
                 </div>
                 <div className={`media__item_rating ${changeColorText(vote_average)}`}>
-                    {vote_average}
+                    {vote_average.toFixed(1)}
                 </div>
             </Link>
         </div>

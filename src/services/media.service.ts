@@ -23,8 +23,8 @@ export const mediaService = {
     getCastsById: (id: string, categoryType: keyof IIndex): AxiosRes<ICastResponse> => axiosService
         .get(`${category[categoryType]}/${id}/credits`),
 
-    getSimilar: (id: string, type: keyof IIndex): AxiosRes<IMediaResponse> => axiosService
-        .get(`${category[type]}/${id}/recommendations`),
+    getRecommendation: (id: string, categoryType: keyof IIndex): AxiosRes<IMediaResponse> => axiosService
+        .get(`${category[categoryType]}/${id}/recommendations`),
 
     getVideoById: (id: string, type: keyof IIndex): AxiosRes<IMovieVideoResponse> => axiosService
         .get(`${category[type]}/${id}/videos?&language=en-US`),
