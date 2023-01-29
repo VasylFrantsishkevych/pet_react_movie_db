@@ -6,11 +6,11 @@ import {urlOriginalImage, urlSize} from "../../constants";
 import {StarsRating} from "../StarsRating/StarsRating";
 
 interface IProps {
-    movie: IMediaDetails
+    media: IMediaDetails
     children?: ReactNode
 }
 
-const MovieDetails: FC<IProps> = ({movie}) => {
+const MovieDetails: FC<IProps> = ({media}) => {
     const {
         backdrop_path,
         original_title,
@@ -22,7 +22,7 @@ const MovieDetails: FC<IProps> = ({movie}) => {
         release_date,
         vote_average,
         vote_count,
-    } = movie;
+    } = media;
 
     return (
 

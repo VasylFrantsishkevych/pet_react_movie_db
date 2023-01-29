@@ -17,7 +17,7 @@ const App: FC = () => {
                     <Route path={'movie/top_rated'} element={<MoviesDynamicallyPage/>}/>
                     <Route path={'movie/upcoming'} element={<MoviesDynamicallyPage/>}/>
                     <Route path={'movie/now_playing'} element={<MoviesDynamicallyPage/>}/>
-                    <Route path={':type/:id'} element={<MediaDetailsPage/>}/>
+                    <Route path={':categoryType/:id'} element={<MediaDetailsPage/>}/>
                     <Route path={'discover/:categoryType&language=en-US&with_genres=:id'} element={<MediaPage/>}/>
                     <Route path={'search/movie'} element={<SearchPage/>}/>
                 </Route>

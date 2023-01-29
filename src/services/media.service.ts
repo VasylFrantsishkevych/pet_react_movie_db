@@ -17,8 +17,8 @@ export const mediaService = {
         axiosService
             .get(`${categoryType}${mediaType}`, {params: {page}}),
 
-    getById: (id: string | undefined, type: keyof IIndex): AxiosRes<IMediaDetails> =>
-        axiosService.get(`${category[type]}/${id}`),
+    getById: (id: string | undefined, categoryType: keyof IIndex): AxiosRes<IMediaDetails> =>
+        axiosService.get(`${category[categoryType]}/${id}`),
 
     getCastsById: (id: string, categoryType: keyof IIndex): AxiosRes<ICastResponse> => axiosService
         .get(`${category[categoryType]}/${id}/credits`),
@@ -26,6 +26,6 @@ export const mediaService = {
     getRecommendation: (id: string, categoryType: keyof IIndex): AxiosRes<IMediaResponse> => axiosService
         .get(`${category[categoryType]}/${id}/recommendations`),
 
-    getVideoById: (id: string, type: keyof IIndex): AxiosRes<IMovieVideoResponse> => axiosService
-        .get(`${category[type]}/${id}/videos?&language=en-US`),
+    getVideoById: (id: string, categoryType: keyof IIndex): AxiosRes<IMovieVideoResponse> => axiosService
+        .get(`${category[categoryType]}/${id}/videos?&language=en-US`),
 }

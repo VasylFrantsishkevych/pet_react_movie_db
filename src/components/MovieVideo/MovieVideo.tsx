@@ -12,30 +12,30 @@ interface IProps {
 
 const MovieVideo: FC<IProps> = ({id}) => {
 
-    const {movieVideo, status} = useAppSelector(state => state.movies);
+    const {mediaVideo, status} = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
     const {pathname} = useAppLocation();
 
-    const type = pathname.split('/').splice(1)[0] as keyof IIndex;
+    const categoryType = pathname.split('/').splice(1)[0] as keyof IIndex;
 
     useEffect(() => {
-        dispatch(mediaAction.getMovieVideoById({id, type}))
-    }, [dispatch, id, type])
+        dispatch(mediaAction.getVideoById({id, categoryType}))
+    }, [dispatch, id, categoryType])
 
-    const movieVideoFilter = movieVideo.slice(0, 3)
+    const mediaVideoFilter = mediaVideo.slice(0, 3)
 
     return (
         <div className={'video'}>
             <h2>Trailers</h2>
             {status && <Loader/>}
             {
-                movieVideoFilter.map(movie =>
+                mediaVideoFilter.map(media =>
                     <iframe
-                        key={movie.id}
+                        key={media.id}
                         width="560"
                         height="315"
-                        src={`https://www.youtube.com/embed/${movie.key}`}
-                        title={movie.name}
+                        src={`https://www.youtube.com/embed/${media.key}`}
+                        title={media.name}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowFullScreen>
                     </iframe>

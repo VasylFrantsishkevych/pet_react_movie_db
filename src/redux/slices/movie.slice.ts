@@ -25,7 +25,7 @@ interface IState {
     mediaRecommendations: IMediaResults[],
     movieCasts: ICast[];
     mediaById: IMediaDetails[],
-    movieVideo: IMovieVideoResults[],
+    mediaVideo: IMovieVideoResults[],
     status: boolean | null,
     errors: string | null | unknown,
     currentPage: number,
@@ -45,7 +45,7 @@ const initialState: IState = {
     mediaRecommendations: [],
     movieCasts: [],
     mediaById: [],
-    movieVideo: [],
+    mediaVideo: [],
     status: null,
     errors: null,
     currentPage: 1,
@@ -117,11 +117,11 @@ const getRecommendations = createAsyncThunk<IMediaResponse, { id: string, catego
     }
 )
 
-const getById = createAsyncThunk<IMediaDetails[], { id: string | undefined, type: keyof IIndex }>(
+const getById = createAsyncThunk<IMediaDetails[], { id: string | undefined, categoryType: keyof IIndex }>(
     'mediaSlice/getById',
-    async ({id, type}, {rejectWithValue}) => {
+    async ({id, categoryType}, {rejectWithValue}) => {
         try {
-            const {data} = await mediaService.getById(id, type);
+            const {data} = await mediaService.getById(id, categoryType);
             return [data]
         } catch (e) {
             const err = e as AxiosError
@@ -142,11 +142,11 @@ const getCastsById = createAsyncThunk<ICastResponse, { id: string, categoryType:
         }
     }
 )
-const getMovieVideoById = createAsyncThunk<IMovieVideoResponse, { id: string, type: keyof IIndex }>(
-    'mediaSlice/getMovieVideoById',
-    async ({id, type}, {rejectWithValue}) => {
+const getVideoById = createAsyncThunk<IMovieVideoResponse, { id: string, categoryType: keyof IIndex }>(
+    'mediaSlice/getVideoById',
+    async ({id, categoryType}, {rejectWithValue}) => {
         try {
-            const {data} = await mediaService.getVideoById(id, type);
+            const {data} = await mediaService.getVideoById(id, categoryType);
             return data
         } catch (e) {
             const err = e as AxiosError
@@ -210,8 +210,8 @@ const mediaSlice = createSlice({
                 state.movieCasts = payload.cast
                 state.status = false
             })
-            .addCase(getMovieVideoById.fulfilled, (state, {payload}) => {
-                state.movieVideo = payload.results
+            .addCase(getVideoById.fulfilled, (state, {payload}) => {
+                state.mediaVideo = payload.results
                 state.status = false
             })
             .addDefaultCase((state, action) => {
@@ -227,7 +227,7 @@ const mediaAction = {
     getAll,
     getById,
     getTrending,
-    getMovieVideoById,
+    getVideoById,
     getMoviesDynamically,
     getCastsById,
     getRecommendations,
