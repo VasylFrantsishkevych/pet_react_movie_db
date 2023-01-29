@@ -189,7 +189,7 @@ const mediaSlice = createSlice({
             })
             .addCase(getMediaSortByType.fulfilled, (state, {payload}) => {
                 const {page, results, total_pages} = payload;
-                state.mediaSortedByType = results;
+                state.medias = results;
                 state.currentPage = page
                 state.totalPages = total_pages
                 state.status = false

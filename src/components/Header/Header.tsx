@@ -8,7 +8,7 @@ import {genreActions} from "../../redux";
 import {useTheme} from "../Theme";
 import {SearchForm} from "../UI";
 import {Genres} from "../Genres/Genres";
-import {category} from "../../constants";
+import {category, movieType, tvType} from "../../constants";
 import {IIndex} from "../../interfaces";
 
 const Header: FC = () => {
@@ -37,19 +37,19 @@ const Header: FC = () => {
             <div className={'menu'}>
                 <ul className={'menu__list'}>
                     <li>
-                        <Link to={'/discover/movie'} onClick={() => deleteGenre()}>Movies</Link>
+                        <Link to={`/discover/${movieCategory}`} onClick={() => deleteGenre()}>Movies</Link>
                         <div className={'sub__menu'}>
                             <div className={'sub__menu_container'}>
                                 <div className={'sub__menu_movies'}>
                                     <ul>
                                         <li>
-                                            <Link to={'/sort/movie/top_rated'}>Top Rated</Link>
+                                            <Link to={`/sort/${movieCategory}${movieType.topRated}`}>Top Rated</Link>
                                         </li>
                                         <li>
-                                            <Link to={'/sort/movie/upcoming'}>Upcoming</Link>
+                                            <Link to={`/sort/${movieCategory}${movieType.upcoming}`}>Upcoming</Link>
                                         </li>
                                         <li>
-                                            <Link to={'/sort/movie/now_playing'}>Now Playing</Link>
+                                            <Link to={`/sort/${movieCategory}${movieType.nowPlaying}`}>Now Playing</Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -60,10 +60,18 @@ const Header: FC = () => {
                         </div>
                     </li>
                     <li>
-                        <Link to={'/discover/tv'} onClick={() => deleteGenre()}>Show TV</Link>
+                        <Link to={`/discover/${tvCategory}`} onClick={() => deleteGenre()}>Show TV</Link>
                         <div className={'sub__menu'}>
                             <div className={'sub__menu_container'}>
                                 <div className={'sub__menu_movies'}>
+                                    <ul>
+                                        <li>
+                                            <Link to={`/sort/${tvCategory}${tvType.topRated}`}>Top Rated</Link>
+                                        </li>
+                                        <li>
+                                            <Link to={`/sort/${tvCategory}${tvType.onTheAir}`}>On The Air</Link>
+                                        </li>
+                                    </ul>
                                 </div>
                                 <div className={'sub__menu_genre'}>
                                     <Genres categoryType={tvCategory} genres={genresTv}/>

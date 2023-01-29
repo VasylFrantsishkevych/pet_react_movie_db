@@ -7,8 +7,16 @@
 .media__slider {
     margin-top: 20px;    
 }
-.media__slider>h2 {
-    margin-left: 20px;
+.media__slider>div {
+    margin: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.media__slider>div>button {
+    height: 30px;
+}
+.media__slider h2 {
     border: 2px solid #00d575;
     display: inline-block;
     border-radius: 15px;

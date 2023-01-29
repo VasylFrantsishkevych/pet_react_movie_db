@@ -15,7 +15,7 @@ const MediaPage: FC = () => {
     const {state} = useAppLocation<IGenres>();
     const dispatch = useAppDispatch();
     const [query, setQuery] = useSearchParams();
-    const {id, categoryType} = useParams() as {id: string | undefined, categoryType: keyof IIndex};
+    const {id, categoryType, mediaType} = useParams() as {id: string | undefined, categoryType: keyof IIndex, mediaType: string};
 
     useEffect(() => {
         if (state) {
@@ -24,8 +24,12 @@ const MediaPage: FC = () => {
             setQuery({page: '1'})
         }
         const page = query.get('page');
-        dispatch(mediaAction.getAll({id, page, categoryType}))
-    }, [dispatch, setQuery, query, id, state, categoryType])
+        if (mediaType) {
+            dispatch(mediaAction.getMediaSortByType({categoryType, mediaType, page}))
+        } else {
+            dispatch(mediaAction.getAll({id, page, categoryType}))
+        }
+    }, [dispatch, setQuery, query, id, state, categoryType, mediaType])
 
     return (
         <div className={'movies'}>

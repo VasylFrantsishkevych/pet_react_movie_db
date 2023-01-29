@@ -3,7 +3,7 @@ import {Route, Routes} from "react-router-dom";
 
 import './App.css'
 import {MainLayout} from "./layouts";
-import {MediaDetailsPage, MediaPage, MoviesDynamicallyPage, SearchPage, HomePage} from "./pages";
+import {MediaDetailsPage, MediaPage, SearchPage, HomePage} from "./pages";
 
 const App: FC = () => {
 
@@ -16,9 +16,7 @@ const App: FC = () => {
                     <Route path={'discover/:categoryType'} element={<MediaPage/>}/>
                     <Route path={'discover/:categoryType&language=en-US&with_genres=:id'} element={<MediaPage/>}/>
                     <Route path={':categoryType/:id'} element={<MediaDetailsPage/>}/>
-                    <Route path={'sort/:categoryType/:mediaType'} element={<MoviesDynamicallyPage/>}/>
-                    {/*<Route path={'movie/upcoming'} element={<MoviesDynamicallyPage/>}/>*/}
-                    {/*<Route path={'movie/now_playing'} element={<MoviesDynamicallyPage/>}/>*/}
+                    <Route path={'sort/:categoryType/:mediaType'} element={<MediaPage/>}/>
                     <Route path={'search/movie'} element={<SearchPage/>}/>
                 </Route>
             </Routes>

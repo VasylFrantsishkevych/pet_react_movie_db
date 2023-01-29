@@ -14,6 +14,7 @@ const movieType = {
 const tvType = {
     popular: '/popular',
     topRated: '/top_rated',
+    onTheAir: '/on_the_air',
 }
 const trendingTimeWindow = {
     day: '/day',

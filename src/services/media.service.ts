@@ -10,9 +10,6 @@ export const mediaService = {
     getTrending: (categoryType: keyof IIndex, timeWindow: string): AxiosRes<IMediaResponse> =>
         axiosService.get(`/trending/${category[categoryType]}${timeWindow}`),
 
-    // getMoviesDynamically: (page: string | null, pathname: string): AxiosRes<IMediaResponse> => axiosService
-    //     .get(`${pathname}?&language=en-US`, {params: {page}}),
-
     getMediaByType: (categoryType: keyof IIndex, mediaType: string, page: string | null): AxiosRes<IMediaResponse> =>
         axiosService
             .get(`/${category[categoryType]}/${mediaType}`, {params: {page}}),

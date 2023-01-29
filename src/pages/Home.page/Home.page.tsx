@@ -6,11 +6,13 @@ import {IIndex} from "../../interfaces";
 import {useAppSelector} from "../../hooks";
 
 import './Home.style.css';
+import {useNavigate} from "react-router-dom";
 
 
 const HomePage: FC = () => {
 
     const {mediaDataByType: {tvPopular, tvTopRated, moviePopular, movieTopRated}} = useAppSelector(state => state.movies);
+    const navigate = useNavigate();
 
     const movie = category.movie as keyof IIndex;
     const tv = category.tv as keyof IIndex;
@@ -21,7 +23,7 @@ const HomePage: FC = () => {
             <div className={'media__slider'}>
                 <div>
                     <h2>Movie Popular</h2>
-                    <button>More</button>
+                    <button onClick={() => navigate(`/sort/${movie}${movieType.topRated}`)}>More</button>
                 </div>
                 <MediaSlide
                     categoryType={movie}
@@ -31,7 +33,9 @@ const HomePage: FC = () => {
                 />
             </div>
             <div className={'media__slider'}>
-                <h2>TV Popular</h2>
+                <div>
+                    <h2>TV Popular</h2>
+                </div>
                 <MediaSlide
                     categoryType={tv}
                     mediaType={tvType.popular}
@@ -40,7 +44,9 @@ const HomePage: FC = () => {
                 />
             </div>
             <div className={'media__slider'}>
-                <h2>Movie Top Rated</h2>
+                <div>
+                    <h2>Movie Top Rated</h2>
+                </div>
                 <MediaSlide
                     categoryType={movie}
                     mediaType={movieType.topRated}
@@ -49,7 +55,9 @@ const HomePage: FC = () => {
                 />
             </div>
             <div className={'media__slider'}>
-                <h2>TV Top Rated</h2>
+                <div>
+                    <h2>TV Top Rated</h2>
+                </div>
                 <MediaSlide
                     categoryType={tv}
                     mediaType={tvType.topRated}
