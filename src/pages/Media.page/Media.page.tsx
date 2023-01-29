@@ -17,8 +17,6 @@ const MediaPage: FC = () => {
     const [query, setQuery] = useSearchParams();
     const {id, categoryType} = useParams() as {id: string | undefined, categoryType: keyof IIndex};
 
-    const timeWindow = trendingTimeWindow.day;
-
     useEffect(() => {
         if (state) {
             dispatch(genreActions.addGenre(state));
@@ -31,7 +29,7 @@ const MediaPage: FC = () => {
 
     return (
         <div className={'movies'}>
-            <CarouselMovies timeWindow={timeWindow} categoryType={categoryType}/>
+            <CarouselMovies timeWindow={trendingTimeWindow.day} categoryType={categoryType}/>
             <div className={'movies__card'}>
                 <div className={'movies__title'}>
                     {

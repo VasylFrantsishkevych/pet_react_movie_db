@@ -1,31 +1,32 @@
 import React, {FC, useEffect} from 'react';
-import {useSearchParams} from "react-router-dom";
+import {useParams, useSearchParams} from "react-router-dom";
 
-import {useAppDispatch, useAppLocation, useAppSelector} from "../../hooks";
+import {useAppDispatch, useAppSelector} from "../../hooks";
 import {mediaAction} from "../../redux";
 import {Media, Pagination} from "../../components";
 import './MovieDynamicallyPage.css';
+import {IIndex} from "../../interfaces";
 
 const MoviesDynamicallyPage: FC = () => {
 
-    const {moviesDynamically} = useAppSelector(state => state.movies);
+    const {mediaSortedByType} = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
     const [query, setQuery] = useSearchParams();
-    const {pathname} = useAppLocation();
+    const {categoryType, mediaType} = useParams() as {categoryType: keyof IIndex, mediaType: string};
 
     useEffect(() => {
         if (!query.get('page')) {
             setQuery({page: '1'})
         }
         const page = query.get('page');
-        dispatch(mediaAction.getMoviesDynamically({page, pathname}))
-    }, [dispatch, query, setQuery, pathname])
-
+        dispatch(mediaAction.getMediaSortByType({categoryType, mediaType, page}))
+    }, [dispatch, query, setQuery, categoryType, mediaType])
+    console.log(mediaSortedByType);
     return (
         <div className={'movies__rated'}>
             <div className={'movies__rated_list'}>
                 {
-                    moviesDynamically.map(movie => <Media key={movie.id} media={movie}/>)
+                    mediaSortedByType.map(media => <Media key={media.id} media={media} categoryType={categoryType}/>)
                 }
             </div>
             <div>

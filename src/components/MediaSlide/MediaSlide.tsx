@@ -7,11 +7,11 @@ import {SwiperSlide} from "swiper/react";
 import {MediaItemSlide} from "../MediaItemSlide/MediaItemSlide";
 
 import 'swiper/css/bundle';
-import {IMediaResults} from "../../interfaces";
+import {IIndex, IMediaResults} from "../../interfaces";
 
 interface IProps {
     slidesPerView: number;
-    categoryType: string;
+    categoryType: keyof IIndex;
     mediaType: string;
     mediaDataByType: IMediaResults[];
     children?: ReactNode;

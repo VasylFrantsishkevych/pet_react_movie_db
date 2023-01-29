@@ -43,13 +43,13 @@ const Header: FC = () => {
                                 <div className={'sub__menu_movies'}>
                                     <ul>
                                         <li>
-                                            <Link to={'/movie/top_rated'}>Top Rated</Link>
+                                            <Link to={'/sort/movie/top_rated'}>Top Rated</Link>
                                         </li>
                                         <li>
-                                            <Link to={'/movie/upcoming'}>Upcoming</Link>
+                                            <Link to={'/sort/movie/upcoming'}>Upcoming</Link>
                                         </li>
                                         <li>
-                                            <Link to={'/movie/now_playing'}>Now Playing</Link>
+                                            <Link to={'/sort/movie/now_playing'}>Now Playing</Link>
                                         </li>
                                     </ul>
                                 </div>

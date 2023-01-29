@@ -12,17 +12,19 @@ const HomePage: FC = () => {
 
     const {mediaDataByType: {tvPopular, tvTopRated, moviePopular, movieTopRated}} = useAppSelector(state => state.movies);
 
-    const typeMedia = category.movie as keyof IIndex;
+    const movie = category.movie as keyof IIndex;
+    const tv = category.tv as keyof IIndex;
+
     return (
         <div className={'home'}>
-            <CarouselMovies categoryType={typeMedia} timeWindow={trendingTimeWindow.week}/>
+            <CarouselMovies categoryType={movie} timeWindow={trendingTimeWindow.week}/>
             <div className={'media__slider'}>
                 <div>
                     <h2>Movie Popular</h2>
                     <button>More</button>
                 </div>
                 <MediaSlide
-                    categoryType={category.movie}
+                    categoryType={movie}
                     mediaType={movieType.popular}
                     slidesPerView={5}
                     mediaDataByType={moviePopular}
@@ -31,7 +33,7 @@ const HomePage: FC = () => {
             <div className={'media__slider'}>
                 <h2>TV Popular</h2>
                 <MediaSlide
-                    categoryType={category.tv}
+                    categoryType={tv}
                     mediaType={tvType.popular}
                     slidesPerView={5}
                     mediaDataByType={tvPopular}
@@ -40,7 +42,7 @@ const HomePage: FC = () => {
             <div className={'media__slider'}>
                 <h2>Movie Top Rated</h2>
                 <MediaSlide
-                    categoryType={category.movie}
+                    categoryType={movie}
                     mediaType={movieType.topRated}
                     slidesPerView={5}
                     mediaDataByType={movieTopRated}
@@ -49,7 +51,7 @@ const HomePage: FC = () => {
             <div className={'media__slider'}>
                 <h2>TV Top Rated</h2>
                 <MediaSlide
-                    categoryType={category.tv}
+                    categoryType={tv}
                     mediaType={tvType.topRated}
                     slidesPerView={5}
                     mediaDataByType={tvTopRated}

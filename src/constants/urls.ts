@@ -7,6 +7,8 @@ const category = {
 const movieType = {
     popular: '/popular',
     topRated: '/top_rated',
+    upcoming: '/upcoming',
+    nowPlaying: '/now_playing',
 }
 
 const tvType = {

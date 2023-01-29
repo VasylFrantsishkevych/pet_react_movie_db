@@ -10,22 +10,22 @@ export const mediaService = {
     getTrending: (categoryType: keyof IIndex, timeWindow: string): AxiosRes<IMediaResponse> =>
         axiosService.get(`/trending/${category[categoryType]}${timeWindow}`),
 
-    getMoviesDynamically: (page: string | null, pathname: string): AxiosRes<IMediaResponse> => axiosService
-        .get(`${pathname}?&language=en-US`, {params: {page}}),
+    // getMoviesDynamically: (page: string | null, pathname: string): AxiosRes<IMediaResponse> => axiosService
+    //     .get(`${pathname}?&language=en-US`, {params: {page}}),
 
-    getMediaByType: (categoryType: string, mediaType: string, page: string | null): AxiosRes<IMediaResponse> =>
+    getMediaByType: (categoryType: keyof IIndex, mediaType: string, page: string | null): AxiosRes<IMediaResponse> =>
         axiosService
-            .get(`${categoryType}${mediaType}`, {params: {page}}),
+            .get(`/${category[categoryType]}/${mediaType}`, {params: {page}}),
 
     getById: (id: string | undefined, categoryType: keyof IIndex): AxiosRes<IMediaDetails> =>
-        axiosService.get(`${category[categoryType]}/${id}`),
+        axiosService.get(`/${category[categoryType]}/${id}`),
 
     getCastsById: (id: string, categoryType: keyof IIndex): AxiosRes<ICastResponse> => axiosService
-        .get(`${category[categoryType]}/${id}/credits`),
+        .get(`/${category[categoryType]}/${id}/credits`),
 
     getRecommendation: (id: string, categoryType: keyof IIndex): AxiosRes<IMediaResponse> => axiosService
-        .get(`${category[categoryType]}/${id}/recommendations`),
+        .get(`/${category[categoryType]}/${id}/recommendations`),
 
     getVideoById: (id: string, categoryType: keyof IIndex): AxiosRes<IMovieVideoResponse> => axiosService
-        .get(`${category[categoryType]}/${id}/videos?&language=en-US`),
+        .get(`/${category[categoryType]}/${id}/videos?&language=en-US`),
 }

@@ -21,7 +21,7 @@ interface IState {
         tvPopular: IMediaResults[],
         tvTopRated: IMediaResults[],
     },
-    moviesDynamically: IMediaResults[],
+    mediaSortedByType: IMediaResults[],
     mediaRecommendations: IMediaResults[],
     mediaCasts: ICast[];
     mediaById: IMediaDetails[],
@@ -41,7 +41,7 @@ const initialState: IState = {
         tvPopular: [],
         tvTopRated: [],
     },
-    moviesDynamically: [],
+    mediaSortedByType: [],
     mediaRecommendations: [],
     mediaCasts: [],
     mediaById: [],
@@ -65,7 +65,7 @@ const getAll = createAsyncThunk<IMediaResponse, { id: string | undefined, page: 
     }
 )
 
-const getMediaByType = createAsyncThunk<IMediaResponse, { categoryType: string, mediaType: string, page: string | null }>(
+const getMediaByType = createAsyncThunk<IMediaResponse, { categoryType: keyof IIndex, mediaType: string, page: string | null }>(
     'mediaSlice/getMediaByType',
     async ({categoryType, mediaType, page}, {rejectWithValue}) => {
         try {
@@ -78,11 +78,11 @@ const getMediaByType = createAsyncThunk<IMediaResponse, { categoryType: string, 
     }
 )
 
-const getMoviesDynamically = createAsyncThunk<IMediaResponse, { page: string | null, pathname: string }>(
-    'mediaSlice/getMoviesDynamically',
-    async ({page, pathname}, {rejectWithValue}) => {
+const getMediaSortByType = createAsyncThunk<IMediaResponse, { categoryType: keyof IIndex, mediaType: string, page: string | null }>(
+    'mediaSlice/getMediaSortByType',
+    async ({page, categoryType, mediaType}, {rejectWithValue}) => {
         try {
-            const {data} = await mediaService.getMoviesDynamically(page, pathname);
+            const {data} = await mediaService.getMediaByType(categoryType, mediaType, page);
             return data
         } catch (e) {
             const err = e as AxiosError
@@ -187,9 +187,9 @@ const mediaSlice = createSlice({
             .addCase(getAll.rejected, (state, {payload}) => {
                 state.errors = payload
             })
-            .addCase(getMoviesDynamically.fulfilled, (state, {payload}) => {
+            .addCase(getMediaSortByType.fulfilled, (state, {payload}) => {
                 const {page, results, total_pages} = payload;
-                state.moviesDynamically = results;
+                state.mediaSortedByType = results;
                 state.currentPage = page
                 state.totalPages = total_pages
                 state.status = false
@@ -228,7 +228,7 @@ const mediaAction = {
     getById,
     getTrending,
     getVideoById,
-    getMoviesDynamically,
+    getMediaSortByType,
     getCastsById,
     getRecommendations,
     getMediaByType,

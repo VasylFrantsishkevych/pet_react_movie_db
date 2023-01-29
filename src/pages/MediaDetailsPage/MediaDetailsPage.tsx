@@ -11,7 +11,11 @@ import './MediaDetailsPageStyle.css';
 const MediaDetailsPage: FC = () => {
     const {mediaById, status} = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
-    const {id ,categoryType} = useParams() as {id: string, categoryType: keyof IIndex};
+    const params = useParams() as {id: string, categoryType: keyof IIndex};
+    console.log(params, '------');
+    const {id ,categoryType} = params;
+
+
 
     useEffect(() => {
         dispatch(mediaAction.getById({id, categoryType}))

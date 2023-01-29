@@ -14,11 +14,11 @@ const App: FC = () => {
                     <Route index element={<HomePage/>}/>
                     <Route path={'home'} element={<HomePage/>}/>
                     <Route path={'discover/:categoryType'} element={<MediaPage/>}/>
-                    <Route path={'movie/top_rated'} element={<MoviesDynamicallyPage/>}/>
-                    <Route path={'movie/upcoming'} element={<MoviesDynamicallyPage/>}/>
-                    <Route path={'movie/now_playing'} element={<MoviesDynamicallyPage/>}/>
-                    <Route path={':categoryType/:id'} element={<MediaDetailsPage/>}/>
                     <Route path={'discover/:categoryType&language=en-US&with_genres=:id'} element={<MediaPage/>}/>
+                    <Route path={':categoryType/:id'} element={<MediaDetailsPage/>}/>
+                    <Route path={'sort/:categoryType/:mediaType'} element={<MoviesDynamicallyPage/>}/>
+                    {/*<Route path={'movie/upcoming'} element={<MoviesDynamicallyPage/>}/>*/}
+                    {/*<Route path={'movie/now_playing'} element={<MoviesDynamicallyPage/>}/>*/}
                     <Route path={'search/movie'} element={<SearchPage/>}/>
                 </Route>
             </Routes>
