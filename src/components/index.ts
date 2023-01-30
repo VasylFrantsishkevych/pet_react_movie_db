@@ -13,4 +13,3 @@ export * from './Recommendations/Recommendations';
 export * from './StarsRating/StarsRating';
 export * from './Theme/theme';
 export * from './UI';
-export * from './UserInfo/UserInfo';

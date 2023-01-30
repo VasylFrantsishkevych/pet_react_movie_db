@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 
-import {CarouselMovies, MediaSlide} from "../../components";
+import {Button, CarouselMovies, MediaSlide} from "../../components";
 import {category, movieType, trendingTimeWindow, tvType} from "../../constants";
 import {IIndex} from "../../interfaces";
 import {useAppSelector} from "../../hooks";
@@ -23,7 +23,7 @@ const HomePage: FC = () => {
             <div className={'media__slider'}>
                 <div>
                     <h2>Movie Popular</h2>
-                    <button onClick={() => navigate(`/sort/${movie}${movieType.topRated}`)}>More</button>
+                    <Button onClick={() => navigate(`/sort/${movie}${movieType.topRated}`)}>View More</Button>
                 </div>
                 <MediaSlide
                     categoryType={movie}
