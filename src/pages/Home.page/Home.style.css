@@ -14,11 +14,8 @@
     align-items: center;
 }
 .media__slider h2 {
-    border: 2px solid #00d575;
+    border-bottom: 2px solid #00d575;
     display: inline-block;
-    border-radius: 15px;
+    /*border-radius: 15px;*/
     padding: 5px;
-}
-.swiper {
-    padding: 0 8px;
 }

@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 
-import {Button, CarouselMovies, MediaSlide} from "../../components";
+import {Button, MediaCarousel, MediaSlide} from "../../components";
 import {category, movieType, trendingTimeWindow, tvType} from "../../constants";
 import {IIndex} from "../../interfaces";
 import {useAppSelector} from "../../hooks";
@@ -19,49 +19,51 @@ const HomePage: FC = () => {
 
     return (
         <div className={'home'}>
-            <CarouselMovies categoryType={movie} timeWindow={trendingTimeWindow.week}/>
+            <MediaCarousel
+                categoryType={movie}
+                timeWindow={trendingTimeWindow.week}
+            />
             <div className={'media__slider'}>
                 <div>
                     <h2>Movie Popular</h2>
-                    <Button onClick={() => navigate(`/sort/${movie}${movieType.topRated}`)}>View More</Button>
+                    <Button onClick={() => navigate(`/sort/${movie}${movieType.popular}`)}>View More</Button>
                 </div>
                 <MediaSlide
                     categoryType={movie}
                     mediaType={movieType.popular}
-                    slidesPerView={5}
                     mediaDataByType={moviePopular}
                 />
             </div>
             <div className={'media__slider'}>
                 <div>
                     <h2>TV Popular</h2>
+                    <Button onClick={() => navigate(`/sort/${movie}${tvType.popular}`)}>View More</Button>
                 </div>
                 <MediaSlide
                     categoryType={tv}
                     mediaType={tvType.popular}
-                    slidesPerView={5}
                     mediaDataByType={tvPopular}
                 />
             </div>
             <div className={'media__slider'}>
                 <div>
                     <h2>Movie Top Rated</h2>
+                    <Button onClick={() => navigate(`/sort/${movie}${movieType.topRated}`)}>View More</Button>
                 </div>
                 <MediaSlide
                     categoryType={movie}
                     mediaType={movieType.topRated}
-                    slidesPerView={5}
                     mediaDataByType={movieTopRated}
                 />
             </div>
             <div className={'media__slider'}>
                 <div>
                     <h2>TV Top Rated</h2>
+                    <Button onClick={() => navigate(`/sort/${movie}${tvType.topRated}`)}>View More</Button>
                 </div>
                 <MediaSlide
                     categoryType={tv}
                     mediaType={tvType.topRated}
-                    slidesPerView={5}
                     mediaDataByType={tvTopRated}
                 />
             </div>

@@ -1,8 +1,8 @@
 import React, {FC, ReactNode} from 'react';
 import {Link} from "react-router-dom";
 
-import {category, urlSize} from "../../constants";
-import {IMediaResults} from "../../interfaces";
+import {category, urlSize} from "../../../constants";
+import {IMediaResults} from "../../../interfaces";
 
 import './MediaItemSlideStyle.css';
 
@@ -14,7 +14,7 @@ interface IProps {
 
 const MediaItemSlide: FC<IProps> = ({media, categoryType}) => {
 
-    const {id, original_title, original_name,  poster_path, vote_average} = media;
+    const {id, original_title, original_name,  poster_path, vote_average, release_date, first_air_date} = media;
     const changeColorText = (vote: number) => {
         if (vote >= 8) {
             return 'rating__color_green'
@@ -25,6 +25,14 @@ const MediaItemSlide: FC<IProps> = ({media, categoryType}) => {
         }
     }
 
+    let year = '';
+    if (categoryType === category.movie) {
+        year = release_date.split('-')[0]
+    } else {
+        year = first_air_date.split('-')[0]
+    }
+    console.log(year)
+
     return (
         <div className={'media__item'}>
             <Link to={`/${categoryType}/${id}`}>
@@ -34,6 +42,9 @@ const MediaItemSlide: FC<IProps> = ({media, categoryType}) => {
                 </div>
                 <div className={`media__item_rating ${changeColorText(vote_average)}`}>
                     {vote_average.toFixed(1)}
+                </div>
+                <div className={'media__item_year'}>
+                    {year}
                 </div>
             </Link>
         </div>

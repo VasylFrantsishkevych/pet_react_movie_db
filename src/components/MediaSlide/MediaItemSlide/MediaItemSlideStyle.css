@@ -1,0 +1,35 @@
+.media__item {
+    border-radius: 5px;
+    box-sizing: border-box;
+    position: relative;
+    margin: 10px 0;
+}
+.media__item:hover {
+    box-shadow: 0 0 10px 0 #00d575;
+}
+.media__item img {
+    width: 100%;
+    border-radius: 5px;
+}
+.media__item_rating,
+.media__item_year{
+    height: 20px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(58, 61, 68, 0.7);
+    font-weight: 500;
+    border: 1px solid #00d575;
+    position: absolute;
+    top: 8px;
+}
+.media__item_rating {
+    right: 8px;
+    width: 30px;
+}
+.media__item_year{
+    left: 8px;
+    width: 40px;
+    color: var(--color-text-primary);
+}

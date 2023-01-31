@@ -8,7 +8,7 @@ import {mediaAction} from "../../redux";
 import 'swiper/css/bundle';
 import './Recommendations.style.css';
 import {SwiperGeneral} from "../UI";
-import {MediaItemSlide} from "../MediaItemSlide/MediaItemSlide";
+import {MediaItemSlide} from "../MediaSlide/MediaItemSlide/MediaItemSlide";
 interface IProps {
     categoryType: keyof IIndex,
     id: string,
@@ -27,7 +27,7 @@ const Recommendations: FC<IProps> = ({id, categoryType}) => {
     return (
         <div className={'similar'}>
             {mediaRecommendationsFilter.length >= 1 && <h2>Recommendations</h2>}
-            <SwiperGeneral slidesPerView={5}>
+            <SwiperGeneral slidesPerView={5} spaceBetween={10}>
                 {
                     mediaRecommendationsFilter.map(media =>
                         <SwiperSlide key={media.id}>

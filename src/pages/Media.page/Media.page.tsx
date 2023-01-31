@@ -4,7 +4,7 @@ import {useParams, useSearchParams} from "react-router-dom";
 import {useAppDispatch, useAppLocation, useAppSelector} from "../../hooks";
 import {genreActions, mediaAction} from "../../redux";
 import {IGenres, IIndex} from "../../interfaces";
-import {CarouselMovies, Loader, Media, Pagination} from "../../components";
+import {Loader, Media, MediaCarousel, Pagination} from "../../components";
 import {trendingTimeWindow} from "../../constants";
 
 import './Media.page.style.css';
@@ -33,7 +33,7 @@ const MediaPage: FC = () => {
 
     return (
         <div className={'movies'}>
-            <CarouselMovies timeWindow={trendingTimeWindow.day} categoryType={categoryType}/>
+            <MediaCarousel categoryType={categoryType} timeWindow={trendingTimeWindow.day}/>
             <div className={'movies__card'}>
                 <div className={'movies__title'}>
                     {

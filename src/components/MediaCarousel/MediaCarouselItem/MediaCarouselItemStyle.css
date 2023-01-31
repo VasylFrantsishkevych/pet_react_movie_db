@@ -1,0 +1,36 @@
+.carousel {
+    height: 500px;
+    position: relative;
+}
+.carousel > img {
+    width: 100%;
+}
+.swiper-pagination-bullet {
+    background: #00d575;
+}
+.poster__image {
+    box-shadow: 0 0 3px black;
+    margin-right: 10px;
+}
+.poster__overlay {
+    color: var(--color-text-primary);
+    position: absolute;
+    padding: 100px;
+    bottom: 0;
+    height: 60%;
+    display: flex;
+    width: 100%;
+    background-image: linear-gradient(rgb(0,0,0,0), rgb(0,0,0,1));
+    opacity: 1;
+    transition: opacity .3s;
+}
+.poster__overlay:hover {
+    opacity: 1;
+}
+.poster__title {
+    font-size: 30px;
+    font-weight: 500;
+    border-bottom: 2px solid #00d575;
+    display: flex;
+    align-items: flex-end;
+}

@@ -31,7 +31,8 @@ const Media: FC<IProps> = ({media, categoryType}) => {
             <Link to={`/${categoryType}/${id}`}>
                 <div className={'movie__card_image'}>
                     <img src={`${urlSize.w200}${poster_path}`}
-                         alt={`${categoryType === category.movie ? original_title : original_name}`}/>
+                         alt={`${categoryType === category.movie ? original_title : original_name}`}
+                    />
                 </div>
                 <div className={'movie__card_title'}>
                     <div>{categoryType === category.movie ? original_title : original_name}</div>

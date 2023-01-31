@@ -4,20 +4,19 @@ import {useAppDispatch} from "../../hooks";
 import {mediaAction} from "../../redux";
 import {SwiperGeneral} from "../UI";
 import {SwiperSlide} from "swiper/react";
-import {MediaItemSlide} from "../MediaItemSlide/MediaItemSlide";
+import {MediaItemSlide} from "./MediaItemSlide/MediaItemSlide";
 
 import 'swiper/css/bundle';
 import {IIndex, IMediaResults} from "../../interfaces";
 
 interface IProps {
-    slidesPerView: number;
     categoryType: keyof IIndex;
     mediaType: string;
     mediaDataByType: IMediaResults[];
     children?: ReactNode;
 }
 
-const MediaSlide: FC<IProps> = ({categoryType, mediaType,slidesPerView, mediaDataByType}) => {
+const MediaSlide: FC<IProps> = ({categoryType, mediaType, mediaDataByType}) => {
 
     const dispatch = useAppDispatch();
 
@@ -26,7 +25,10 @@ const MediaSlide: FC<IProps> = ({categoryType, mediaType,slidesPerView, mediaDat
     },[dispatch, categoryType, mediaType])
 
     return (
-        <SwiperGeneral slidesPerView={slidesPerView}>
+        <SwiperGeneral
+            slidesPerView={5}
+            spaceBetween={10}
+        >
             {
                 mediaDataByType.map(media =>
                     <SwiperSlide key={media.id}>
