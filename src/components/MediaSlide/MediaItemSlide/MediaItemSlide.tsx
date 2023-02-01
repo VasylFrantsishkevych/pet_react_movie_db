@@ -25,14 +25,6 @@ const MediaItemSlide: FC<IProps> = ({media, categoryType}) => {
         }
     }
 
-    let year = '';
-    if (categoryType === category.movie) {
-        year = release_date.split('-')[0]
-    } else {
-        year = first_air_date.split('-')[0]
-    }
-    console.log(year)
-
     return (
         <div className={'media__item'}>
             <Link to={`/${categoryType}/${id}`}>
@@ -44,7 +36,12 @@ const MediaItemSlide: FC<IProps> = ({media, categoryType}) => {
                     {vote_average.toFixed(1)}
                 </div>
                 <div className={'media__item_year'}>
-                    {year}
+                    {categoryType === category.movie
+                    ?
+                        release_date?.split('-')[0]
+                        :
+                        first_air_date?.split('-')[0]
+                    }
                 </div>
             </Link>
         </div>

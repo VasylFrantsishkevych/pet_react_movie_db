@@ -6,6 +6,7 @@ export interface IMediaDetails {
     homepage: string,
     id: number,
     original_title: string,
+    original_name: string,
     overview: string,
     popularity: number,
     poster_path: string,
@@ -15,7 +16,9 @@ export interface IMediaDetails {
         }
     ]
     release_date: string,
+    first_air_date: string,
     runtime: number,
     vote_average: number,
     vote_count: number,
+    number_of_seasons: number,
 }

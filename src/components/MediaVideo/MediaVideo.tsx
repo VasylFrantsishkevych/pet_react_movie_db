@@ -1,6 +1,6 @@
 import React, {FC, useEffect} from 'react';
 
-import './MovieVideoStyle.css';
+import './MediaVideoStyle.css';
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {mediaAction} from "../../redux";
 import {Loader} from "../UI";
@@ -11,7 +11,7 @@ interface IProps {
     id: string,
 }
 
-const MovieVideo: FC<IProps> = ({id,categoryType}) => {
+const MediaVideo: FC<IProps> = ({id,categoryType}) => {
 
     const {mediaVideo, status} = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
@@ -43,4 +43,4 @@ const MovieVideo: FC<IProps> = ({id,categoryType}) => {
     );
 };
 
-export {MovieVideo};
+export {MediaVideo};

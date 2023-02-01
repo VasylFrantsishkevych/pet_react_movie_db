@@ -19,9 +19,9 @@ const Media: FC<IProps> = ({media, categoryType}) => {
     const changeColorText = (vote: number) => {
         if (vote >= 8) {
             return 'rating__color_green'
-        }else if (vote >= 6) {
+        } else if (vote >= 6) {
             return 'rating__color_yellow'
-        }else {
+        } else {
             return 'rating__color_red'
         }
     }
@@ -36,10 +36,16 @@ const Media: FC<IProps> = ({media, categoryType}) => {
                 </div>
                 <div className={'movie__card_title'}>
                     <div>{categoryType === category.movie ? original_title : original_name}</div>
-                    <div>{categoryType === category.movie ? release_date : first_air_date}</div>
                 </div>
                 <div className={`rating ${changeColorText(vote_average)}`}>
                     {vote_average}
+                </div>
+                <div className={'movie__card_year'}>
+                    {categoryType === category.movie
+                        ?
+                        release_date?.split('-')[0]
+                        :
+                        first_air_date?.split('-')[0]}
                 </div>
             </Link>
         </div>

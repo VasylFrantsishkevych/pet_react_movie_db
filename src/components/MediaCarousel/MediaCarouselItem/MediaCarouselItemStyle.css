@@ -27,10 +27,16 @@
 .poster__overlay:hover {
     opacity: 1;
 }
-.poster__title {
-    font-size: 30px;
-    font-weight: 500;
+.poster__info {
+    width: 300px;
+}
+.poster__info_title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 3px 0;
+    font-size: 25px;
+}
+.poster__info_title > span {
     border-bottom: 2px solid #00d575;
-    display: flex;
-    align-items: flex-end;
 }

@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {mediaAction} from "../../redux";
-import {Casts, Loader, MovieDetails, MovieVideo, Recommendations} from "../../components";
+import {Casts, Loader, MovieDetails, MediaVideo, Recommendations} from "../../components";
 import {IIndex} from "../../interfaces";
 
 import './MediaDetailsPageStyle.css';
@@ -21,13 +21,13 @@ const MediaDetailsPage: FC = () => {
         <div className={'media__details_container'}>
             {status && <div className={'main_loader'}><Loader/></div>}
             {
-                mediaById.map(media => <MovieDetails key={media.id} media={media}/>)
+                mediaById.map(media => <MovieDetails key={media.id} media={media} categoryType={categoryType}/>)
             }
             <div className={'media__details_casts'}>
                 <Casts id={id} categoryType={categoryType}/>
             </div>
             <div className={'media__details_video'}>
-                <MovieVideo id={id} categoryType={categoryType}/>
+                <MediaVideo id={id} categoryType={categoryType}/>
             </div>
             <div className={'media__details_similar'}>
                 <Recommendations id={id} categoryType={categoryType}/>

@@ -28,10 +28,10 @@ const MediaCarousel: FC<IProps> = ({categoryType, timeWindow}) => {
             pagination={{
                 clickable: true,
             }}
-            autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-            }}
+            // autoplay={{
+            //     delay: 3000,
+            //     disableOnInteraction: false,
+            // }}
         >
             {
                 mediaTrending.map(media =>
