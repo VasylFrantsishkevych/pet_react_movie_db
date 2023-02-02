@@ -11,6 +11,7 @@
 .poster__image {
     box-shadow: 0 0 3px black;
     margin-right: 10px;
+    height: 100%;
 }
 .poster__overlay {
     color: var(--color-text-primary);
@@ -24,8 +25,12 @@
     opacity: 1;
     transition: opacity .3s;
 }
-.poster__overlay:hover {
-    opacity: 1;
+.poster__overlay a {
+    text-decoration: none;
+    color: var(--color-text-primary);
+}
+.poster__overlay a:hover {
+    color: #00d575;
 }
 .poster__info {
     width: 300px;
@@ -39,4 +44,8 @@
 }
 .poster__info_title > span {
     border-bottom: 2px solid #00d575;
+}
+.poster__info p:last-child {
+    text-align: justify;
+    text-indent: 20px;
 }

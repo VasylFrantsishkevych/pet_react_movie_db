@@ -24,7 +24,7 @@ const SearchForm: FC = () => {
     return (
         <form className={'search'} onSubmit={handleSubmit(submit)}>
             <input type="text" placeholder="Search..." {...register('searchText')}/>
-            <button onClick={() => navigate('/search/movie')}>Search</button>
+            <button onClick={() => navigate('/search/multi')}>Search</button>
         </form>
     );
 };

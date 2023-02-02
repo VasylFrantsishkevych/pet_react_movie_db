@@ -7,4 +7,6 @@ export interface IMediaResults {
     release_date: string;
     first_air_date: string;
     vote_average: number;
+    overview: string;
+    media_type: string;
 }

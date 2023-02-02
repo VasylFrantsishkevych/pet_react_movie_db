@@ -1,8 +1,8 @@
 import {AxiosRes, axiosService} from "./axios.service";
 import {IMediaResponse} from "../interfaces";
-import {urls} from "../constants";
+import {searchUrls} from "../constants";
 
 export const searchService = {
     getSearchMovie: (page: string | null, searchText: string): AxiosRes<IMediaResponse> => axiosService
-        .get(`${urls.search}?&language=en-US&query=${searchText}&include_adult=false`, {params: {page}})
+        .get(`${searchUrls.searchMulti}?&language=en-US&query=${searchText}&include_adult=false`, {params: {page}})
 }

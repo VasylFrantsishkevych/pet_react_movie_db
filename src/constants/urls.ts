@@ -20,13 +20,13 @@ const trendingTimeWindow = {
     day: '/day',
     week: '/week'
 }
-const urls = {
-    search: '/search/movie',
+const searchUrls = {
+    searchMulti: '/search/multi',
 }
 
 export {
     baseURL,
-    urls,
+    searchUrls,
     category,
     trendingTimeWindow,
     movieType,

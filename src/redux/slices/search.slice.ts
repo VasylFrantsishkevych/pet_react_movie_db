@@ -5,15 +5,19 @@ import {IMediaResponse, IMediaResults} from "../../interfaces";
 import {searchService} from "../../services";
 
 interface IState {
-    searchMovie: IMediaResults[],
+    searchData: IMediaResults[],
     searchText: string,
     status: boolean | null,
+    currentPage: number,
+    totalPages: number,
 }
 
 const initialState: IState ={
-    searchMovie: [],
+    searchData: [],
     searchText: '',
     status: null,
+    currentPage: 1,
+    totalPages: 0,
 }
 
 const getSearchMovie = createAsyncThunk<IMediaResponse, {page: string | null, searchText: string}>(
@@ -40,7 +44,10 @@ const searchSlice = createSlice({
     extraReducers: builder => {
         builder
             .addCase(getSearchMovie.fulfilled, (state, {payload}) => {
-                state.searchMovie = payload.results
+                const {page, results, total_pages} = payload;
+                state.searchData = results
+                state.currentPage = page
+                state.totalPages = total_pages
                 state.status = false
             })
             .addDefaultCase((state, action) => {

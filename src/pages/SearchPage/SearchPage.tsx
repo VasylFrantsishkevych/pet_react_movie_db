@@ -7,7 +7,7 @@ import {useSearchParams} from "react-router-dom";
 
 const SearchPage: FC = () => {
 
-    const {searchText, searchMovie, status} = useAppSelector(state => state.search);
+    const {searchText, searchData, status, totalPages, currentPage} = useAppSelector(state => state.search);
     const dispatch = useAppDispatch();
     const [query, setQuery] = useSearchParams();
 
@@ -18,19 +18,19 @@ const SearchPage: FC = () => {
         const page = query.get('page');
         dispatch(searchAction.getSearchMovie({page, searchText}))
     }, [dispatch, searchText, query, setQuery])
-
+    console.log(searchData);
     return (
         <div className={'movies'}>
             <div className={'movies__list'}>
                 {status && <div className={'main_loader'}><Loader/></div>}
                 {
-                    searchMovie.length === 0
+                    searchData.length === 0
                         ? <h2>Movies not found</h2>
-                        : searchMovie.map(movie => <Media key={movie.id} media={movie}/>)
+                        : searchData.map(media => <Media key={media.id} media={media}/>)
                 }
             </div>
             <div>
-                <Pagination/>
+                <Pagination currentPage={currentPage} totalPages={totalPages}/>
             </div>
         </div>
     );

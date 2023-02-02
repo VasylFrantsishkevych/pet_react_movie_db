@@ -10,7 +10,7 @@ import {trendingTimeWindow} from "../../constants";
 import './Media.page.style.css';
 const MediaPage: FC = () => {
 
-    const {medias, status} = useAppSelector(state => state.movies);
+    const {medias, status, currentPage, totalPages} = useAppSelector(state => state.movies);
     const {genre} = useAppSelector(state => state.genres);
     const {state} = useAppLocation<IGenres>();
     const dispatch = useAppDispatch();
@@ -46,7 +46,7 @@ const MediaPage: FC = () => {
                         medias.map(media => <Media key={media.id} media={media} categoryType={categoryType}/>)
                     }
                 </div>
-                <Pagination/>
+                <Pagination currentPage={currentPage} totalPages={totalPages}/>
             </div>
         </div>
 

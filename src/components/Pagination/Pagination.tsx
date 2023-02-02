@@ -2,13 +2,15 @@ import React, {FC} from 'react';
 import {Link, useSearchParams} from "react-router-dom";
 
 import './PaginationStyle.css';
-import {useAppSelector} from "../../hooks";
 import {createPages} from "./createPage";
 
+interface IProps {
+    totalPages: number;
+    currentPage: number;
+}
 
-const Pagination: FC = () => {
+const Pagination: FC<IProps> = ({totalPages, currentPage}) => {
 
-    const {currentPage, totalPages} = useAppSelector(state => state.movies);
     const [params]: any = useSearchParams();
     const pages: Array<number> = [];
 

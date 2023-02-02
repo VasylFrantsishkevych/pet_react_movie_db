@@ -14,7 +14,16 @@ interface IProps {
 
 const Media: FC<IProps> = ({media, categoryType}) => {
 
-    const {id, original_title, original_name, first_air_date, poster_path, vote_average, release_date} = media;
+    const {
+        id,
+        original_title,
+        original_name,
+        first_air_date,
+        poster_path,
+        vote_average,
+        release_date,
+        media_type
+    } = media;
 
     const changeColorText = (vote: number) => {
         if (vote >= 8) {
@@ -26,22 +35,32 @@ const Media: FC<IProps> = ({media, categoryType}) => {
         }
     }
 
+    const getCategory = () => {
+        let categoryMedia = '';
+        if (categoryType) {
+            categoryMedia = categoryType
+        } else {
+            categoryMedia = media_type
+        }
+        return categoryMedia
+    }
+
     return (
         <div className={'movie__card'}>
-            <Link to={`/${categoryType}/${id}`}>
+            <Link to={`/${getCategory()}/${id}`}>
                 <div className={'movie__card_image'}>
                     <img src={`${urlSize.w200}${poster_path}`}
-                         alt={`${categoryType === category.movie ? original_title : original_name}`}
+                         alt={`${getCategory() === category.movie ? original_title : original_name}`}
                     />
                 </div>
                 <div className={'movie__card_title'}>
-                    <div>{categoryType === category.movie ? original_title : original_name}</div>
+                    <div>{getCategory() === category.movie ? original_title : original_name}</div>
                 </div>
                 <div className={`rating ${changeColorText(vote_average)}`}>
                     {vote_average}
                 </div>
                 <div className={'movie__card_year'}>
-                    {categoryType === category.movie
+                    {getCategory() === category.movie
                         ?
                         release_date?.split('-')[0]
                         :

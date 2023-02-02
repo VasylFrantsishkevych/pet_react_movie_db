@@ -28,7 +28,7 @@ const MediaItemSlide: FC<IProps> = ({media, categoryType}) => {
     return (
         <div className={'media__item'}>
             <Link to={`/${categoryType}/${id}`}>
-                <div>
+                <div className={'media__item_image'}>
                     <img src={`${urlSize.w200}${poster_path}`}
                          alt={`${categoryType === category.movie ? original_title : original_name}`}/>
                 </div>
