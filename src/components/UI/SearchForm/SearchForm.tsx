@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 
 import './SearchFormStyle.css';
-import {useAppDispatch} from "../../../hooks";
+import {useAppDispatch, useAppSelector} from "../../../hooks";
 import {searchAction} from "../../../redux";
 
 type FormInputs = {
@@ -13,6 +13,7 @@ type FormInputs = {
 const SearchForm: FC = () => {
 
     const {handleSubmit, register, reset} = useForm<FormInputs>();
+    const {searchText} = useAppSelector(state => state.search);
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
@@ -24,7 +25,7 @@ const SearchForm: FC = () => {
     return (
         <form className={'search'} onSubmit={handleSubmit(submit)}>
             <input type="text" placeholder="Search..." {...register('searchText')}/>
-            <button onClick={() => navigate('/search/multi')}>Search</button>
+            <button onClick={() => navigate(`/search/multi&query=${searchText}`)}>Search</button>
         </form>
     );
 };

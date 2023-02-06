@@ -18,7 +18,7 @@ const SearchPage: FC = () => {
         const page = query.get('page');
         dispatch(searchAction.getSearchMovie({page, searchText}))
     }, [dispatch, searchText, query, setQuery])
-    console.log(searchData);
+
     return (
         <div className={'movies'}>
             <div className={'movies__list'}>

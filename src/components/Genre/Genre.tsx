@@ -18,7 +18,7 @@ const Genre: FC<IProps> = ({genre, categoryType}) => {
 
     return (
         <div className={'genre'}>
-            <Link to={`/discover/${categoryType}&language=en-US&with_genres=${id}`} state={genre}>{name}</Link>
+            <Link to={`/discover/${categoryType}&language=en-US&with_genres=${id}`} state={name}>{name}</Link>
         </div>
     );
 };

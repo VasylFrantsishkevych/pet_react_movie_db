@@ -2,24 +2,30 @@ import React, {FC, useEffect} from 'react';
 import {useParams, useSearchParams} from "react-router-dom";
 
 import {useAppDispatch, useAppLocation, useAppSelector} from "../../hooks";
-import {genreActions, mediaAction} from "../../redux";
+import {mediaAction} from "../../redux";
 import {IGenres, IIndex} from "../../interfaces";
 import {Loader, Media, MediaCarousel, Pagination} from "../../components";
 import {trendingTimeWindow} from "../../constants";
 
 import './Media.page.style.css';
+
+interface IParams {
+    id: string | undefined,
+    categoryType: keyof IIndex,
+    mediaType: string,
+    year: string,
+}
 const MediaPage: FC = () => {
 
-    const {medias, status, currentPage, totalPages} = useAppSelector(state => state.movies);
-    const {genre} = useAppSelector(state => state.genres);
+    const {medias, status, currentPage, totalPages, mediaPageTitle} = useAppSelector(state => state.movies);
     const {state} = useAppLocation<IGenres>();
     const dispatch = useAppDispatch();
     const [query, setQuery] = useSearchParams();
-    const {id, categoryType, mediaType} = useParams() as {id: string | undefined, categoryType: keyof IIndex, mediaType: string};
+    const {id, categoryType, mediaType, year} = useParams<keyof IParams>() as IParams;
 
     useEffect(() => {
         if (state) {
-            dispatch(genreActions.addGenre(state));
+            dispatch(mediaAction.addMediaPageTitle(state));
         }else if  (!query.get('page')){
             setQuery({page: '1'})
         }
@@ -27,9 +33,9 @@ const MediaPage: FC = () => {
         if (mediaType) {
             dispatch(mediaAction.getMediaSortByType({categoryType, mediaType, page}))
         } else {
-            dispatch(mediaAction.getAll({id, page, categoryType}))
+            dispatch(mediaAction.getAll({id, page, categoryType, year}))
         }
-    }, [dispatch, setQuery, query, id, state, categoryType, mediaType])
+    }, [dispatch, setQuery, query, id, state, categoryType, mediaType, year])
 
     return (
         <div className={'movies'}>
@@ -37,7 +43,7 @@ const MediaPage: FC = () => {
             <div className={'movies__card'}>
                 <div className={'movies__title'}>
                     {
-                        genre && <span>{genre.name}</span>
+                        mediaPageTitle && <span>{mediaPageTitle}</span>
                     }
                 </div>
                 <div className={'movies__list'}>

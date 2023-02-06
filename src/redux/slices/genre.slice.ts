@@ -9,7 +9,6 @@ interface IState {
         genresMovie: IGenres[],
         genresTv: IGenres[],
     },
-    genre: IGenres | null,
     status: string | null,
     error: string | null
 }
@@ -19,7 +18,6 @@ const initialState: IState = {
         genresMovie: [],
         genresTv: [],
     },
-    genre: null,
     status: null,
     error: null
 }
@@ -40,11 +38,7 @@ const getAll = createAsyncThunk<IGenresList, {categoryType: keyof IIndex}>(
 const genreSlice = createSlice({
     name: 'genreSlice',
     initialState,
-    reducers: {
-        addGenre: (state, {payload}) => {
-            state.genre = payload
-        }
-    },
+    reducers: {},
     extraReducers: builder => {
         builder
             .addCase(getAll.fulfilled, (state, {payload: {genres}, meta: {arg}}) => {
@@ -63,11 +57,10 @@ const genreSlice = createSlice({
     }
 });
 
-const {reducer: genreReducer, actions: {addGenre}} = genreSlice;
+const {reducer: genreReducer} = genreSlice;
 
 const genreActions = {
     getAll,
-    addGenre
 }
 
 export {

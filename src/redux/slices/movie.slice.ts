@@ -26,6 +26,8 @@ interface IState {
     mediaCasts: ICast[];
     mediaById: IMediaDetails[],
     mediaVideo: IMovieVideoResults[],
+    mediaPageTitle: string | null,
+    year: number,
     status: boolean | null,
     errors: string | null | unknown,
     currentPage: number,
@@ -46,17 +48,19 @@ const initialState: IState = {
     mediaCasts: [],
     mediaById: [],
     mediaVideo: [],
+    mediaPageTitle: null,
+    year: 0,
     status: null,
     errors: null,
     currentPage: 1,
     totalPages: 0,
 }
 
-const getAll = createAsyncThunk<IMediaResponse, { id: string | undefined, page: string | null, categoryType: keyof IIndex }>(
+const getAll = createAsyncThunk<IMediaResponse, { id: string | undefined, page: string | null, categoryType: keyof IIndex, year: string }>(
     'mediaSlice/getAll',
-    async ({id, page, categoryType}, {rejectWithValue}) => {
+    async ({id, page, categoryType, year}, {rejectWithValue}) => {
         try {
-            const {data} = await mediaService.getAll(id, page, categoryType);
+            const {data} = await mediaService.getAll(id, page, categoryType, year);
             return data
         } catch (e) {
             const err = e as AxiosError
@@ -158,7 +162,14 @@ const getVideoById = createAsyncThunk<IMovieVideoResponse, { id: string, categor
 const mediaSlice = createSlice({
     name: 'mediaSlice',
     initialState,
-    reducers: {},
+    reducers: {
+        addMediaPageTitle: (state, {payload}) => {
+            state.mediaPageTitle = payload
+        },
+        addYear: (state, {payload}) => {
+            state.year = payload
+        }
+    },
     extraReducers: builder => {
         builder
             .addCase(getAll.fulfilled, (state, {payload}) => {
@@ -221,7 +232,7 @@ const mediaSlice = createSlice({
     }
 })
 
-const {reducer: mediaReducer} = mediaSlice;
+const {reducer: mediaReducer, actions: {addMediaPageTitle, addYear}} = mediaSlice;
 
 const mediaAction = {
     getAll,
@@ -232,6 +243,8 @@ const mediaAction = {
     getCastsById,
     getRecommendations,
     getMediaByType,
+    addMediaPageTitle,
+    addYear,
 }
 
 export {

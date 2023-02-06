@@ -4,12 +4,13 @@ import {Link} from "react-router-dom";
 import logo from "../../assets/thumb76_76.png";
 import './HeaderStyle.css';
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {genreActions} from "../../redux";
+import {mediaAction} from "../../redux";
 import {useTheme} from "../Theme";
 import {SearchForm} from "../UI";
 import {Genres} from "../Genres/Genres";
 import {category, movieType, tvType} from "../../constants";
 import {IIndex} from "../../interfaces";
+import {YearsSelect} from "../YearsSelect/YearsSelect";
 
 const Header: FC = () => {
     const {themeType, setCurrentTheme} = useTheme();
@@ -18,8 +19,8 @@ const Header: FC = () => {
 
     const movieCategory = category.movie as keyof IIndex;
     const tvCategory = category.tv as keyof IIndex;
-    const deleteGenre = () => {
-        dispatch(genreActions.addGenre(null))
+    const addMediaTitle = (title: string) => {
+        dispatch(mediaAction.addMediaPageTitle(title))
     }
 
     const changeTheme = () => {
@@ -37,21 +38,40 @@ const Header: FC = () => {
             <div className={'menu'}>
                 <ul className={'menu__list'}>
                     <li>
-                        <Link to={`/discover/${movieCategory}`} onClick={() => deleteGenre()}>Movies</Link>
+                        <Link to={`/discover/${movieCategory}`} onClick={() => addMediaTitle('Movie')}>Movies</Link>
                         <div className={'sub__menu'}>
                             <div className={'sub__menu_container'}>
                                 <div className={'sub__menu_movies'}>
                                     <ul>
                                         <li>
-                                            <Link to={`/sort/${movieCategory}${movieType.topRated}`}>Top Rated</Link>
+                                            <Link
+                                                to={`/sort/${movieCategory}${movieType.topRated}`}
+                                                onClick={() => addMediaTitle('Top Rated')}
+                                            >
+                                                Top Rated
+                                            </Link>
                                         </li>
                                         <li>
-                                            <Link to={`/sort/${movieCategory}${movieType.upcoming}`}>Upcoming</Link>
+                                            <Link
+                                                to={`/sort/${movieCategory}${movieType.upcoming}`}
+                                                onClick={() => addMediaTitle('Upcoming')}
+                                            >
+                                                Upcoming
+                                            </Link>
                                         </li>
                                         <li>
-                                            <Link to={`/sort/${movieCategory}${movieType.nowPlaying}`}>Now Playing</Link>
+                                            <Link
+                                                to={`/sort/${movieCategory}${movieType.nowPlaying}`}
+                                                onClick={() => addMediaTitle('Now Playing')}
+                                            >
+                                                Now Playing
+                                            </Link>
                                         </li>
                                     </ul>
+                                    <div>
+                                        <span>By Year</span>
+                                        <YearsSelect categoryType={movieCategory}/>
+                                    </div>
                                 </div>
                                 <div className={'sub__menu_genre'}>
                                     <Genres categoryType={movieCategory} genres={genresMovie}/>
@@ -60,16 +80,26 @@ const Header: FC = () => {
                         </div>
                     </li>
                     <li>
-                        <Link to={`/discover/${tvCategory}`} onClick={() => deleteGenre()}>Show TV</Link>
+                        <Link to={`/discover/${tvCategory}`} onClick={() => addMediaTitle('TV Show')}>Show TV</Link>
                         <div className={'sub__menu'}>
                             <div className={'sub__menu_container'}>
                                 <div className={'sub__menu_movies'}>
                                     <ul>
                                         <li>
-                                            <Link to={`/sort/${tvCategory}${tvType.topRated}`}>Top Rated</Link>
+                                            <Link
+                                                to={`/sort/${tvCategory}${tvType.topRated}`}
+                                                onClick={() => addMediaTitle('Top Rated')}
+                                            >
+                                                Top Rated
+                                            </Link>
                                         </li>
                                         <li>
-                                            <Link to={`/sort/${tvCategory}${tvType.onTheAir}`}>On The Air</Link>
+                                            <Link
+                                                to={`/sort/${tvCategory}${tvType.onTheAir}`}
+                                                onClick={() => addMediaTitle('On The Air')}
+                                            >
+                                                On The Air
+                                            </Link>
                                         </li>
                                     </ul>
                                 </div>

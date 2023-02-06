@@ -4,6 +4,11 @@
 .movies__title {
     background: var(--background-main);
     height: 40px;
+    color: var(--color-text-primary);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
 }
 .movies__list {
     background: var(--background-main);
@@ -14,11 +19,7 @@
     justify-content: space-around;
     row-gap: 20px;
 }
-.movies__title {
-    color: var(--color-text-primary);
-    text-transform: uppercase;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
+.movies__title > span {
+    margin-left: 50px;
+    border-bottom: 2px solid #00d575;
 }

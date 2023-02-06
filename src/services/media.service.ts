@@ -3,9 +3,9 @@ import {ICastResponse, IIndex, IMediaDetails, IMediaResponse, IMovieVideoRespons
 import {category} from "../constants";
 
 export const mediaService = {
-    getAll: (id: string | undefined, page: string | null, categoryType: keyof IIndex): AxiosRes<IMediaResponse> =>
+    getAll: (id: string | undefined, page: string | null, categoryType: keyof IIndex, year: string): AxiosRes<IMediaResponse> =>
         axiosService
-            .get(`/discover/${category[categoryType]}?&language=en-US&with_genres=${id}`, {params: {page}}),
+            .get(`/discover/${category[categoryType]}?&language=en-US&with_genres=${id}&year=${year}`, {params: {page}}),
 
     getTrending: (categoryType: keyof IIndex, timeWindow: string): AxiosRes<IMediaResponse> =>
         axiosService.get(`/trending/${category[categoryType]}${timeWindow}`),

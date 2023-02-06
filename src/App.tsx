@@ -15,9 +15,10 @@ const App: FC = () => {
                     <Route path={'home'} element={<HomePage/>}/>
                     <Route path={'discover/:categoryType'} element={<MediaPage/>}/>
                     <Route path={'discover/:categoryType&language=en-US&with_genres=:id'} element={<MediaPage/>}/>
+                    <Route path={'discover/:categoryType&language=en-US&year=:year'} element={<MediaPage/>}/>
                     <Route path={':categoryType/:id'} element={<MediaDetailsPage/>}/>
                     <Route path={'sort/:categoryType/:mediaType'} element={<MediaPage/>}/>
-                    <Route path={'search/multi'} element={<SearchPage/>}/>
+                    <Route path={'search/multi&query=:searchText'} element={<SearchPage/>}/>
                 </Route>
             </Routes>
         </div>
