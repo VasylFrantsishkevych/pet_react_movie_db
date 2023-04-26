@@ -61,6 +61,7 @@
     left: 58px;
     top: 70px;
     background: var(--auxiliary);
+    color: var(--color-text-primary);
     z-index: 9999;
     display: none;
 }
@@ -76,7 +77,13 @@
     box-sizing: border-box;
     padding: 10px;
 }
-.sub__menu_movies a {
+.select-years {
+    padding-left: 40px;
+}
+.select-years span {
+    margin-right: 7px;
+}
+.sub__menu_movies a, .select-years {
     color: var(--color-text-primary);
     font-weight: 500;
     font-size: 18px;

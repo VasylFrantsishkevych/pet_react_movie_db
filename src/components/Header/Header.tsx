@@ -68,7 +68,7 @@ const Header: FC = () => {
                                             </Link>
                                         </li>
                                     </ul>
-                                    <div>
+                                    <div className={'select-years'}>
                                         <span>By Year</span>
                                         <YearsSelect categoryType={movieCategory}/>
                                     </div>
@@ -102,6 +102,10 @@ const Header: FC = () => {
                                             </Link>
                                         </li>
                                     </ul>
+                                    <div className={'select-years'}>
+                                        <span>By Year</span>
+                                        <YearsSelect categoryType={tvCategory}/>
+                                    </div>
                                 </div>
                                 <div className={'sub__menu_genre'}>
                                     <Genres categoryType={tvCategory} genres={genresTv}/>
