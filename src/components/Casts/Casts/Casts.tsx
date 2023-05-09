@@ -31,7 +31,7 @@ const Casts:FC<IProps> = ({id, categoryType}) => {
     return (
         <div className={'casts'}>
             <h2>Casts</h2>
-            <SwiperGeneral slidesPerView={6}>
+            <SwiperGeneral slidesPerView={5}>
                 {
                     castsSort.map(cast =>
                         <SwiperSlide key={cast.id}>

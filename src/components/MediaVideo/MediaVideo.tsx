@@ -20,7 +20,7 @@ const MediaVideo: FC<IProps> = ({id,categoryType}) => {
         dispatch(mediaAction.getVideoById({id, categoryType}))
     }, [dispatch, id, categoryType])
 
-    const mediaVideoFilter = mediaVideo.slice(0, 3)
+    const mediaVideoFilter = mediaVideo.filter(video => video.name.includes('Official'))
 
     return (
         <div className={'video'}>

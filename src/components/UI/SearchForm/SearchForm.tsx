@@ -18,7 +18,9 @@ const SearchForm: FC = () => {
     const dispatch = useAppDispatch();
 
     const submit = (data: FormInputs) => {
+        console.log(data);
         dispatch(searchAction.addSearchText(data.searchText))
+        console.log('+++++++')
         reset();
     }
 

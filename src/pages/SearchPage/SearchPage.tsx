@@ -18,14 +18,14 @@ const SearchPage: FC = () => {
         const page = query.get('page');
         dispatch(searchAction.getSearchMovie({page, searchText}))
     }, [dispatch, searchText, query, setQuery])
-
+    console.log(searchText);
     return (
         <div className={'movies'}>
             <div className={'movies__list'}>
                 {status && <div className={'main_loader'}><Loader/></div>}
                 {
                     searchData.length === 0
-                        ? <h2>Movies not found</h2>
+                        ? <h2>Not found</h2>
                         : searchData.map(media => <Media key={media.id} media={media}/>)
                 }
             </div>
