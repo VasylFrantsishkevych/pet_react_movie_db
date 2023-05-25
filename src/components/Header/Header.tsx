@@ -2,7 +2,6 @@ import React, {FC} from 'react';
 import {Link} from "react-router-dom";
 
 import logo from "../../assets/thumb76_76.png";
-import './HeaderStyle.css';
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {mediaAction} from "../../redux";
 import {useTheme} from "../Theme";
@@ -11,6 +10,8 @@ import {Genres} from "../Genres/Genres";
 import {category, movieType, tvType} from "../../constants";
 import {IIndex} from "../../interfaces";
 import {YearsSelect} from "../YearsSelect/YearsSelect";
+
+import styles from './Header.module.scss';
 
 const Header: FC = () => {
     const {themeType, setCurrentTheme} = useTheme();
@@ -31,17 +32,17 @@ const Header: FC = () => {
         }
     }
     return (
-        <div className={'header'}>
-            <Link to={'/home'} className={'header__logo'}>
+        <div className={styles['header']}>
+            <Link to={'/home'} className={styles['header-logo']}>
                 <img src={logo} alt="movieDB"/>
             </Link>
-            <div className={'menu'}>
-                <ul className={'menu__list'}>
+            <div className={styles['main-menu']}>
+                <ul className={styles['main-menu_list']}>
                     <li>
                         <Link to={`/discover/${movieCategory}`} onClick={() => addMediaTitle('Movie')}>Movies</Link>
-                        <div className={'sub__menu'}>
-                            <div className={'sub__menu_container'}>
-                                <div className={'sub__menu_movies'}>
+                        <div className={styles['sub-menu']}>
+                            <div className={styles['sub-menu_container']}>
+                                <div className={styles['media-category']}>
                                     <ul>
                                         <li>
                                             <Link
@@ -68,12 +69,12 @@ const Header: FC = () => {
                                             </Link>
                                         </li>
                                     </ul>
-                                    <div className={'select-years'}>
+                                    <div className={styles['select-years']}>
                                         <span>By Year</span>
                                         <YearsSelect categoryType={movieCategory}/>
                                     </div>
                                 </div>
-                                <div className={'sub__menu_genre'}>
+                                <div className={styles['media-genre']}>
                                     <Genres categoryType={movieCategory} genres={genresMovie}/>
                                 </div>
                             </div>
@@ -81,9 +82,9 @@ const Header: FC = () => {
                     </li>
                     <li>
                         <Link to={`/discover/${tvCategory}`} onClick={() => addMediaTitle('TV Show')}>Show TV</Link>
-                        <div className={'sub__menu'}>
-                            <div className={'sub__menu_container'}>
-                                <div className={'sub__menu_movies'}>
+                        <div className={styles['sub-menu']}>
+                            <div className={styles['sub-menu_container']}>
+                                <div className={styles['media-category']}>
                                     <ul>
                                         <li>
                                             <Link
@@ -102,12 +103,12 @@ const Header: FC = () => {
                                             </Link>
                                         </li>
                                     </ul>
-                                    <div className={'select-years'}>
+                                    <div className={styles['select-years']}>
                                         <span>By Year</span>
                                         <YearsSelect categoryType={tvCategory}/>
                                     </div>
                                 </div>
-                                <div className={'sub__menu_genre'}>
+                                <div className={styles['media-genre']}>
                                     <Genres categoryType={tvCategory} genres={genresTv}/>
                                 </div>
                             </div>
@@ -115,10 +116,10 @@ const Header: FC = () => {
                     </li>
                 </ul>
             </div>
-            <div className={'search__form'}>
+            <div className={styles['search-form']}>
                 <SearchForm/>
             </div>
-            <div className={'theme__button'}>
+            <div className={styles['theme-button']}>
                 <button onClick={() => changeTheme()}>{themeType === 'dark' ? 'Light' : 'Dark'}</button>
             </div>
         </div>

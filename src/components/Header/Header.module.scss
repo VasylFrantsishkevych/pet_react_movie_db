@@ -1,0 +1,114 @@
+@import "src/styles/index";
+
+.header {
+    @include position(fixed, 0, 0);
+    background: var(--background-main);
+    display: flex;
+    min-width: 100%;
+    z-index: 99;
+    height: 70px;
+
+    .header-logo {
+        width: 20%;
+
+        & > img {
+            width: 65px;
+            height: 65px;
+        }
+    }
+
+    .main-menu {
+        width: 35%;
+
+        .main-menu_list {
+            display: flex;
+            height: 100%;
+
+            & > li {
+                & > a {
+                    @include style-text( var(--color-text-primary), bold, 25px);
+                    height: 100%;
+                    display: inline-flex;
+                    align-items: center;
+                    padding: 0 10px;
+                    cursor: pointer;
+                }
+
+                & > a:hover {
+                    background: var(--auxiliary);
+                    box-sizing: border-box;
+                    border-bottom: $base-border-thickness solid $primary-green;
+                    position: relative;
+                }
+                .sub-menu {
+                    @include position(absolute, 70px, 58px);
+                    width: 90%;
+                    padding: 15px 0 15px 15px;
+                    box-sizing: border-box;
+                    background: var(--auxiliary);
+                    color: var(--color-text-primary);
+                    z-index: 9999;
+                    display: none;
+
+                    .sub-menu_container {
+                        display: flex;
+
+                        .media-category {
+                            width: 30%;
+                            background: var(--primary);
+                            box-sizing: border-box;
+                            padding: $base-padding;
+
+                            a, .select-years {
+                                @include style-text();
+                                height: 100%;
+
+                                &:hover {
+                                    color: $primary-green;
+                                }
+                            }
+
+                            .select-years {
+                                span {
+                                    margin-right: 7px;
+                                    color: $color-text;
+                                }
+                            }
+                        }
+
+                        .media-genre {
+                            width: 70%;
+                        }
+                    }
+                }
+
+                &:hover .sub-menu {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .search-form {
+        width: 35%;
+    }
+
+    .theme-button {
+        button {
+            height: 30px;
+            width: 45px;
+            background: var(--primary);
+            color: var(--color-text-primary);
+            border: none;
+            cursor: pointer;
+            border-radius: $base-border-radius;
+        }
+    }
+
+    .theme-button, .header-logo, .search-form {
+        @include base-display(flex, center, center)
+    }
+}
+
+
+

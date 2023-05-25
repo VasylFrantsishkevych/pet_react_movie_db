@@ -1,0 +1,19 @@
+@import "variables";
+
+@mixin base-display($dis, $jc, $ai) {
+  display: $dis;
+  justify-content: $jc;
+  align-items: $ai;
+}
+
+@mixin position($position, $top, $left) {
+  position: $position;
+  top: $top;
+  left: $left;
+}
+
+@mixin style-text($color: var(--color-text-primary), $fw: 500, $fs: $base-font-size) {
+  color: $color;
+  font-weight: $fw;
+  font-size: $fs;
+}

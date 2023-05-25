@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import {Route, Routes} from "react-router-dom";
 
 import './App.css'
+import './styles/index.scss'
 import {MainLayout} from "./layouts";
 import {MediaDetailsPage, MediaPage, SearchPage, HomePage} from "./pages";
 
