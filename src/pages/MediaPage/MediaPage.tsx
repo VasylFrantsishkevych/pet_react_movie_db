@@ -7,7 +7,7 @@ import {IGenres, IIndex} from "../../interfaces";
 import {Loader, Media, MediaCarousel, Pagination} from "../../components";
 import {trendingTimeWindow} from "../../constants";
 
-import './Media.page.style.css';
+import './MediaPage.scss';
 
 interface IParams {
     id: string | undefined,
@@ -40,13 +40,13 @@ const MediaPage: FC = () => {
     return (
         <div className={'movies'}>
             <MediaCarousel categoryType={categoryType} timeWindow={trendingTimeWindow.day}/>
-            <div className={'movies__card'}>
-                <div className={'movies__title'}>
+            <div className={'movies-card'}>
+                <div className={'movies-title'}>
                     {
                         mediaPageTitle && <span>{mediaPageTitle}</span>
                     }
                 </div>
-                <div className={'movies__list'}>
+                <div className={'movies-list'}>
                     {status && <div className={'main_loader'}><Loader/></div>}
                     {
                         medias.map(media => <Media key={media.id} media={media} categoryType={categoryType}/>)

@@ -1,6 +1,6 @@
 import React, {FC, ReactNode} from 'react';
 
-import './MediaDetailsStyle.css';
+import './MediaDetails.scss';
 import {IIndex, IMediaDetails} from "../../interfaces";
 import {category, urlOriginalImage, urlSize} from "../../constants";
 import {StarsRating} from "../StarsRating/StarsRating";
@@ -31,29 +31,29 @@ const MovieDetails: FC<IProps> = ({media, categoryType}) => {
 
     return (
 
-        <div className={'media__details'}>
+        <div className={'media-details'}>
             <div
-                className={'media__details_banner'}
+                className={'media-details-banner'}
                 style={{backgroundImage: `url(${urlOriginalImage}${backdrop_path})`}}
             >
-                <div className={'details__container'}>
-                    <div className={'media__poster'}>
+                <div className={'details-container'}>
+                    <div className={'media-poster'}>
                         <img
                             src={`${urlSize.w300}${poster_path}`}
                             alt={`${categoryType === category.movie ? original_title : original_name}`}
                         />
                     </div>
-                    <div className={'media__info'}>
+                    <div className={'media-info'}>
                         <div>
                             <h1>{categoryType === category.movie ? original_title : original_name}</h1>
-                            <div className={'media__info_genre'}>
+                            <div className={'media-details-genre'}>
                                 {
                                     genres.map(({id, name}) =>
                                         <span key={id}>{name}</span>
                                     )
                                 }
                             </div>
-                            <div className={'media__info_description'}>
+                            <div className={'media-details-description'}>
                                 <p>Data: <span>{categoryType === category.movie ? release_date : first_air_date}</span></p>
                                 {number_of_seasons && <p>Seasons: <span>{number_of_seasons}</span></p>}
                                 {runtime && <p>Time: <span>{runtime} min.</span></p>}
@@ -65,12 +65,12 @@ const MovieDetails: FC<IProps> = ({media, categoryType}) => {
                                 <p>{overview}</p>
                             </div>
                         </div>
-                        <div className={'details__container_bottom'}>
+                        <div className={'details-container-bottom'}>
                             <div className={'homepage'}>
                                 <a href={homepage}>Homepage</a>
                             </div>
-                            <div className={'container__rating'}>
-                                <div className={'container__rating_stars'}>
+                            <div className={'container-rating'}>
+                                <div className={'container-rating-stars'}>
                                     <p>Rate the movie:</p>
                                     <StarsRating/>
                                 </div>

@@ -5,7 +5,7 @@ import {category, movieType, trendingTimeWindow, tvType} from "../../constants";
 import {IIndex} from "../../interfaces";
 import {useAppSelector} from "../../hooks";
 
-import './Home.style.css';
+import './HomePage.scss';
 import {useNavigate} from "react-router-dom";
 
 
@@ -23,7 +23,7 @@ const HomePage: FC = () => {
                 categoryType={movie}
                 timeWindow={trendingTimeWindow.week}
             />
-            <div className={'media__slider'}>
+            <div className={'media-slider'}>
                 <div>
                     <h2>Movie Popular</h2>
                     <Button onClick={() => navigate(`/sort/${movie}${movieType.popular}`)}>View More</Button>
@@ -34,7 +34,7 @@ const HomePage: FC = () => {
                     mediaDataByType={moviePopular}
                 />
             </div>
-            <div className={'media__slider'}>
+            <div className={'media-slider'}>
                 <div>
                     <h2>TV Popular</h2>
                     <Button onClick={() => navigate(`/sort/${movie}${tvType.popular}`)}>View More</Button>
@@ -45,7 +45,7 @@ const HomePage: FC = () => {
                     mediaDataByType={tvPopular}
                 />
             </div>
-            <div className={'media__slider'}>
+            <div className={'media-slider'}>
                 <div>
                     <h2>Movie Top Rated</h2>
                     <Button onClick={() => navigate(`/sort/${movie}${movieType.topRated}`)}>View More</Button>
@@ -56,7 +56,7 @@ const HomePage: FC = () => {
                     mediaDataByType={movieTopRated}
                 />
             </div>
-            <div className={'media__slider'}>
+            <div className={'media-slider'}>
                 <div>
                     <h2>TV Top Rated</h2>
                     <Button onClick={() => navigate(`/sort/${movie}${tvType.topRated}`)}>View More</Button>

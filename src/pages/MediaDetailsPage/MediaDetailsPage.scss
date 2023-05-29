@@ -1,10 +1,11 @@
-.media__details_container {
+.media-details-container {
     background: var(--background-main);
     min-height: 100vh;
     box-sizing: border-box;
-    padding: 0 25px 25px;
+    padding: 0 25px 1.5rem;
     color: var(--color-text-primary);
-}
-.media__details_casts {
-    margin-top: 330px;
+
+    .media-details-casts {
+        margin-top: 330px;
+    }
 }

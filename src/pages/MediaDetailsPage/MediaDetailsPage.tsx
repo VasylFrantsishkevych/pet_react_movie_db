@@ -6,7 +6,7 @@ import {mediaAction} from "../../redux";
 import {Casts, Loader, MovieDetails, MediaVideo, Recommendations} from "../../components";
 import {IIndex} from "../../interfaces";
 
-import './MediaDetailsPageStyle.css';
+import './MediaDetailsPage.scss';
 
 const MediaDetailsPage: FC = () => {
     const {mediaById, status} = useAppSelector(state => state.movies);
@@ -18,18 +18,18 @@ const MediaDetailsPage: FC = () => {
     },[dispatch, id, categoryType])
 
     return (
-        <div className={'media__details_container'}>
+        <div className={'media-details-container'}>
             {status && <div className={'main_loader'}><Loader/></div>}
             {
                 mediaById.map(media => <MovieDetails key={media.id} media={media} categoryType={categoryType}/>)
             }
-            <div className={'media__details_casts'}>
+            <div className={'media-details-casts'}>
                 <Casts id={id} categoryType={categoryType}/>
             </div>
-            <div className={'media__details_video'}>
+            <div className={'media-details-video'}>
                 <MediaVideo id={id} categoryType={categoryType}/>
             </div>
-            <div className={'media__details_similar'}>
+            <div className={'media-details-similar'}>
                 <Recommendations id={id} categoryType={categoryType}/>
             </div>
         </div>

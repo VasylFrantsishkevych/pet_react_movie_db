@@ -1,4 +1,4 @@
-export * from './Home.page/Home.page';
-export * from './Media.page/Media.page';
+export * from './HomePage/HomePage';
+export * from './MediaPage/MediaPage';
 export * from './MediaDetailsPage/MediaDetailsPage';
 export * from './SearchPage/SearchPage';

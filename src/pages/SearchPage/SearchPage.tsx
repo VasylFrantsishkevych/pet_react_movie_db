@@ -2,7 +2,7 @@ import React, {FC, useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {searchAction} from "../../redux";
 import {Loader, Media, Pagination} from "../../components";
-import '../Media.page/Media.page.style.css';
+import '../MediaPage/MediaPage.scss';
 import {useSearchParams} from "react-router-dom";
 
 const SearchPage: FC = () => {

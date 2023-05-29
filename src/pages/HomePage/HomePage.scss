@@ -1,0 +1,24 @@
+@import "src/styles/variables";
+@import "src/styles/mixin";
+
+.home {
+    background: var(--background-main);
+    color: var(--color-text-primary);
+    box-sizing: border-box;
+    min-height: 100vh;
+
+    .media-slider {
+        margin-top: $base-margin;
+
+        & > div {
+            @include base-display(flex, space-between, center);
+            margin: 0 $base-margin;
+
+            h2 {
+                border-bottom: 2px solid $primary-green;
+                display: inline-block;
+                padding: 5px;
+            }
+        }
+    }
+}
