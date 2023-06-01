@@ -1,0 +1,43 @@
+@import "src/styles/index";
+
+.media-item {
+    border-radius: $base-border-radius;
+    box-sizing: border-box;
+    position: relative;
+    margin: $base-margin 0;
+
+    &:hover {
+        box-shadow: 0 0 10px 0 $primary-green;
+    }
+
+    img {
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    .media-item-rating {
+        right: 8px;
+        width: 30px;
+    }
+
+    .media-item-year{
+        left: 8px;
+        width: 40px;
+        color: var(--color-text-primary);
+    }
+
+    .media-item-rating,
+    .media-item-year{
+        @include base-display(flex, center, center);
+        height: 20px;
+        border-radius: $base-border-radius + 1.5;
+        background-color: rgba(58, 61, 68, 0.7);
+        font-weight: 500;
+        border: 1px solid $primary-green;
+        position: absolute;
+        top: 8px;
+    }
+}
+
+
+

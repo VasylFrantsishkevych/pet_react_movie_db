@@ -1,0 +1,39 @@
+@import "src/styles/index";
+
+.paginator {
+    @include base-display(flex, center, center);
+    background: var(--background-main);
+    padding-bottom: $base-padding;
+
+    .button {
+        border: none;
+        box-shadow: 0 0 3px var(--border-pagination);
+        cursor: pointer;
+        color: var(--color-text-primary);
+        background: var(--primary);
+    }
+
+    .page {
+        @include base-display(flex, center, center);
+        border: none;
+        width: 30px;
+        height: 30px;
+        box-shadow: 0 0 3px var(--border-pagination);
+        border-radius: 50%;
+        color: var(--color-text-primary);
+        margin: 0 10px;
+        cursor: pointer;
+        background: var(--border-pagination);
+
+        &:hover {
+            background: $primary-green;
+        }
+    }
+
+    .current_page {
+        @extend .page;
+        box-shadow: 0 0 3px $primary-green;
+        background: $primary-green;
+        font-weight: 500;
+    }
+}

@@ -2,7 +2,7 @@ import React, {FC, ReactNode} from 'react';
 
 import {urlSize} from "../../../constants";
 import {ICast} from "../../../interfaces";
-import '../Casts/CastsStyle.css';
+import '../Cast/Cast.scss';
 
 interface IProps {
     cast: ICast,

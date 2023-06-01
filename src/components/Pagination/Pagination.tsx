@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {Link, useSearchParams} from "react-router-dom";
 
-import './PaginationStyle.css';
+import './Pagination.scss';
 import {createPages} from "./createPage";
 
 interface IProps {

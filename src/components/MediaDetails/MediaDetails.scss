@@ -33,12 +33,11 @@
             }
 
             .media-info {
+                @include display-direction(flex, column);
+                justify-content: space-between;
                 width: 65%;
                 box-sizing: border-box;
                 padding-left: 35px;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
 
                 h1 {
                     margin-bottom: $base-margin * 1.5;
@@ -91,8 +90,7 @@
                     }
 
                     .container-rating {
-                        display: flex;
-                        flex-direction: column;
+                        @include display-direction(flex, column);
                         align-items: flex-end;
                         width: 65%;
 

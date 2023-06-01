@@ -5,7 +5,7 @@ import 'swiper/css/bundle'
 import {useAppDispatch, useAppSelector} from "../../../hooks";
 import {mediaAction} from "../../../redux";
 import {IIndex} from "../../../interfaces";
-import './CastsStyle.css';
+import './Casts.scss';
 import {Cast} from "../Cast/Cast";
 import {SwiperGeneral} from "../../UI";
 

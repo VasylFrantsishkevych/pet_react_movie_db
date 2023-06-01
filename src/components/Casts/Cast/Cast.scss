@@ -1,0 +1,11 @@
+@import "src/styles/index";
+
+.cast {
+  @include display-direction(flex, column);
+  align-items: center;
+
+  img {
+    height: 250px;
+    border-radius: 10px;
+  }
+}

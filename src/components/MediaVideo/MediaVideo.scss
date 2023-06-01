@@ -1,0 +1,11 @@
+@import "src/styles/index";
+
+.video {
+    @include display-direction(flex, column);
+    align-items: center;
+    row-gap: 25px;
+
+    h2 {
+        margin: $base-margin * 2 0 0;
+    }
+}

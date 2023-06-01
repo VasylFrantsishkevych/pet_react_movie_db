@@ -1,6 +1,6 @@
 import React, {FC, useEffect} from 'react';
 
-import './MediaVideoStyle.css';
+import './MediaVideo.scss';
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {mediaAction} from "../../redux";
 import {Loader} from "../UI";

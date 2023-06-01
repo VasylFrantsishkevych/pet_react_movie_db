@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {category, urlSize} from "../../../constants";
 import {IMediaResults} from "../../../interfaces";
 
-import './MediaItemSlideStyle.css';
+import './MediaItemSlide.scss';
 
 interface IProps {
     categoryType?: string;
@@ -26,16 +26,16 @@ const MediaItemSlide: FC<IProps> = ({media, categoryType}) => {
     }
 
     return (
-        <div className={'media__item'}>
+        <div className={'media-item'}>
             <Link to={`/${categoryType}/${id}`}>
-                <div className={'media__item_image'}>
+                <div className={'media-item-image'}>
                     <img src={`${urlSize.w200}${poster_path}`}
                          alt={`${categoryType === category.movie ? original_title : original_name}`}/>
                 </div>
-                <div className={`media__item_rating ${changeColorText(vote_average)}`}>
+                <div className={`media-item-rating ${changeColorText(vote_average)}`}>
                     {vote_average.toFixed(1)}
                 </div>
-                <div className={'media__item_year'}>
+                <div className={'media-item-year'}>
                     {categoryType === category.movie
                     ?
                         release_date?.split('-')[0]

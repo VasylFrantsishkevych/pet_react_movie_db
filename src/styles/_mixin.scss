@@ -6,6 +6,11 @@
   align-items: $ai;
 }
 
+@mixin display-direction($dis, $fd) {
+  display: $dis;
+  flex-direction: $fd;
+}
+
 @mixin position($position, $top, $left) {
   position: $position;
   top: $top;
