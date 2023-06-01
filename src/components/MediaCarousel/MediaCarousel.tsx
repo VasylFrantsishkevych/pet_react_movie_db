@@ -1,9 +1,10 @@
 import React, {FC, useEffect} from 'react';
+import {SwiperSlide} from "swiper/react";
+
 import {IIndex} from "../../interfaces";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {mediaAction} from "../../redux";
 import {SwiperGeneral} from "../UI";
-import {SwiperSlide} from "swiper/react";
 import {MediaCarouselItem} from "./MediaCarouselItem/MediaCarouselItem";
 
 import 'swiper/css/bundle';

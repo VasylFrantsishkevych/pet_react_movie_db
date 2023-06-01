@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {IIndex, IMediaResults} from "../../../interfaces";
 
-import './MediaCarouselItemStyle.css';
+import './MediaCarouselItem.scss';
 import {category, urlSize} from "../../../constants";
 import {Link} from "react-router-dom";
 
