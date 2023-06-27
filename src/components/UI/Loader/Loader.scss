@@ -1,8 +1,10 @@
+@import "src/styles/index";
+
 .loader {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    border: 2px dashed #31c469;
+    border: 2px dashed $primary-green;
     animation: rotate 1s infinite linear;
 }
 

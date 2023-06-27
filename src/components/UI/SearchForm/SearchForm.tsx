@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 
-import './SearchFormStyle.css';
+import './SearchForm.scss';
 import {useAppDispatch, useAppSelector} from "../../../hooks";
 import {searchAction} from "../../../redux";
 

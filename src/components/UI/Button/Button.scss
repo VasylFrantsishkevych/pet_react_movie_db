@@ -1,0 +1,14 @@
+@import "src/styles/index";
+
+.button__custom {
+    background: $primary-green;
+    color: var(--color-text-primary);
+    height: 30px;
+    border-radius: $base-border-radius * 2;
+    cursor: pointer;
+    border: none;
+
+    &:hover {
+        background: darken($primary-green, 15);
+    }
+}

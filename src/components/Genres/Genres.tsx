@@ -6,7 +6,7 @@ import {Genre} from "../Genre/Genre";
 import {Loader} from "../UI";
 import {IGenres, IIndex} from "../../interfaces";
 
-import './GenresStyle.css';
+import './Genres.scss';
 
 interface IProps {
     genres: IGenres[],
@@ -23,7 +23,7 @@ const Genres: FC<IProps> = ({categoryType, genres}) => {
     },[dispatch, categoryType])
 
     return (
-        <div className={'genres__list'}>
+        <div className={'genres-list'}>
             {status && <div className={'main_loader'}><Loader/></div>}
             {
                 genres.map(genre => <Genre key={genre.id} genre={genre} categoryType={categoryType}/>)

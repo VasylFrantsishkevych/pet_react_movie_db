@@ -1,0 +1,29 @@
+@import "src/styles/index";
+
+.search {
+    width: 95%;
+    height: 25px;
+    position: relative;
+
+    input {
+        width: 70%;
+        height: 30px;
+        border-bottom-left-radius: $base-border-radius * 3;
+        border-top-left-radius: $base-border-radius * 3;
+        box-sizing: border-box;
+        border: 2px solid $primary-green;
+        letter-spacing: 1px;
+        outline: none;
+        padding-left: $base-padding;
+    }
+
+    button {
+        height: 30px;
+        width: 20%;
+        border-radius: $base-border-radius * 3;
+        position: absolute;
+        left: 250px;
+        border: none;
+        background: $primary-green;
+    }
+}

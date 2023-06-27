@@ -1,6 +1,6 @@
 import React, {FC, ReactNode} from 'react';
 
-import './ButtonStyle.css';
+import './Button.scss';
 
 interface IProps {
     children?: ReactNode,

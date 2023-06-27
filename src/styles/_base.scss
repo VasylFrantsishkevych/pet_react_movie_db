@@ -1,4 +1,4 @@
-
+@import "src/styles/variables";
 /* reset styles */
 * {
   margin: 0;
@@ -15,4 +15,14 @@ ul {
 
 a {
   text-decoration: none;
+}
+
+.rating-color-green {
+  color: $secondary-green;
+}
+.rating-color-yellow {
+  color: $yellow;
+}
+.rating-color-red {
+  color: $red;
 }

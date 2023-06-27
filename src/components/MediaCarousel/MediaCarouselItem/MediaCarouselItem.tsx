@@ -32,23 +32,23 @@ const MediaCarouselItem: FC<IProps> = ({media, categoryType}) => {
                     alt={categoryType === category.movie ? original_title : original_name}
                 />
             </div>
-            <div className="poster__overlay">
+            <div className="poster-overlay">
                 <Link to={`/${categoryType}/${id}`}>
-                    <div className={'poster__image'}>
+                    <div className={'poster-image'}>
                         <img
                             src={`${urlSize.w200}${poster_path}`}
                             alt={`${categoryType === category.movie ? original_title : original_name}`}
                         />
                     </div>
                 </Link>
-                <div className="poster__info">
+                <div className="poster-info">
                     <Link to={`/${categoryType}/${id}`}>
-                        <div className={'poster__info_title'}>
+                        <div className={'poster-info-title'}>
                             <span>{categoryType === category.movie ? original_title : original_name}</span>
                         </div>
                     </Link>
-                    <p>Release data: {categoryType === category.movie ? release_date : first_air_date}</p>
-                    <p>Rating: {vote_average.toFixed(1)}</p>
+                    <p>Release data: <span>{categoryType === category.movie ? release_date : first_air_date}</span></p>
+                    <p>Rating: <span>{vote_average.toFixed(1)}</span></p>
                     <p>{overview}</p>
                 </div>
             </div>

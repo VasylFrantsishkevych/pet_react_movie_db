@@ -4,7 +4,8 @@ import {Link} from "react-router-dom";
 import {IMediaResults} from "../../interfaces";
 import {category, urlSize} from "../../constants";
 
-import './Media.style.css';
+import './Media.scss';
+import {changeColorText} from "../../utils";
 
 interface IProps {
     categoryType?: string;
@@ -25,16 +26,6 @@ const Media: FC<IProps> = ({media, categoryType}) => {
         media_type
     } = media;
 
-    const changeColorText = (vote: number) => {
-        if (vote >= 8) {
-            return 'rating__color_green'
-        } else if (vote >= 6) {
-            return 'rating__color_yellow'
-        } else {
-            return 'rating__color_red'
-        }
-    }
-
     const getCategory = () => {
         let categoryMedia = '';
         if (categoryType) {
@@ -46,20 +37,20 @@ const Media: FC<IProps> = ({media, categoryType}) => {
     }
 
     return (
-        <div className={'movie__card'}>
+        <div className={'movie-card'}>
             <Link to={`/${getCategory()}/${id}`}>
-                <div className={'movie__card_image'}>
+                <div className={'movie-card-image'}>
                     <img src={`${urlSize.w200}${poster_path}`}
                          alt={`${getCategory() === category.movie ? original_title : original_name}`}
                     />
                 </div>
-                <div className={'movie__card_title'}>
+                <div className={'movie-card-title'}>
                     <div>{getCategory() === category.movie ? original_title : original_name}</div>
                 </div>
                 <div className={`rating ${changeColorText(vote_average)}`}>
                     {vote_average}
                 </div>
-                <div className={'movie__card_year'}>
+                <div className={'movie-card-year'}>
                     {getCategory() === category.movie
                         ?
                         release_date?.split('-')[0]

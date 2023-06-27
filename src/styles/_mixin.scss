@@ -22,3 +22,9 @@
   font-weight: $fw;
   font-size: $fs;
 }
+
+@mixin crop-text($white-space: nowrap, $overflow: hidden, $text-overflow: ellipsis) {
+  white-space: $white-space;
+  overflow: $overflow;
+  text-overflow: $text-overflow;
+}

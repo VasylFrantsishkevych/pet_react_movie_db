@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 
-import './LoaderStyle.css';
+import './Loader.scss';
 
 const Loader: FC = () => {
     return (

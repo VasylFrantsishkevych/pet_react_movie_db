@@ -1,0 +1,15 @@
+@import "src/styles/index";
+
+.genre {
+    @include crop-text();
+    width: 15%;
+
+    a {
+        color: $color-text;
+        font-size: $base-font-size;
+
+        &:hover {
+            color: $primary-green;
+        }
+    }
+}

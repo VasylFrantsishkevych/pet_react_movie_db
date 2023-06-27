@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 import {IGenres, IIndex} from "../../interfaces";
 
-import './GenreStyle.css';
+import './Genre.scss';
 
 
 interface IProps {
